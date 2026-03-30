@@ -1,5 +1,6 @@
 """MCP Dev Summit Companion — Upjack Server."""
 
+import asyncio
 import json
 import logging
 import os
@@ -153,8 +154,14 @@ if not _session_dir.exists() or not any(_session_dir.iterdir()):
 
 
 @mcp.resource("ui://mcp-dev-summit/speaker-widget", mime_type="text/html;profile=mcp-app")
-def speaker_widget_ui() -> str:
+async def speaker_widget_ui() -> str:
     """Speaker cards — server-side rendered from the most recent find_speaker_profiles result."""
+    # If a tool call is in flight, wait for it to store results (up to 10s).
+    if not _speaker_ready.is_set():
+        try:
+            await asyncio.wait_for(_speaker_ready.wait(), timeout=10.0)
+        except TimeoutError:
+            pass
     speakers = _last_widget_data.get("speakers", [])
     if not speakers:
         return _wrap_widget('<p class="empty">No speakers found</p>', "speaker-widget")
@@ -267,6 +274,10 @@ body {{ padding:16px; background:transparent; }}
 # Shared state for baked-in widget data. The tool stores its result here,
 # and the resource reads it when Claude Desktop fetches the widget HTML.
 _last_widget_data: dict[str, Any] = {}
+# Signals when find_speaker_profiles has stored its results.
+# Pre-set so the resource doesn't block on first load before any tool call.
+_speaker_ready = asyncio.Event()
+_speaker_ready.set()
 
 _WIDGET_CSS = """\
 body{padding:16px;background:transparent}
@@ -790,19 +801,21 @@ def whats_on(include_next: int = 2, track: str = "") -> dict:
 
 
 @mcp.tool(meta={"ui": {"resourceUri": "ui://mcp-dev-summit/speaker-widget"}})
-def find_speaker_profiles(
+async def find_speaker_profiles(
     query: str = "",
     company: str = "",
     is_keynote: bool = False,
     limit: int = 20,
 ) -> dict:
     """Find speakers with their sessions inlined. Filter by name, company, topic, or keynote status. Returns speaker cards with photos, bios, and session links."""
+    _speaker_ready.clear()
     result = _find_speakers(
         upjack_app, query=query, company=company, is_keynote=is_keynote, limit=limit
     )
     speakers = result.get("results", [])
     _inline_photos(speakers, max_speakers=3, use_thumbs=True)
     _last_widget_data["speakers"] = speakers
+    _speaker_ready.set()
     return result
 
 
