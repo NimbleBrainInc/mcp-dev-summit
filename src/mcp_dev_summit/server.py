@@ -1,6 +1,6 @@
 """MCP Dev Summit Companion — Upjack Server."""
 
-import asyncio
+import base64
 import json
 import logging
 import os
@@ -153,16 +153,17 @@ if not _session_dir.exists() or not any(_session_dir.iterdir()):
 # =============================================================================
 
 
-@mcp.resource("ui://mcp-dev-summit/speaker-widget", mime_type="text/html;profile=mcp-app")
-async def speaker_widget_ui() -> str:
-    """Speaker cards — server-side rendered from the most recent find_speaker_profiles result."""
-    # If a tool call is in flight, wait for it to store results (up to 10s).
-    if not _speaker_ready.is_set():
-        try:
-            await asyncio.wait_for(_speaker_ready.wait(), timeout=10.0)
-        except TimeoutError:
-            pass
-    speakers = _last_widget_data.get("speakers", [])
+@mcp.resource("ui://mcp-dev-summit/speakers/{encoded_ids}", mime_type="text/html;profile=mcp-app")
+def speaker_widget_ui(encoded_ids: str) -> str:
+    """Speaker cards rendered from base64-encoded speaker IDs in the URI — no shared state."""
+    try:
+        padding = (4 - len(encoded_ids) % 4) % 4
+        ids = base64.urlsafe_b64decode(encoded_ids + "=" * padding).decode().split(",")
+        speakers = [upjack_app.get_entity("speaker", sid) for sid in ids if sid]
+        speakers = [sp for sp in speakers if sp]
+    except Exception:
+        speakers = []
+    _inline_photos(speakers, max_speakers=3, use_thumbs=True)
     if not speakers:
         return _wrap_widget('<p class="empty">No speakers found</p>', "speaker-widget")
     shown = speakers[:3]
@@ -271,13 +272,7 @@ body {{ padding:16px; background:transparent; }}
 </body></html>"""
 
 
-# Shared state for baked-in widget data. The tool stores its result here,
-# and the resource reads it when Claude Desktop fetches the widget HTML.
 _last_widget_data: dict[str, Any] = {}
-# Signals when find_speaker_profiles has stored its results.
-# Pre-set so the resource doesn't block on first load before any tool call.
-_speaker_ready = asyncio.Event()
-_speaker_ready.set()
 
 _WIDGET_CSS = """\
 body{padding:16px;background:transparent}
@@ -800,23 +795,26 @@ def whats_on(include_next: int = 2, track: str = "") -> dict:
     return _whats_on(upjack_app, include_next=include_next, track=track)
 
 
-@mcp.tool(meta={"ui": {"resourceUri": "ui://mcp-dev-summit/speaker-widget"}})
-async def find_speaker_profiles(
+@mcp.tool()
+def find_speaker_profiles(
     query: str = "",
     company: str = "",
     is_keynote: bool = False,
     limit: int = 20,
-) -> dict:
+) -> Any:
     """Find speakers with their sessions inlined. Filter by name, company, topic, or keynote status. Returns speaker cards with photos, bios, and session links."""
-    _speaker_ready.clear()
+    from fastmcp.tools import ToolResult
+
     result = _find_speakers(
         upjack_app, query=query, company=company, is_keynote=is_keynote, limit=limit
     )
-    speakers = result.get("results", [])
-    _inline_photos(speakers, max_speakers=3, use_thumbs=True)
-    _last_widget_data["speakers"] = speakers
-    _speaker_ready.set()
-    return result
+    ids = [sp["id"] for sp in result.get("results", []) if sp.get("id")]
+    encoded = base64.urlsafe_b64encode(",".join(ids).encode()).decode().rstrip("=") if ids else ""
+    resource_uri = f"ui://mcp-dev-summit/speakers/{encoded}" if encoded else None
+    return ToolResult(
+        content=result,
+        meta={"ui": {"resourceUri": resource_uri}} if resource_uri else None,
+    )
 
 
 @mcp.tool()
