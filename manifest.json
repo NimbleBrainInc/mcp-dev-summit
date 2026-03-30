@@ -1,7 +1,7 @@
 {
   "manifest_version": "0.4",
   "name": "@nimblebraininc/mcp-dev-summit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Conference companion for MCP Dev Summit NA 2026 — search sessions, build a personal schedule, capture notes, and get AI-powered recommendations",
   "author": {
     "name": "NimbleBrain Inc",
@@ -16,7 +16,10 @@
     "entry_point": "mcp_dev_summit.server",
     "mcp_config": {
       "command": "python",
-      "args": ["-m", "mcp_dev_summit.server"]
+      "args": [
+        "-m",
+        "mcp_dev_summit.server"
+      ]
     }
   },
   "_meta": {
@@ -25,7 +28,7 @@
       "namespace": "apps/mcp-dev-summit",
       "display": {
         "name": "MCP Dev Summit",
-        "icon": "\ud83c\udfdf\ufe0f",
+        "icon": "🏟️",
         "category": "operations"
       },
       "entities": [
@@ -35,7 +38,9 @@
           "schema": "schemas/session.schema.json",
           "prefix": "ss",
           "index": true,
-          "tools": ["get"]
+          "tools": [
+            "get"
+          ]
         },
         {
           "name": "speaker",
@@ -59,7 +64,11 @@
           "schema": "schemas/bookmark.schema.json",
           "prefix": "bk",
           "index": false,
-          "tools": ["create", "list", "delete"]
+          "tools": [
+            "create",
+            "list",
+            "delete"
+          ]
         },
         {
           "name": "note",
@@ -67,7 +76,11 @@
           "schema": "schemas/note.schema.json",
           "prefix": "nt",
           "index": true,
-          "tools": ["create", "list", "update"]
+          "tools": [
+            "create",
+            "list",
+            "update"
+          ]
         },
         {
           "name": "connection",
@@ -75,11 +88,17 @@
           "schema": "schemas/connection.schema.json",
           "prefix": "cn",
           "index": true,
-          "tools": ["create", "list", "update"]
+          "tools": [
+            "create",
+            "list",
+            "update"
+          ]
         }
       ],
       "activities": false,
-      "utility_tools": ["seed_data"],
+      "utility_tools": [
+        "seed_data"
+      ],
       "views": [
         {
           "name": "todays-sessions",

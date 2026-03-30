@@ -33,6 +33,14 @@ jobs:
           jq --arg v "$VERSION" '.version = $v' manifest.json > manifest.tmp.json && mv manifest.tmp.json manifest.json
           jq --arg v "$VERSION" '.version = $v' server.json > server.tmp.json && mv server.tmp.json server.json
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build UI
+        run: cd ui && npm ci && npm run build
+
       - uses: NimbleBrainInc/mcpb-pack@v2
         with:
           output: "{name}-{version}-${{ matrix.os }}-${{ matrix.arch }}.mcpb"
