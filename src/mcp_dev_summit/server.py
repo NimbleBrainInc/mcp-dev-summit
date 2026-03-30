@@ -152,10 +152,8 @@ if not _session_dir.exists() or not any(_session_dir.iterdir()):
 # =============================================================================
 
 
-@mcp.resource(
-    "ui://mcp-dev-summit/speaker-widget/{cache_bust}", mime_type="text/html;profile=mcp-app"
-)
-def speaker_widget_ui(cache_bust: str = "") -> str:
+@mcp.resource("ui://mcp-dev-summit/speaker-widget", mime_type="text/html;profile=mcp-app")
+def speaker_widget_ui() -> str:
     """Speaker cards — server-side rendered from the most recent find_speaker_profiles result."""
     speakers = _last_widget_data.get("speakers", [])
     if not speakers:
@@ -791,7 +789,7 @@ def whats_on(include_next: int = 2, track: str = "") -> dict:
     return _whats_on(upjack_app, include_next=include_next, track=track)
 
 
-@mcp.tool()
+@mcp.tool(meta={"ui": {"resourceUri": "ui://mcp-dev-summit/speaker-widget"}})
 def find_speaker_profiles(
     query: str = "",
     company: str = "",
@@ -799,16 +797,12 @@ def find_speaker_profiles(
     limit: int = 20,
 ) -> dict:
     """Find speakers with their sessions inlined. Filter by name, company, topic, or keynote status. Returns speaker cards with photos, bios, and session links."""
-    import time
-
     result = _find_speakers(
         upjack_app, query=query, company=company, is_keynote=is_keynote, limit=limit
     )
     speakers = result.get("results", [])
     _inline_photos(speakers, max_speakers=3, use_thumbs=True)
     _last_widget_data["speakers"] = speakers
-    cache_bust = str(int(time.time() * 1000))
-    result["_meta"] = {"ui": {"resourceUri": f"ui://mcp-dev-summit/speaker-widget/{cache_bust}"}}
     return result
 
 
