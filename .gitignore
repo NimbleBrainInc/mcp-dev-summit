@@ -8,7 +8,6 @@ deps/
 .pytest_cache/
 .ruff_cache/
 ui/node_modules/
-ui/dist/
 *.mcpb
 .env
 .env.local

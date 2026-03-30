@@ -19,7 +19,7 @@ An MCP server for [MCP Dev Summit North America 2026](https://mcpdevsummitna.sch
 **Via [mpak](https://mpak.dev)** (recommended):
 
 ```bash
-mpak install @nimblebraininc/mcp-dev-summit
+mpak bundle pull @nimblebraininc/mcp-dev-summit
 ```
 
 **Claude Desktop** (`~/Library/Application Support/Claude/claude_desktop_config.json`):
