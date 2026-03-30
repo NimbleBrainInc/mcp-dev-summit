@@ -1,0 +1,2583 @@
+[
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Tadas Antanavicius",
+    "company": "Pulse MCP",
+    "role": "Co-Founder, PulseMCP",
+    "bio": "Tadas is one of the founders of PulseMCP, an in-depth weekly newsletter covering the MCP ecosystem that has been running since early December 2024. He is a member of the MCP steering group, where he is a maintainer of the MCP Registry as well as the MCP contributor community across...",
+    "topics": [
+      "agentic engineering",
+      "engineering loops"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ54K0JHSNYT97F4E33M",
+    "photo_url": "https://avatars.sched.co/c/b9/23276683/avatar.jpg?9ed",
+    "linkedin_url": "https://www.linkedin.com/in/antanavicius/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Erica Beavers",
+    "company": "Alpic",
+    "role": "Cofounder, Alpic",
+    "bio": "Co-founder of Alpic, seasoned infrastructure builders with deep experience in distributed systems, serverless architecture, and developer platforms. Previously, built Streamroot, a video delivery startup acquired by a major US telco, and now focused on making agent-native apps easy...",
+    "topics": [
+      "AI-native experiences",
+      "MCP apps",
+      "ChatGPT apps",
+      "user flow"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ551Y530RM7238Q02YJ",
+    "photo_url": "https://avatars.sched.co/b/42/23526898/avatar.jpg?d68",
+    "linkedin_url": "https://www.linkedin.com/in/ericabeavers/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Frederic Barthelet",
+    "company": "Alpic",
+    "role": "",
+    "bio": "",
+    "topics": [
+      "AI-native experiences",
+      "ChatGPT apps"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ566ZDQRYEN5S7AVKQV",
+    "linkedin_url": "https://fr.linkedin.com/in/frederic-barthelet"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Bill Maxwell",
+    "company": "Obot AI",
+    "role": "Obot AI",
+    "bio": "",
+    "topics": [
+      "enterprise scale",
+      "authentication",
+      "governance"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ57E23G9N2KMP4WH8BW"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Shannon Williams",
+    "company": "Obot AI",
+    "role": "President, Obot.ai",
+    "bio": "",
+    "topics": [
+      "enterprise scale",
+      "authentication",
+      "governance"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ58469G4QVKJW970EBV",
+    "photo_url": "https://avatars.sched.co/f/b9/23586505/avatar.jpg?40d",
+    "linkedin_url": "https://www.linkedin.com/in/smw355"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Sam Morrow",
+    "company": "GitHub",
+    "role": "Senior Software Engineer, GitHub",
+    "bio": "Sam is a Senior Software Engineer at GitHub, where he leads development of the GitHub MCP server. He works on AI developer tools and helps shape agentic workflows at GitHub. In a past life he was also a professional drummer.",
+    "topics": [
+      "MCP security",
+      "threats",
+      "trust",
+      "CLI vs MCP"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ5AE0MNW6VTE7D32A84",
+    "photo_url": "https://avatars.sched.co/2/19/24335750/avatar.jpg?c8e",
+    "linkedin_url": "https://www.linkedin.com/in/sammorrow"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Jim Zemlin",
+    "company": "The Linux Foundation",
+    "role": "Executive Director, Agentic AI Foundation & CEO",
+    "bio": "Jim Zemlin’s career spans three of the largest technology trends to rise over the last decade: mobile computing, cloud computing, and open source software. Today, as executive director of The Linux Foundation, he uses this experience to accelerate innovation in technology through...",
+    "topics": [
+      "open source",
+      "agentic AI"
+    ],
+    "is_keynote": true,
+    "tags": [],
+    "id": "sk_01KMRSCQ5BKZTVXV8TDJSS099X",
+    "photo_url": "https://avatars.sched.co/2/fe/24412271/avatar.jpg?f97",
+    "linkedin_url": "https://www.linkedin.com/in/zemlin/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "David Nalley",
+    "company": "Amazon Web Services",
+    "role": "Director of Developer Experience",
+    "bio": "David Nalley is Director of Developer Experience at Amazon Web Services (AWS), where he leads efforts to improve how developers interact with AWS services and technologies. He brings over two decades of experience in technology to his role.\nNalley previously served as President...",
+    "topics": [
+      "developer experience",
+      "open source governance"
+    ],
+    "is_keynote": true,
+    "tags": [],
+    "id": "sk_01KMRSCQ5CTJ6K6MT6CR2FD0BX",
+    "photo_url": "https://avatars.sched.co/b/79/19585143/avatar.jpg?1af",
+    "linkedin_url": "https://www.linkedin.com/in/davidnalley/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "David Soria Parra",
+    "company": "Anthropic",
+    "role": "Member of Technical Staff",
+    "bio": "I am the co-creator of the Model Context Protocol (Modelcontextprotocol.io) and a Member of Technical Staff at Anthropic working on a wide variety of things. Formerly a senior manager at Facebook working on static analysis and simulation based testing. I was responsible of integrating...",
+    "topics": [
+      "MCP protocol",
+      "Anthropic"
+    ],
+    "is_keynote": true,
+    "tags": [],
+    "id": "sk_01KMRSCQ5D96912YHHC9EB1AN3",
+    "photo_url": "https://avatars.sched.co/e/83/24147761/avatar.jpg?78d",
+    "linkedin_url": "https://www.linkedin.com/in/david-soria-parra-4a78b3a"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "James Hood",
+    "company": "Amazon Web Services",
+    "role": "Principal Software Engineer",
+    "bio": "James is a Principal Software Engineer and 16-year Amazon veteran with experience across AWS and Stores. He founded Amazon’s internal AI “power user” community and now focuses on integrating AI into internal builder tools as part of the Amazon software builder experience organization. James is...",
+    "topics": [
+      "MCP at scale",
+      "AWS"
+    ],
+    "is_keynote": true,
+    "tags": [],
+    "id": "sk_01KMRSCQ5E4Z647YVEMAW8HK5Y",
+    "photo_url": "https://avatars.sched.co/6/f0/4291921/avatar.jpg?9f0",
+    "linkedin_url": "https://www.linkedin.com/in/james-hood-18178527/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Meghana Somasundara",
+    "company": "Uber Technologies, Inc.",
+    "role": "Agentic AI Lead",
+    "bio": "Product Lead with 10+ years of experience building mission critical AI and Generative AI Platforms at Meta and Uber, holding a Masters in Machine Learning from Columbia University. Established several AI Platforms powering thousands of ML models and personalized experiences for products...",
+    "topics": [
+      "enterprise MCP",
+      "agentic AI",
+      "Uber"
+    ],
+    "is_keynote": true,
+    "tags": [],
+    "id": "sk_01KMRSCQ5FR44SEB8QYA905T79",
+    "photo_url": "https://avatars.sched.co/7/10/24335474/avatar.jpg?d7e",
+    "linkedin_url": "https://www.linkedin.com/in/meghanasomasundara"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Rush Tehrani",
+    "company": "Uber Technologies, Inc.",
+    "role": "Head of Engineering, Agentic AI Platform",
+    "bio": "Rush leads the Agent Platform charter at Uber. Prior to establishing the Agent Platform charter, he led model deployment, inference and monitoring. Before joining Uber, he was the founder and creator of Onepanel, an open source, Kubernetes native computer vision platform.",
+    "topics": [
+      "enterprise MCP",
+      "agentic AI platform",
+      "Uber"
+    ],
+    "is_keynote": true,
+    "tags": [],
+    "id": "sk_01KMRSCQ5GYNB5XGQVRECVNYHX",
+    "photo_url": "https://avatars.sched.co/9/d9/24335744/avatar.jpg?a96",
+    "linkedin_url": "https://www.linkedin.com/in/rushtehrani/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Sheng Liang",
+    "company": "Obot AI",
+    "role": "CEO",
+    "bio": "Sheng Liang is cofounder and CEO of Obot.ai. Previously, Sheng founded and served as CEO of successful open source software companies, including Rancher Labs and Cloud.com, and served in executive roles at SUSE and Citrix. He started as an engineer at Sun Microsystems, where...",
+    "topics": [
+      "enterprise MCP adoption"
+    ],
+    "is_keynote": true,
+    "tags": [],
+    "id": "sk_01KMRSCQ5H789F7V1EHYJS9Z2A",
+    "photo_url": "https://avatars.sched.co/9/2c/23644664/avatar.jpg?572",
+    "linkedin_url": "https://www.linkedin.com/in/shengliang"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Aaron Wang",
+    "company": "Duolingo Inc",
+    "role": "Software Engineer",
+    "bio": "Aaron Wang is a Software Engineer on Duolingo's DevXAI team, building AI-powered developer tools. He led the development of Duolingo's AI Slackbot with 180+ MCP tools—helping employees find answers in help channels, triage alerts, debug incidents, and navigate internal systems...",
+    "topics": [
+      "AI slackbot",
+      "enterprise assistant",
+      "MCP tools"
+    ],
+    "is_keynote": true,
+    "tags": [],
+    "id": "sk_01KMRSCQ5JP06D1483F9CCRENH",
+    "photo_url": "https://avatars.sched.co/f/ab/24335348/avatar.jpg?e6e"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Adam Seligman",
+    "company": "Workato",
+    "role": "CTO",
+    "bio": "CTO of Workato, the enterprise MCP company and the leader in orchestration. Ex-AWS, Google, Salesforce, Heroku, Microsoft. Passionate about developers and empowering anyone to make software.",
+    "topics": [
+      "enterprise MCP",
+      "data plane",
+      "autonomous agents"
+    ],
+    "is_keynote": true,
+    "tags": [],
+    "id": "sk_01KMRSCQ5KZH0D8N757BBAP6R3",
+    "photo_url": "https://avatars.sched.co/1/2d/24412505/avatar.jpg?cf3",
+    "linkedin_url": "https://www.linkedin.com/in/adamseligman/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Zayne Turner",
+    "company": "Workato",
+    "role": "Developer Advocate",
+    "bio": "",
+    "topics": [
+      "enterprise MCP",
+      "developer advocacy"
+    ],
+    "is_keynote": true,
+    "tags": [],
+    "id": "sk_01KMRSCQ5MMAYSJYYYA9345WSY",
+    "photo_url": "https://avatars.sched.co/e/27/24412514/avatar.jpg?ef9",
+    "linkedin_url": "https://www.linkedin.com/in/zayne-turner/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Diamond Bishop",
+    "company": "Datadog",
+    "role": "Director of Eng/AI, Dispatch Agents",
+    "bio": "A survivor of at least 1 AI winter, Diamond leads Datadog's AI Skunkworks group. He joined Datadog through the acquisition of Augmend, the DevOps AI assistant startup he co‑founded.\n \n Diamond has over 15 years of AI experience building assistants and developer platforms, from the early days of Microsoft Cortana and Amazon Alexa to open-source work on PyTorch at Meta. Today he focuses on “unhobbling” enterprise agents: durable control flow, strong evaland...",
+    "topics": [
+      "scaling agents",
+      "MCP platform"
+    ],
+    "is_keynote": true,
+    "tags": [],
+    "id": "sk_01KMRSCQ5NXHZKX4RZHKQF7GF2",
+    "photo_url": "https://avatars.sched.co/3/f8/24335402/avatar.jpg?d85",
+    "linkedin_url": "https://www.linkedin.com/in/diamondbishop/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Nick Aldridge",
+    "company": "Mousecat",
+    "role": "Co-founder & CEO",
+    "bio": "Nicholas Aldridge is a Core Maintainer of MCP and the Co-founder and CEO of MouseCat, which builds AI agents for fraud investigation. He spent 6.5 years as a Principal Engineer at AWS AI, where he helped launch and lead Amazon Bedrock Knowledge Bases, Agents, and AgentCore. He also...",
+    "topics": [
+      "agent collaboration",
+      "primitives"
+    ],
+    "is_keynote": true,
+    "tags": [],
+    "id": "sk_01KMRSCQ5PQ4YJQCRTRCXMHK5R",
+    "photo_url": "https://avatars.sched.co/5/36/24487734/avatar.jpg?efe",
+    "linkedin_url": "https://www.linkedin.com/in/nicholas-aldridge-341162a4/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Sterling Chin",
+    "company": "Postman",
+    "role": "Founding Developer Advocate, Inngest",
+    "bio": "Sterling Chin is a Founding Developer Advocate, where he focuses on AI-powered API development and the intersection of agents and APIs. At Postman, he lead the team that shipped 7 new products in 2.5 years including Postman's first AI Assistant, and now spends his time helping developers...",
+    "topics": [
+      "AI adoption",
+      "non-technical users",
+      "MCP"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ5QA2JMZHMATKBZMB5C",
+    "photo_url": "https://avatars.sched.co/d/f8/4054323/avatar.jpg?ce4",
+    "linkedin_url": "https://www.linkedin.com/in/sterlingchin/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Enrico Toniato",
+    "company": "Manufact",
+    "role": "CTO, Manufact (formerly mcp-use)",
+    "bio": "CTO at Manufact (formerly mcp-use)Prev AI tech lead at IBM ResearchAchieved SoTA in Text2SQLPresented at NeurIPSRobotics @ ETH Zurich",
+    "topics": [
+      "self-improving servers",
+      "live development loop"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ5R0D5DW2M0MDZNT1A4",
+    "photo_url": "https://avatars.sched.co/8/8b/23697741/avatar.jpg?d84",
+    "linkedin_url": "https://www.linkedin.com/in/enrico-toniato/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Shaun Smith",
+    "company": "Hugging Face",
+    "role": "Open Source MCP and Agents, Hugging Face",
+    "bio": "Shaun Smith leads Open Source MCP at Hugging Face, and is an MCP Steering Committee member serving as a Community Moderator and within the Transports Working Group.",
+    "topics": [
+      "MCP protocols",
+      "patterns",
+      "stateless transports"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ5SP9T3K58VH9QY1GJQ",
+    "photo_url": "https://avatars.sched.co/5/16/23330009/avatar.jpg?fe6",
+    "linkedin_url": "https://www.linkedin.com/in/smithshaun/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Alex Salazar",
+    "company": "Arcade.dev",
+    "role": "Demand Gen, Arcade.dev",
+    "bio": "Alex Salazar is the Co-Founder and CEO of Arcade.dev, the runtime for MCP that enables AI agents to securely take real actions across enterprise systems. He's solving the hardest problems standing between AI agent demos and production deployment: secure agent authorization, high-accuracy...",
+    "topics": [
+      "MCP gateways",
+      "agentic integration"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ5T4N523904VYETTRKS",
+    "photo_url": "https://avatars.sched.co/7/8e/24433367/avatar.jpg?a9c",
+    "linkedin_url": "https://www.linkedin.com/in/alexsalazar"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Jerome Swannack",
+    "company": "Anthropic",
+    "role": "Member of Technical Staff, Anthropic",
+    "bio": "",
+    "topics": [
+      "symmetric MCP",
+      "protocol design"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ5VQR0S208N6W95RX8Y",
+    "photo_url": "https://avatars.sched.co/d/58/23723997/avatar.jpg?684",
+    "linkedin_url": "https://www.linkedin.com/in/jerome-swannack-1ba18173/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Peter Smulovics",
+    "company": "Morgan Stanley",
+    "role": "Distinguished Engineer, Morgan Stanley",
+    "bio": "Peter Smulovics is a Distinguished Engineer at Morgan Stanley with 15+ years at the firm and 30+ in the industry. A 2× Microsoft MVP and co-creator of C#, he serves as Vice Chair of FINOS (Linux Foundation) Technical Oversight Committee and leads Open Source Readiness. He focuses...",
+    "topics": [
+      "MCP security at scale",
+      "production security"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ5WQ1Q4BR17TTY186C2",
+    "photo_url": "https://avatars.sched.co/3/92/21351708/avatar.jpg?f58",
+    "linkedin_url": "https://www.linkedin.com/in/smulovicspeter/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Guilherme Rodrigues",
+    "company": "decocms.com",
+    "role": "CEO & Co-Founder, decocms.com",
+    "bio": "Co-founder & CEO of decocms.com, an open-source framework for building and deploying MCP-based Internal AI Platforms. Previously spent 9 years at VTEX through its NYSE IPO, where he led the first version of the Store Framework and VTEX IO Developer Platform. Based in Rio de Janeiro...",
+    "topics": [
+      "autonomous storefronts",
+      "self-healing agent loops"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ5X4FYMQNJVAC71XMP2",
+    "photo_url": "https://avatars.sched.co/c/b3/24335420/avatar.jpg?afb",
+    "linkedin_url": "https://www.linkedin.com/in/vibegui/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Jim Clark",
+    "company": "Docker",
+    "role": "Principal Engineer, Docker",
+    "bio": "Physics dropout turned software engineer now working on AI Tools and security team at Docker. Spent 25 years building developer tools, including co-founding Atomist (acquired by Docker in 2022). Now containerizing AI agents so they play nicely with humans. Regular conference speaker...",
+    "topics": [
+      "dynamic MCPs",
+      "agentic discovery",
+      "MCP workloads"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ5YJ59TMVR5EDYM9PDQ",
+    "photo_url": "https://avatars.sched.co/6/43/23267414/avatar.jpg?e35"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Jake Diamond-Reivich",
+    "company": "Project Jupyter",
+    "role": "",
+    "bio": "",
+    "topics": [
+      "Jupyter",
+      "human-AI collaboration"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ5ZYFS1M312P5JK9YRN",
+    "linkedin_url": "https://www.linkedin.com/in/jacob-diamond-reivich-03ab62145/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Jeremiah Lowin",
+    "company": "Prefect",
+    "role": "Founder, CEO, Prefect",
+    "bio": "Jeremiah Lowin is the Founder and CEO of Prefect and the creator of FastMCP, which has become the standard framework for building with the Model Context Protocol. A founding PMC member of Apache Airflow, Jeremiah has spent over a decade at the intersection of data engineering and...",
+    "topics": [
+      "model context pragmatism",
+      "workflow orchestration"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ60NCR2XY9FCK905HWC",
+    "photo_url": "https://avatars.sched.co/1/a2/24418653/avatar.jpg?f5a",
+    "linkedin_url": "https://www.linkedin.com/in/jlowin"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Aaron Parecki",
+    "company": "Okta",
+    "role": "Director of Identity Standards, Okta",
+    "bio": "Aaron Parecki is Director of Identity Standards at Okta, and active in multiple standards development organizations including IETF, OpenID Foundation, W3C, and MCP. He is an editor of OAuth 2.1 along with several other OAuth specifications, and has been influential in shaping how...",
+    "topics": [
+      "OAuth",
+      "MCP authentication"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ61QRAK0VVH9WRMR0FV",
+    "photo_url": "https://avatars.sched.co/a/af/3687558/avatar.jpg?986",
+    "linkedin_url": "https://www.linkedin.com/in/aaronparecki/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Gautam Baghel",
+    "company": "HashiCorp",
+    "role": "Sr. Product Manager, Gen AI, HashiCorp, an IBM company",
+    "bio": "Gautam is a passionate technologist who thrives on solving DevOps puzzles and building meaningful solutions. He's all about automating stuff, streamlining workflows, and building scalable systems. Through his talks, Gautam shares practical insights and inspires others to dive into...",
+    "topics": [
+      "MCP as product"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ63BA3KTS3CKX7FV6XW",
+    "photo_url": "https://avatars.sched.co/1/46/24437723/avatar.jpg?eee",
+    "linkedin_url": "https://www.linkedin.com/in/gautambaghel/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Roy Derks",
+    "company": "IBM",
+    "role": "Developer Experience, IBM",
+    "bio": "Roy Derks is a lifelong software developer, author and public speaker from the Netherlands. Currently chasing his dreams in Silicon Valley, California. Roy's mission is to make the world a better place through technology by inspiring developers all over the world, more specifically...",
+    "topics": [
+      "MCP as product"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ64DRBYE31XW5YTKMKX",
+    "photo_url": "https://avatars.sched.co/a/20/16832291/avatar.jpg?2e3",
+    "linkedin_url": "https://www.linkedin.com/in/gethackteam/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Rohan Gangaraju",
+    "company": "Roblox",
+    "role": "Senior Machine Learning Engineer, Roblox",
+    "bio": "Rohan Gangaraju is a Senior Machine Learning Engineer on the Economy ML team at Roblox, where he works on building recommendation systems for virtual economy and avatar marketplace. He holds a CS degree from UMass Amherst.",
+    "topics": [
+      "agentic workflows",
+      "avatar generation"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ65ZDJC9Y0FG2AQRE0K",
+    "photo_url": "https://avatars.sched.co/f/41/24335741/avatar.jpg?0ba",
+    "linkedin_url": "https://www.linkedin.com/in/rohan-gangaraju/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Jason Ding",
+    "company": "Roblox",
+    "role": "Software Engineer, Roblox",
+    "bio": "Jason Ding is a Software Engineer at Roblox, where he drives Avatar Generation efforts focused on ML powered avatar creation. He holds degrees in Electrical Engineering and Computer Science (EECS) and Business from UC Berkeley through the M.E.T. program.",
+    "topics": [
+      "agentic workflows",
+      "avatar generation"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ66RDA2JXFQTP393RT5",
+    "photo_url": "https://avatars.sched.co/1/6f/24335432/avatar.jpg?828"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Elliot Garreffa",
+    "company": "Ghost Team",
+    "role": "Co-founder, Ghost Team",
+    "bio": "Elliot Garreffa is Co-founder and Head of Growth at Ghost Team, an AI-development studio building AI agents, MCP-Apps and ChatGPT Apps for enterprise B2B SaaS clients. Through his company Ghost Team he has pioneered production-grade MCP implementations for enterprise clients & built...",
+    "topics": [
+      "ChatGPT apps",
+      "interface design"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ67ASA9CQ2VTR06Y97T",
+    "photo_url": "https://avatars.sched.co/f/84/24335411/avatar.jpg?84a",
+    "linkedin_url": "https://www.linkedin.com/in/elliotgarreffa/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Ankit Haseeja",
+    "company": "JPMC",
+    "role": "Cloud Solutions Architect | AWS Golden Jacket | Agentic AI & MCP Practitioner, JPMC",
+    "bio": "Ankit Haseeja is a Cloud Solutions Architect and AWS Golden Jacket recipient with extensive experience designing scalable, secure, cloud-native systems across AWS, Azure, and GCP. Holding multiple AWS certifications and an MBA in Finance, he focuses on agentic AI, MCP adoption, and...",
+    "topics": [
+      "agentic AI on cloud",
+      "enterprise best practices"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ686T58Q6Z27BS57RJX",
+    "photo_url": "https://avatars.sched.co/5/7e/24335366/avatar.jpg?a41",
+    "linkedin_url": "https://www.linkedin.com/in/ankithaseeja/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Kurtis Van Gent",
+    "company": "Google",
+    "role": "Senior Staff Software Engineer, Google",
+    "bio": "Kurtis Van Gent is a MCP Core Maintainer and leads the MCP Transports Working Group. By day, he leads AI Ecosystems + Integrations for Google Cloud Databases and helped create MCP Toolbox for Databases.",
+    "topics": [
+      "stateless transports",
+      "database MCP tools"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ69GD9Z2QP4N76VZM7P",
+    "photo_url": "https://avatars.sched.co/b/de/24335456/avatar.jpg?512",
+    "linkedin_url": "https://www.linkedin.com/in/kurtisvg/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Michael Schwartz",
+    "company": "Gluu",
+    "role": "Founder / CEO, Gluu",
+    "bio": "Mike is the founder of cybersecurity software vendor Gluu, BD of the Linux Foundation Janssen Project, and twice a week hosts the livestream Identerati Office Hours. He is also author of \"Securing the Perimeter\" (Apress 2018) about open source digital identity. His podcast \"Open Source...",
+    "topics": [
+      "agentic security",
+      "delegation"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ6AHS0X1Q8ZR13JGWNA",
+    "photo_url": "https://avatars.sched.co/d/23/1409636/avatar.jpg?223",
+    "linkedin_url": "https://www.linkedin.com/in/nynymike/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Vitor Balocco",
+    "company": "Runlayer",
+    "role": "Co-founder, Runlayer",
+    "bio": "Vitor Balocco is co-founder of Runlayer. Previously, Vitor was a Staff AI Engineer at Zapier and is a recognized MCP expert, speaking at international conferences on vulnerabilities and defense.",
+    "topics": [
+      "delegation",
+      "confused deputy problem"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ6BZTNJMB30TP184AX8",
+    "photo_url": "https://avatars.sched.co/a/c8/24531567/avatar.jpg?e91",
+    "linkedin_url": "https://www.linkedin.com/in/vitorbal"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Alvaro Inckot",
+    "company": "Runlayer",
+    "role": "Lead Identity Engineer, Runlayer",
+    "bio": "Alvaro Inckot is lead identity engineer at Runlayer, where the job is making sure AI agents don't do things they shouldn't, even when they've been told they can. Background in distributed, auth, and identity systems at Intel.",
+    "topics": [
+      "delegation",
+      "confused deputy problem"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ6CPT35RHS30X41G66P",
+    "photo_url": "https://avatars.sched.co/6/0c/24495852/avatar.jpg?4e2",
+    "linkedin_url": "https://www.linkedin.com/in/alvaroinckot"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Olivier Chafik",
+    "company": "Anthropic",
+    "role": "Member of Technical Staff, Anthropic",
+    "bio": "Co-author of the MCP Apps extension, Olivier joined the MCP team at Anthropic in 2025, after working at Google (mostly AdSense) for 13 years. In recent years, he contributed to OSS projects such as OpenSCAD & llama.cpp, and is particularly excited by tool calling as the next interoperability...",
+    "topics": [
+      "MCP apps",
+      "best practices",
+      "patterns"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ6DWX1V9CDN3P8JNP7E",
+    "photo_url": "https://avatars.sched.co/9/6e/23685393/avatar.jpg?872",
+    "linkedin_url": "https://www.linkedin.com/in/ochafik"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Anton Pidkuiko",
+    "company": "Anthropic",
+    "role": "Member of Technical Staff, Anthropic",
+    "bio": "Anton works on MCP (Model Context Protocol) tooling and integrations at Anthropic, with a focus on MCP Apps, connectors, and interactive UI surfaces.",
+    "topics": [
+      "MCP apps",
+      "best practices"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ6EKY6AB17ENVA7J116",
+    "photo_url": "https://avatars.sched.co/2/54/24373886/avatar.jpg?d95",
+    "linkedin_url": "https://www.linkedin.com/in/anton-pidkuiko-7535409b/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Kierra Dotson",
+    "company": "IBM",
+    "role": "AI Engineer, IBM",
+    "bio": "Kierra Dotson is an AI Engineer specializing in the critical intersection of AI strategy, operations (AgentOps), and governance. With a strong background in Cloud Engineering, DevOps, and Data Architecture, she focuses on building scalable, reliable, and compliant AI systems. Kierra...",
+    "topics": [
+      "protocol evolution",
+      "SLMs",
+      "edge computing"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ6FGWBY8M6BYG04YZ4R",
+    "photo_url": "https://avatars.sched.co/9/e2/24335450/avatar.jpg?556",
+    "linkedin_url": "https://www.linkedin.com/in/kierra-dotson-8a2b05111/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Alan Blount",
+    "company": "Google Cloud",
+    "role": "Senior Product Manager, Google",
+    "bio": "Alan Blount (he/him) is a Sr. Product Manager for the Agent Platform at Google Cloud Vertex AI. A 20 year software engineer turned PM, he empowers developers to build trustworthy, state-of-the-art Gen AI agents. His focus spans the alphabet soup of agentic tech: ADK, A2A, MCP, A2UI...",
+    "topics": [
+      "agents at scale",
+      "Google Cloud"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ6G11ZDDGY4QM8K5C3X",
+    "photo_url": "https://avatars.sched.co/f/5f/24531719/avatar.jpg?808",
+    "linkedin_url": "https://www.linkedin.com/in/alanblount/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Vaibhav Katkade",
+    "company": "Google Cloud",
+    "role": "Senior Product Manager, Google Cloud",
+    "bio": "Vaibhav has spent 15+ years working with Fortune 100 enterprises working on zero-trust enterprise security solutions across enterprise on-premise and cloud networks. Most recently at Google, he has been working on products and solutions to secure and govern MCP and agentic worklo...",
+    "topics": [
+      "agents at scale",
+      "Google Cloud"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ6HCB2NHB22HEKPQYDF",
+    "photo_url": "https://avatars.sched.co/3/a5/22193533/avatar.jpg?491",
+    "linkedin_url": "https://www.linkedin.com/in/vkatkade1"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Paul Carleton",
+    "company": "Anthropic",
+    "role": "Member of Technical Staff, Anthropic",
+    "bio": "Paul Carleton is a Core Maintainer of the Model Context Protocol and Auth Nerd at Anthropic, where he leads auth implementations across Anthropic's clients and the TypeScript and Python SDKs. He drives MCP conformance testing efforts to ensure consistent behavior across the ecosy...",
+    "topics": [
+      "conformance testing",
+      "MCP SDKs",
+      "cross-app SSO"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ6JWYETSS20YEDQ5CZP",
+    "photo_url": "https://avatars.sched.co/4/26/5882407/avatar.jpg?f41",
+    "linkedin_url": "https://www.linkedin.com/in/paulcarletonjr/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Andres Aguiar",
+    "company": "Okta",
+    "role": "Director of Product @ Okta, Okta",
+    "bio": "Solving Authorization with openfga.dev | fga.dev",
+    "topics": [
+      "authorization",
+      "autonomous agents"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ6KWG6T2Y3C57XRWRP9",
+    "photo_url": "https://avatars.sched.co/b/a1/2334261/avatar.jpg?58e",
+    "linkedin_url": "https://www.linkedin.com/in/aaguiar/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Abhishek Hingnikar",
+    "company": "Okta",
+    "role": "Product Architect, Okta",
+    "bio": "",
+    "topics": [
+      "authorization",
+      "autonomous agents"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ6MVF7TY7CC5Z8XG6DS"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Jiquan Ngiam",
+    "company": "MintMCP",
+    "role": "Co-founder, CEO, MintMCP",
+    "bio": "Jiquan Ngiam was a senior staff researcher at Google Brain and founding team member at Coursera, where he helped build Andrew Ng's online machine learning course from the ground up. He co-authored pioneering work in multimodal deep learning at Stanford. \n \n Currently co-founder and CEO of MintMCP, building enterprise security infrastructure for AI agent deployments, including MCP gateways with observability, governance, and enforcement...",
+    "topics": [
+      "MCP-powered agent systems",
+      "patterns"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ6NCPN697GVMH3XSZ9B",
+    "photo_url": "https://avatars.sched.co/a/a8/24335435/avatar.jpg?6a4",
+    "linkedin_url": "https://www.linkedin.com/in/jngiam/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Nikolay Rodionov",
+    "company": "Alpic",
+    "role": "Co-founder and COO, Alpic",
+    "bio": "Nikolay Rodionov is a cofounder and COO at Alpic, an AI infrastructure startup for MCP, and creator of Skybridge, an open-source framework to build MCP Apps. He previously founded Streamroot, a P2P video delivery technology that powered multiple Super Bowl streaming events before...",
+    "topics": [
+      "skills vs MCP",
+      "code mode"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ6QB7X0RK2JSPDNS6SC",
+    "photo_url": "https://avatars.sched.co/2/c7/23526975/avatar.jpg?f29",
+    "linkedin_url": "https://www.linkedin.com/in/nikolayrodionov/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Don Murray",
+    "company": "Safe Software",
+    "role": "CEO, Co-Founder, Safe Software",
+    "bio": "Don Murray is a Canadian entrepreneur, co-founder and CEO of Safe Software, a company at the forefront of data integration. His entrepreneurial journey began in 1993 when Safe Software was launched, driven by a vision to enhance data integration technology",
+    "topics": [
+      "future-proofing AI agents",
+      "strategic MCP"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ6RACJQ81W1FX03G5PZ",
+    "photo_url": "https://avatars.sched.co/f/4c/1886056/avatar.jpg?054",
+    "linkedin_url": "https://www.linkedin.com/in/don-murray-710b533/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Daniel Abdelsamed",
+    "company": "Apollo GraphQL",
+    "role": "Staff Software Engineer, Apollo GraphQL",
+    "bio": "Daniel Abdelsamed is a Staff Software Engineer at Apollo, where he has spent the last four years architecting and scaling the company’s documentation platforms. With nearly a decade of experience in TypeScript and application design, he focuses on building durable, developer-friendly...",
+    "topics": [
+      "developer education",
+      "MCP strategy",
+      "documentation"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ6SJKHJGQYRVK96C6HY",
+    "photo_url": "https://avatars.sched.co/9/4c/24335393/avatar.jpg?084",
+    "linkedin_url": "https://www.linkedin.com/in/daniel-abdelsamed/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Cornelia Davis",
+    "company": "Temporal",
+    "role": "Developer Advocate, Temporal",
+    "bio": "Cornelia has spent a career at the forefront of technological innovation, starting with image processing algorithm development, moving to web-centric computing in the late 1990s, and then more than a decade working in cloud-native software and DevOps platforms. As a Developer Advocate...",
+    "topics": [
+      "MCP tasks",
+      "durable execution",
+      "asynchronous"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ6T92HQ4F9WQ2FZWVWV",
+    "photo_url": "https://avatars.sched.co/b/68/2436181/avatar.jpg?be4",
+    "linkedin_url": "https://www.linkedin.com/in/corneliadavis/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Becky Brooks",
+    "company": "MCP Manager by Usercentrics",
+    "role": "Staff Product Marketing Manager, MCP Manager by Usercentrics",
+    "bio": "Becky Brooks is a Staff Product Marketing Manager at MCP Manager by Usercentrics, where she helps teams safely and confidently deploy MCP in real-world AI systems. She focuses on making MCP accessible and trustworthy so teams can use AI to move faster without sacrificing safety or...",
+    "topics": [
+      "compliance",
+      "MCP at scale"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ6VFGWM64FS4FDY7CCD",
+    "photo_url": "https://avatars.sched.co/b/9d/24335372/avatar.jpg?e6b",
+    "linkedin_url": "https://www.linkedin.com/in/rebeccabrooks/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Josh Reini",
+    "company": "Snowflake",
+    "role": "Developer Advocate, Snowflake",
+    "bio": "Josh is a developer advocate for Snowflake, previously at TruEra (recently acquired by Snowflake). He is also a maintainer of open-source TruLens, a library to systematically track and evaluate LLM based applications.\n\nJosh has delivered tech talks and workshops to thousands of developers at events including PyData, Global AI Conference, NYC Dev Day, LLMs and the Generative AI Revolution, AI developer meetups including AI Camp and Unstructured SF Meetup...",
+    "topics": [
+      "declarative MCP servers",
+      "secure agents"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ6WBWJPB2CAFHWCTGG5",
+    "photo_url": "https://avatars.sched.co/2/53/23037687/avatar.jpg?d32",
+    "linkedin_url": "https://www.linkedin.com/in/josh-reini/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Reetika Roy",
+    "company": "Snowflake",
+    "role": "Staff Software Engineer, Snowflake",
+    "bio": "Staff Software Engineer, Snowflake",
+    "topics": [
+      "declarative MCP servers",
+      "secure agents"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ6XSXF6G84BGRWPYX5W",
+    "photo_url": "https://avatars.sched.co/1/58/24335576/avatar.jpg?d0e",
+    "linkedin_url": "https://www.linkedin.com/in/reetika-roy-66000594/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Jan Curn",
+    "company": "Apify",
+    "role": "Founder & CEO, Apify",
+    "bio": "Jan Curn is the founder and CEO of Apify (https://apify.com), the world's largest marketplace of web data extraction and automation tools, powering (not only) AI agents with up-to-date data. He has a lifelong passion for software engineering, which earned him an MSc and a PhD in computer...",
+    "topics": [
+      "code mode",
+      "shell",
+      "web scraping"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ6YTM2RSFRVG99WVGPA",
+    "photo_url": "https://avatars.sched.co/c/1a/22320130/avatar.jpg?80f",
+    "linkedin_url": "https://www.linkedin.com/in/jancurn/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Calum Murray",
+    "company": "Red Hat",
+    "role": "Software Engineer, Red Hat",
+    "bio": "I am a Software Engineer at Red Hat, where I work on Applied AI projects with a focus on MCP and Agents. I also work on Serverless with the Knative community.\n\nI am a CNCF ambassador, where I present about new and exciting technologies in the AI/Serverless as well as mentor new contributors...",
+    "topics": [
+      "MCP evaluations",
+      "agent testing"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ6ZMFZJT9GQFEPDNQQK",
+    "photo_url": "https://avatars.sched.co/c/ba/19617347/avatar.jpg?a3b",
+    "linkedin_url": "https://www.linkedin.com/in/calum-ra-murray/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Wesley Chun",
+    "company": "Red Hat",
+    "role": "Technical Program Manager - AI, Red Hat",
+    "bio": "WESLEY CHUN, MSCS, is a Google Developer Expert (GDE) https://developers.google.com/experts in Google Cloud (GCP) & Google Workspace (GWS), author of Prentice Hall's bestselling \"Core Python\" https://corepython.com series, co-author of \"Python Web Development with Django\" https://withdjango.com...",
+    "topics": [
+      "MCP evaluations",
+      "agent testing"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ70CHN9ECK9KG8JPWYR",
+    "photo_url": "https://avatars.sched.co/f/e6/23090971/avatar.jpg?efa",
+    "linkedin_url": "https://www.linkedin.com/in/wescpy/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Juan Antonio Osorio",
+    "company": "Stacklok",
+    "role": "",
+    "bio": "",
+    "topics": [
+      "OCI images",
+      "supply chain security",
+      "MCP gateway pattern"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ71JQKAAPQ9030JDTS7",
+    "linkedin_url": "https://www.linkedin.com/in/jaosorior/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Rohit Ganguly",
+    "company": "Descope",
+    "role": "AI Product Manager, Descope",
+    "bio": "Rohit is an AI Product Manager at Descope, where he leads the MCP Auth and Agentic Identity efforts. Previously, he worked in Microsoft's Developer Division across products like the Azure SDKs and VS Code before launching the Azure MCP Server.",
+    "topics": [
+      "MCP spec",
+      "asymmetry",
+      "clients and servers"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ72XMWEVE1ZNS95KVJD",
+    "photo_url": "https://avatars.sched.co/d/27/23622103/avatar.jpg?bd4",
+    "linkedin_url": "https://www.linkedin.com/in/rohit-ganguly/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Tal Peretz",
+    "company": "Runlayer",
+    "role": "Founder, Runlayer",
+    "bio": "Tal Peretz is Founder of Runlayer, building enterprise AI infrastructure for MCP and agents at scale. \n \n He shipped Zapier MCP in 2 days, connecting LLMs to 30,000+ tools, it became the fastest-growing product. Earlier, he built the first in-browser GraphRAG system, winning Best A...",
+    "topics": [
+      "shadow MCP",
+      "security discovery"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ7319PGQ8A3JF1VN76M",
+    "photo_url": "https://avatars.sched.co/a/77/24335774/avatar.jpg?911",
+    "linkedin_url": "https://www.linkedin.com/in/talper/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Alexander Frazer",
+    "company": "Runlayer",
+    "role": "Security Engineer, Runlayer",
+    "bio": "Alexander Frazer is a Founding Security Engineer at Runlayer, specializing in generative AI and cybersecurity. With 15+ years of experience, he focuses on AI security challenges and MCP implementations. Previously he has led creation and evaluation of AI-driven security triage systems...",
+    "topics": [
+      "shadow MCP",
+      "security discovery"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ74JQMPWNGWECE2JM5K",
+    "photo_url": "https://avatars.sched.co/a/50/24335360/avatar.jpg?0fc",
+    "linkedin_url": "https://www.linkedin.com/in/awfrazer/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Cansu Berkem",
+    "company": "Datadog",
+    "role": "Director of Product Management, Datadog",
+    "bio": "Cansu Berkem is a Director of Product Management at Datadog, leading AI and Service Management platforms, and the product leader behind Bits AI, a generative AI copilot focused on building trusted, agentic AI systems in production. She has 15+ years of experience building AI, data...",
+    "topics": [
+      "scalable agent systems",
+      "product decisions"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ75AF43WFBMXPV77DBK",
+    "photo_url": "https://avatars.sched.co/6/2e/24335387/avatar.jpg?801",
+    "linkedin_url": "https://www.linkedin.com/in/cansuberkem"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Daniel Hodges",
+    "company": "Meta",
+    "role": "Software Engineer, Meta",
+    "bio": "Daniel Hodges is a software engineer on the Linux team at Meta. He has previous worked in areas such a observability, profiling, and application performance testing.",
+    "topics": [
+      "kernel space",
+      "Linux scheduler",
+      "observability"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ76VJ2FMHSAHA2NNAZ3",
+    "photo_url": "https://avatars.sched.co/e/67/24335396/avatar.jpg?d6a",
+    "linkedin_url": "https://www.linkedin.com/in/daniel-h-94155663/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Kin Lane",
+    "company": "Naftiko",
+    "role": "Chief Community Officer, Naftiko",
+    "bio": "I am Co-Founder & Chief Community Officer (CCO) for Naftiko, modernizing API integrations, while also performing as the API Evangelist, making sense of the technology, business, policies & people of APIs since 2010. API standards and governance are my passion, and understanding everything...",
+    "topics": [
+      "mock MCP servers",
+      "API integration"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ775NWYA7W8FNC4NVZT",
+    "photo_url": "https://avatars.sched.co/2/54/24335453/avatar.jpg?52a",
+    "linkedin_url": "https://www.linkedin.com/in/kinlane/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Wenxin Du",
+    "company": "Google",
+    "role": "Software Engineer, Google",
+    "bio": "Wenxin Du is a core maintainer of MCP Toolbox for Databases. She delivered the end-to-end implementation of Toolbox's end-user authorization system and integrated semantic search functionality into Toolbox.",
+    "topics": [
+      "database MCP tools",
+      "production-grade"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ78FNX65Q9T5DG4223C",
+    "photo_url": "https://avatars.sched.co/3/17/24335783/avatar.jpg?dd4",
+    "linkedin_url": "https://www.linkedin.com/in/wenxin-du/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Milan Williams",
+    "company": "Semgrep",
+    "role": "Senior Product Manager, Semgrep",
+    "bio": "I build security products. I'm a Senior Product Manager at Semgrep, a high-growth cybersecurity startup. I lead the teams responsible for Semgrep Code (SAST) and Secrets detection products. \n \n I recently graduated from Harvard University with degrees in Computer Science and Physics. In my free time, you can find me geeking about the latest in security / developer tooling, running in San Francisco's Golden Gate Park, or enjoying local theater...",
+    "topics": [
+      "MCP security"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ796KA29QNY26R33GKR",
+    "photo_url": "https://avatars.sched.co/1/41/23929738/avatar.jpg?d96",
+    "linkedin_url": "https://www.linkedin.com/in/milan-williams21/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Katrina Liu",
+    "company": "Semgrep",
+    "role": "Software Engineer, Semgrep",
+    "bio": "Katrina is a software engineer at Semgrep. She is on the Semgrep Analysis Foundations Team, the team that owns and maintains the core static analysis functionality of the Semgrep tool. She is currently working on Semgrep's MCP server.",
+    "topics": [
+      "MCP security"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ7AKDRH0VA3XG1H4XWY",
+    "photo_url": "https://avatars.sched.co/b/18/24335444/avatar.jpg?a0a",
+    "linkedin_url": "https://www.linkedin.com/in/liukatkat/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Prathmesh Patel",
+    "company": "MCPJam",
+    "role": "CEO, MCPJam",
+    "bio": "Prathmesh Patel is leading MCPJam: an open-source developer platform helping thousands test, evaluate, and ship their MCP apps and servers. He's a former Technical Lead at Asana who owned Asana's MCP server, REST API, and OAuth AS. He also led Asana's prototyping and development of...",
+    "topics": [
+      "MCP evaluation",
+      "probabilistic measurement"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ7BR64MRFJ3HTCVTMG7",
+    "photo_url": "https://avatars.sched.co/8/95/24433926/avatar.jpg?838",
+    "linkedin_url": "https://www.linkedin.com/in/prathmesh-patel/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Marcelo Jimenez Rocabado",
+    "company": "MCPJam",
+    "role": "CTO, MCPJam",
+    "bio": "",
+    "topics": [
+      "MCP evaluation",
+      "probabilistic measurement"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ7D9HA8XGB5C0CHW2CZ",
+    "photo_url": "https://avatars.sched.co/0/cc/24433932/avatar.jpg?e89",
+    "linkedin_url": "https://www.linkedin.com/in/marcelojimenezr/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Seetaram Rayarao",
+    "company": "JP Morgan Chase",
+    "role": "VP, Senior Lead Engineer, JP Morgan Chase",
+    "bio": "Seetaram Rayarao is a Vice President and Senior Lead Engineer at JPMorgan Chase with 18+ years of experience in cloud computing, AI, and microservices. He leads initiatives such as the LLM Suite, delivering scalable generative AI solutions using LangChain and LangGraph. An AWS Community...",
+    "topics": [
+      "secure agentic AI",
+      "enterprise systems"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ7EZBM8TM48R691D019",
+    "photo_url": "https://avatars.sched.co/6/e6/24335765/avatar.jpg?442",
+    "linkedin_url": "https://www.linkedin.com/in/seetaram/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Pedro Rodrigues",
+    "company": "Supabase",
+    "role": "AI Tooling Engineer, Supabase",
+    "bio": "I’m an AI Tooling Engineer at Supabase, part of the team maintaining all AI initiatives including our MCP server, AI assistant, and Skills. I’ve been involved with the MCP protocol since its early days, contributing to its SDKs and projects like Skybridge. I’ve spoken at MCP...",
+    "topics": [
+      "skills and MCP",
+      "context gap"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ7FH3NE9T9TY0HB17J9",
+    "photo_url": "https://avatars.sched.co/c/38/24335480/avatar.jpg?7c3",
+    "linkedin_url": "https://www.linkedin.com/in/pedro-neves-rodrigues"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Dariusz Jedrzejczyk",
+    "company": "Broadcom",
+    "role": "",
+    "bio": "",
+    "topics": [
+      "MCP Java SDK",
+      "Java"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ7G7ZVQ1NDMM3S9B530"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Donnie Adams",
+    "company": "Obot AI",
+    "role": "Software Architect, Obot AI",
+    "bio": "Donnie Adams is a Software Architect at Obot AI, where he builds enterprise MCP infrastructure including the Obot MCP Gateway and agent orchestration systems. His work focuses on MCP gateway architecture, OAuth integration, and distributed AI systems. He specializes in building production-grade...",
+    "topics": [
+      "workflow engine",
+      "MCP tasks"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ7HDBJQPE3ZPTR23SGX",
+    "photo_url": "https://avatars.sched.co/f/6c/24335405/avatar.jpg?ca4",
+    "linkedin_url": "https://www.linkedin.com/in/thedadams/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Dawn Song",
+    "company": "UC Berkeley",
+    "role": "Professor, Computer Science @ UC Berkeley and Director of Berkeley RDI (Berkeley Center for Responsible Decentralized Intelligence), UC Berkeley; UC Berkeley Center for Responsible Decentralized Intelligence",
+    "bio": "Dawn Song is a UC Berkeley CS Professor & Berkeley RDI Co-Director. She is the recipient of the MacArthur, Guggenheim, ACM, IEEE, and Sloan Fellowship, Schmidt Sciences AI2050 Senior Fellowship, NSF CAREER Award, MIT Technology Review TR-35 Award, ACM SIGSAC Outstanding Innovation...",
+    "topics": [
+      "safe AI",
+      "secure agentic AI"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ7JJ4V85E0B74VN2E6F",
+    "photo_url": "https://avatars.sched.co/e/4a/23610883/avatar.jpg?6a4",
+    "linkedin_url": "https://www.linkedin.com/in/dawn-song-51586033"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Matt White",
+    "company": "Linux Foundation/PyTorch Foundation",
+    "role": "Global CTO of AI, Linux Foundation",
+    "bio": "Matt White is the Executive Director of the PyTorch Foundation and GM of AI at the Linux Foundation. He is also the Director of the Generative AI Commons. Matt has nearly 30 years of experience in applied research and standards in AI and data in telecom, media and gaming industries...",
+    "topics": [
+      "safe AI",
+      "secure agentic AI"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ7KHDE8E4P99TWCSVX1",
+    "photo_url": "https://avatars.sched.co/2/23/24213586/avatar.jpg?8ba",
+    "linkedin_url": "https://www.linkedin.com/in/mdwdata/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Amar Deep Singh",
+    "company": "GM Financial",
+    "role": "AVP IT Architecture (Head of Enterprise Reusable Services & Tech Standards)), GM Financial",
+    "bio": "Amar Deep Singh is a distinguished software architect and author with extensive experience in microservices and cloud computing. He is the author of \"Building and Delivering Microservices on AWS,\" a comprehensive guide that explores software architecture patterns and the deployment...",
+    "topics": [
+      "enterprise MCP operations",
+      "production"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ7M4GQSXH0HW3YKTAVG",
+    "photo_url": "https://avatars.sched.co/d/e0/24335363/avatar.jpg?ec4",
+    "linkedin_url": "https://www.linkedin.com/in/chaudharyamardeep/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Neelabh Tripathi",
+    "company": "Cisco Systems",
+    "role": "Engineering Architect, Cisco Systems",
+    "bio": "Neelabh Tripathi is a seasoned IT professional with over 18 years of expertise in cloud computing, enterprise architecture, and microservices. He has worked with some of the world’s leading organizations, including Cisco, American Airlines, Bank of America,McKesson, Freedom Mortgage...",
+    "topics": [
+      "enterprise MCP operations",
+      "production"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ7NZ9AXHA399KKF49FV",
+    "photo_url": "https://avatars.sched.co/5/6a/11594373/avatar.jpg?e20",
+    "linkedin_url": "https://www.linkedin.com/in/neelabh-tripathi-ca"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Kevin Yang",
+    "company": "Warp",
+    "role": "Product Engineer, Warp",
+    "bio": "Kevin is one of Warp's earliest engineers, scaling Warp's AI features from prototype to over a hundred thousand daily users. He currently serves as a Tech Lead for Warp's Code product.",
+    "topics": [
+      "MCP search tool",
+      "model-agnostic"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ7PGY09KYPX5KKTC1WN",
+    "photo_url": "https://avatars.sched.co/9/ce/24335447/avatar.jpg?598",
+    "linkedin_url": "https://www.linkedin.com/in/kevinayang/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Vincent McLeese",
+    "company": "Ghost Team",
+    "role": "Product and Tech Lead, Ghost Team",
+    "bio": "Vincent McLeese is the Product and Tech Lead at Ghost Team, anMCP Apps agency. He leads the development of ,a platform devloper by Ghost Team to help mcp apps become morediscoverable. A multiple founder with a background in tech strategyfrom Accenture, Vinc...",
+    "topics": [
+      "discoverability",
+      "MCP apps",
+      "ChatGPT apps"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ7QVWDZVH3GQZ85ND2D",
+    "photo_url": "https://avatars.sched.co/1/0f/24494643/avatar.jpg?82a",
+    "linkedin_url": "https://www.linkedin.com/in/vincentmcleese/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Sterling Dreyer",
+    "company": "Arcade.dev",
+    "role": "Founding Engineer, Arcade.dev",
+    "bio": "Sterling is a founding engineer at Arcade.dev, focused on backend and infrastructure. Before Arcade, he was the second engineer at Featureform, a feature store platform acquired by Redis.",
+    "topics": [
+      "MCP compliance",
+      "non-compliance"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ7RZ63R6MCAGR7GYFNS",
+    "photo_url": "https://avatars.sched.co/2/7c/24335768/avatar.jpg?dca",
+    "linkedin_url": "https://www.linkedin.com/in/sterling-dreyer/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Nate Barbettini",
+    "company": "Arcade.dev",
+    "role": "Founding Engineer, Arcade.dev",
+    "bio": "Nate Barbettini is a leading voice in security and AI. At Arcade.dev, he's building the MCP runtime that helps enterprises deploy multi-user AI agents that take actions across any system. As an active MCP contributor, Nate is focused on security-critical work, authoring URL Elicitation...",
+    "topics": [
+      "URL elicitation",
+      "third-party OAuth"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ7S1YMV9GJNKS3P9PHY",
+    "photo_url": "https://avatars.sched.co/7/28/24282542/avatar.jpg?968",
+    "linkedin_url": "https://www.linkedin.com/in/nbarbettini/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Jamie Whitehouse",
+    "company": "Sonatype",
+    "role": "Product Director, Sonatype",
+    "bio": "Jamie Whitehouse is a Product Director at Sonatype where he works with customers to solve big problems. Over his 12+ year tenure at Sonatype, Jamie has co-created industry-defining products like Sonatype Lifecycle, and the next-gen Repository Firewall. Despite being from Canada, he...",
+    "topics": [
+      "dependency verification",
+      "supply chain"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ7TTDNAD0177PVK3F6T",
+    "photo_url": "https://avatars.sched.co/7/41/24335429/avatar.jpg?98c"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Ido Salomon",
+    "company": "MCP-UI",
+    "role": "Creator",
+    "bio": "Ido Salomon is a seasoned AI lead and cloud architect, working on AI and MCP in Monday's CEO Office. Ido is the creator of MCP-UI, co-author and co-moderator of the MCP Apps workgroup, and co-creator of GitMCP. Previously, Ido led end-user AI at Palo Alto Networks. In his spare time...",
+    "topics": [
+      "MCP apps",
+      "extending the frontier"
+    ],
+    "is_keynote": true,
+    "tags": [],
+    "id": "sk_01KMRSCQ7VVB57M6F2X701DGGC",
+    "photo_url": "https://avatars.sched.co/f/fd/23515201/avatar.jpg?d9e",
+    "linkedin_url": "https://www.linkedin.com/in/ido-salomon/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Liad Yosef",
+    "company": "MCP-UI",
+    "role": "Co-builder",
+    "bio": "",
+    "topics": [
+      "MCP apps",
+      "extending the frontier"
+    ],
+    "is_keynote": true,
+    "tags": [],
+    "id": "sk_01KMRSCQ7WSS1J4DGZHNC8NDK0",
+    "photo_url": "https://avatars.sched.co/b/13/23450884/avatar.jpg?008",
+    "linkedin_url": "https://www.linkedin.com/in/liadyosef/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Ryan Cooke",
+    "company": "WorkOS",
+    "role": "Engineering Lead",
+    "bio": "Ryan Cooke is a technologist and founder with two decades of experience building early-stage startups. Despite several founding roles, he remains a developer at heart, drawn to hard problems in information retrieval, security and data modeling. He’s led engineering teams across...",
+    "topics": [
+      "context in MCP",
+      "beyond tools"
+    ],
+    "is_keynote": true,
+    "tags": [],
+    "id": "sk_01KMRSCQ7XMMTD7NZHWT8EW27Q",
+    "photo_url": "https://avatars.sched.co/0/8b/23964604/avatar.jpg?814",
+    "linkedin_url": "https://www.linkedin.com/in/ryancooke"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Nick Cooper",
+    "company": "OpenAI",
+    "role": "Member of Technical Staff",
+    "bio": "Nick Cooper is a senior member of technical staff at OpenAI working with a particular focus on scalable patterns to make life easy while iterating quickly. He is the technical lead at OpenAI for protocols, MCP Core maintainer and AAIF governing board member. He comes from a brief...",
+    "topics": [
+      "MCP x MCP",
+      "OpenAI"
+    ],
+    "is_keynote": true,
+    "tags": [],
+    "id": "sk_01KMRSCQ7Z5ZVDCF9Y3GQHHMW7",
+    "photo_url": "https://avatars.sched.co/1/23/24335477/avatar.jpg?58f",
+    "linkedin_url": "https://www.linkedin.com/in/nicknotfun/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Cecilia Liu",
+    "company": "Docker",
+    "role": "Senior Product Manager",
+    "bio": "Cecilia Liu is a Senior Product Manager at Docker, leading product strategy for Docker's MCP Platform—Docker's solution for running MCP servers securely and at scale through containerization. She drives Docker's AI strategy across both enterprise and developer ecosystems, helping...",
+    "topics": [
+      "unified control plane",
+      "MCP management"
+    ],
+    "is_keynote": true,
+    "tags": [],
+    "id": "sk_01KMRSCQ80845C57YR79M5QQQY",
+    "photo_url": "https://avatars.sched.co/9/a8/24412788/avatar.jpg?2ef",
+    "linkedin_url": "https://www.linkedin.com/in/ziyueliu/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Ola Hungerford",
+    "company": "Nordstrom",
+    "role": "Principal Engineer",
+    "bio": "Ola Hungerford is a Principal Engineer at Nordstrom and a maintainer and community moderator for the Model Context Protocol. She leads AI enablement initiatives while contributing to MCP's specification, developer tooling, documentation, and community governance. Ola comes from a...",
+    "topics": [
+      "MCP at Nordstrom",
+      "intelligent systems"
+    ],
+    "is_keynote": true,
+    "tags": [],
+    "id": "sk_01KMRSCQ81FRYDHTYDB3XXEP9V",
+    "photo_url": "https://avatars.sched.co/8/12/23277970/avatar.jpg?f0e",
+    "linkedin_url": "https://www.linkedin.com/in/olahungerford/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Sandeep Bhat",
+    "company": "Nordstrom",
+    "role": "Engineer",
+    "bio": "​I work on the AI Enablement team at Nordstrom, focusing on platform engineering for MCP and AI agents. My past background in security grounds my decision-making, allowing me to balance safe architecture with a passion for AI productivity. I build infrastructure that empowers internal...",
+    "topics": [
+      "MCP at Nordstrom",
+      "intelligent systems"
+    ],
+    "is_keynote": true,
+    "tags": [],
+    "id": "sk_01KMRSCQ82B3DRCX0J2DQRZ5KQ",
+    "photo_url": "https://avatars.sched.co/f/ba/24335756/avatar.jpg?de3"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Jacob Wilson",
+    "company": "PwC",
+    "role": "Principal, GenAI Transformation Leader",
+    "bio": "Jacob is a Principal in PwC's Advisory Analytics practice, specializing in delivering business-driven AI and Generative AI (GenAI) solutions for the firm and its clients. In addition to his client-facing responsibilities, Jacob serves as the lead Principal for PwC's GenAI delivery...",
+    "topics": [
+      "skills orchestration",
+      "enterprise integration"
+    ],
+    "is_keynote": true,
+    "tags": [],
+    "id": "sk_01KMRSCQ83SW5ZW06B9FAH9J9E",
+    "photo_url": "https://avatars.sched.co/c/76/24532437/avatar.jpg?59a",
+    "linkedin_url": "https://www.linkedin.com/in/codebeard/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Ania Musial",
+    "company": "Bloomberg",
+    "role": "Head of AI Platforms Product, Office of the CTO",
+    "bio": "",
+    "topics": [
+      "trustworthy AI",
+      "interoperability",
+      "AI infrastructure"
+    ],
+    "is_keynote": true,
+    "tags": [],
+    "id": "sk_01KMRSCQ84TJT26HN7SGPG4FNN",
+    "photo_url": "https://avatars.sched.co/9/da/5900995/avatar.jpg?f1f",
+    "linkedin_url": "https://www.linkedin.com/in/aniamusial/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Ze'ev Klapow",
+    "company": "HubSpot",
+    "role": "Principal Software Engineer, HubSpot",
+    "bio": "Ze'ev Klapow is a Principal Software Engineer at HubSpot, where he has spent 13 years building infrastructure. He currently leads efforts to bring AI tooling to HubSpot engineers and designed the unified agent infrastructure that powers both internal and customer-facing AI produc...",
+    "topics": [
+      "APIs to agentic tools",
+      "RPC to MCP"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ85ERPSJND3XS4TG7CT",
+    "photo_url": "https://avatars.sched.co/0/54/24335786/avatar.jpg?d7f",
+    "linkedin_url": "https://www.linkedin.com/in/ze-ev-klapow-19a81a3b/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Bob Dickinson",
+    "company": "TeamSpark",
+    "role": "Founder, TeamSpark",
+    "bio": "Serial founder, CTO at scale, and always a hands-on builder. Creator of MCP Tool Vault and the open source projects tsAgent and mcpGraph. Contributor to MCP Registry and MCP Inspector. Background in security, including as CTO of OneLogin and Censys.",
+    "topics": [
+      "code mode",
+      "no-code"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ86SHZKHEDXA8SBWAMC",
+    "photo_url": "https://avatars.sched.co/8/f9/24335378/avatar.jpg?0f6",
+    "linkedin_url": "https://www.linkedin.com/in/bobdickinson"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Harald Kirschner",
+    "company": "Microsoft",
+    "role": "Principal PM, Microsoft",
+    "bio": "Harald Kirschner is a Principal Product Manager at Microsoft, building AI coding experiences in VS Code and GitHub Copilot for 40+ million developers. Before Microsoft, he led Firefox DevTools at Mozilla and helped ship Firefox Quantum. His engineering roots (MooTools, early web...",
+    "topics": [
+      "human in the loop",
+      "agent flow"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ87EV115PXGZV45497M",
+    "photo_url": "https://avatars.sched.co/a/03/24335423/avatar.jpg?429",
+    "linkedin_url": "https://www.linkedin.com/in/digitarald"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Connor Peet",
+    "company": "Microsoft",
+    "role": "Principal Software Engineer, Microsoft",
+    "bio": "Connor is a principal software engineer working on VS Code since 2019.",
+    "topics": [
+      "human in the loop",
+      "agent flow"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ88303SJX2KPYQQRV85",
+    "photo_url": "https://avatars.sched.co/a/8a/24335390/avatar.jpg?abb",
+    "linkedin_url": "https://www.linkedin.com/in/connorpeet"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Alex Hancock",
+    "company": "Block",
+    "role": "Software Engineer, Block",
+    "bio": "Alex is a core maintainer of goose, and maintainer of the Rust SDK for the Model Context Protocol. Alongside teammates at Block he built and contributed goose as a founding project of the Agentic AI Foundation. He lives in Connecticut in the US with his wonderful family.",
+    "topics": [
+      "Goose",
+      "MCP features",
+      "proving ground"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ89GVQK57HM6509QS1Q",
+    "photo_url": "https://avatars.sched.co/7/fe/24335354/avatar.jpg?ad5"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Den Delimarsky",
+    "company": "Anthropic",
+    "role": "Member of Technical Staff, Anthropic",
+    "bio": "Den is an avid reverse engineer, passionate about APIs, protocols, and security. He leads MCP technical programs at Anthropic and prior to that built authentication and authorization libraries used by millions of developers around the globe. You can learn more about his work on h...",
+    "topics": [
+      "client ID metadata",
+      "MCP documents"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ8A3X35QY6A70RC4T0Y",
+    "photo_url": "https://avatars.sched.co/8/02/24335399/avatar.jpg?be0",
+    "linkedin_url": "https://www.linkedin.com/in/den-delimarsky-14a56020"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Bobby House",
+    "company": "Docker",
+    "role": "Sr Software Engineer, Docker",
+    "bio": "Bobby House is a senior software engineer at Docker that enjoys building products for engineers. His recent work centers on integrating MCP into enterprise environments by enabling organizations to publish and manage private catalogs of MCP servers as OCI artifacts.",
+    "topics": [
+      "OCI distribution",
+      "agent skills"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ8B9RBMBS75B33GGAJ8",
+    "photo_url": "https://avatars.sched.co/4/00/24335381/avatar.jpg?01c",
+    "linkedin_url": "https://www.linkedin.com/in/bobby-house-7768a72/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Harshit Kohli",
+    "company": "Amazon Web Services",
+    "role": "Sr Technical Account Manager, Amazon Web Services",
+    "bio": "GenAI/Data Driven individual who has 15+ years of experience. Proven experience with AWS Data Analytics/GenAI services, Cloudera Hadoop, Hortonworks Hadoop and Mapr Hadoop. Achieved customer wins over Amazon Q , Bedrock, Amazon Managed Kafka, Amazon Data Firehose, Kinesis Streams...",
+    "topics": [
+      "streaming context",
+      "MCP live"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ8CJB1F2WJ7BGAXE85K",
+    "photo_url": "https://avatars.sched.co/b/8c/24335426/avatar.jpg?77d",
+    "linkedin_url": "https://www.linkedin.com/in/harshit-kohli-99801543/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Max Isbey",
+    "company": "Anthropic",
+    "role": "Member of Technical Staff, Anthropic",
+    "bio": "Software Engineer from New Zealand, previously worked at Rocket Lab designing and maintaining telemetry and command systems for rockets and satellites. Now relocated to London and working at Anthropic primarily focused on maintaining the MCP Python SDK.",
+    "topics": [
+      "MCP SDKs",
+      "V2 path"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ8DCNFPK81XZZ63ZJGX",
+    "photo_url": "https://avatars.sched.co/6/da/23692202/avatar.jpg?2af"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Sarah Cecchetti",
+    "company": "OpenID Foundation",
+    "role": "Chair of AI Threat Modeling Working Group, OpenID Foundation",
+    "bio": "By day, Sarah is Director of Product Management for Semperis, a Series C startup. She also chairs the AI threat modeling group in the OpenID Foundation. Prior to that she spent five years at AWS where she led the open-sourcing of Cedar. She co-founded IDPro and co-authored NIST SP...",
+    "topics": [
+      "threat modeling",
+      "authorization"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ8EXSN9R06VW9EHBWQY",
+    "photo_url": "https://avatars.sched.co/4/f0/24335759/avatar.jpg?ee6",
+    "linkedin_url": "https://www.linkedin.com/in/sarahcecchetti/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Kailas Krivanka",
+    "company": "Box",
+    "role": "Software Engineer, Box",
+    "bio": "Kailas Krivanka is a software engineer with expertise in API design, software architecture, and distributed systems. He has worked at Box for 4 years, building scalable systems and solving complex technical challenges including launching the Box MCP server. With experience across...",
+    "topics": [
+      "unstructured content",
+      "MCP delivery"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ8FB9VH8J4SCZMR0PS8",
+    "photo_url": "https://avatars.sched.co/b/03/24335441/avatar.jpg?90d",
+    "linkedin_url": "https://www.linkedin.com/in/kailaskrivanka/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Fernando Cerenza",
+    "company": "Box",
+    "role": "Senior Director of Product Management, Box",
+    "bio": "Fernando Cerenza leads Box’s partner integration ecosystem, where he oversees a vast network of over 1,500 application integrations. He is currently spearheading Box’s AI-focused initiatives, driving development on MCP and A2A to enable advanced agentic AI outcomes and seamless...",
+    "topics": [
+      "unstructured content",
+      "MCP delivery"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ8GP1CKJ8F8ZKWM03DD",
+    "photo_url": "https://avatars.sched.co/a/e3/24358655/avatar.jpg?dc2",
+    "linkedin_url": "https://www.linkedin.com/in/fernandocerenza/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Tommy Tran",
+    "company": "Meta",
+    "role": "Software Engineer, Meta",
+    "bio": "Tommy Tran is a software engineer specializing in machine learning and AI, with experience at Meta and Ramp. He has built and deployed production ML systems across infrastructure optimization, advertising, and sales automation, including large-scale distributed models with direct...",
+    "topics": [
+      "agentic infrastructure",
+      "global-scale capacity"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ8HB70VJV6ZVFGT4V0M",
+    "photo_url": "https://avatars.sched.co/b/90/24335780/avatar.jpg?f7a"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Gregoire Colin",
+    "company": "Meta",
+    "role": "Data Scientist, Meta",
+    "bio": "Balancing Ads Ranking optimization and triathlon training. \n I have been working at Meta for close to 4 years on hacker detection, Semantic clustering of advertisers and Ads Ranking. \n I balanced long hours behind the computer with long hours of training for Ironman Triathlons, and competed at the half Ironman World Championship in 2025...",
+    "topics": [
+      "agentic infrastructure",
+      "global-scale capacity"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ8JJX0GA5CTVTP7K00F",
+    "photo_url": "https://avatars.sched.co/9/03/24335417/avatar.jpg?cbf",
+    "linkedin_url": "https://www.linkedin.com/in/gregoire-colin/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Charbel Dandjinou",
+    "company": "Reflexion Robotics",
+    "role": "AI research engineer- CTO- founder, Reflexion Robotics",
+    "bio": "Charbel Dandjinou is the CTO and Co-founder of Reflexion Robotics, where he leads the development of general-purpose embodied AI. He is the founder of Iroko AI and its research lab, Deeptakka, where his work focuses on physical AI safety and inclusive, open-source AI. Formerly an...",
+    "topics": [
+      "real-time robotics",
+      "pull-only limits"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ8MHNFTEBQ46HTJVR4R",
+    "photo_url": "https://avatars.sched.co/e/09/20958549/avatar.jpg?1f6",
+    "linkedin_url": "https://www.linkedin.com/in/charbel-d-9569ba199/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Joey Stout",
+    "company": "Spacelift",
+    "role": "Solutions Architect, Spacelift",
+    "bio": "Joey Stout is a Solutions Architect at Spacelift.io, CKA-certified, and creator of manifests.io. He specializes in Kubernetes, OpenTofu, and GitOps—and goes by The Outdoor Programmer.",
+    "topics": [
+      "MCP deep-dive",
+      "selective sabotage"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ8NTNXVMPD0WQ8XSDR6",
+    "photo_url": "https://avatars.sched.co/2/56/24504035/avatar.jpg?cfd",
+    "linkedin_url": "https://www.linkedin.com/in/apollorion/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Emily Lauber",
+    "company": "Microsoft",
+    "role": "Senior Product Manager, Microsoft",
+    "bio": "Emily Lauber is a Senior Product Manager at Microsoft focused on identity, authentication, and developer platforms. She works at the intersection of cloud security, browser-based auth, and standards, helping shape how modern apps and agents securely authenticate and access resources...",
+    "topics": [
+      "mix-up attacks",
+      "multi-issuer confusion"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ8P9PSD3JXZJM0CPDKT",
+    "photo_url": "https://avatars.sched.co/a/7d/24335414/avatar.jpg?258",
+    "linkedin_url": "https://www.linkedin.com/in/emlauber"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Billy Hickman",
+    "company": "Amazon",
+    "role": "Sr SDE, Amazon, Prime Video",
+    "bio": "Sr SDE from Amazon Prime Video. 10+ years experience building highly available, scalable distributed systems.",
+    "topics": [
+      "progressive tool discovery",
+      "MCP notifications"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ8QVJ01HW9QR5TKK71R",
+    "photo_url": "https://avatars.sched.co/7/53/24335375/avatar.jpg?938",
+    "linkedin_url": "https://www.linkedin.com/in/hickmanbilly"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Lilia Abaibourova",
+    "company": "Amazon",
+    "role": "Principal Product Manager, Prime Video, Amazon",
+    "bio": "Lilia Abaibourova is a product and engineering leader with 15 years of experience building and scaling developer platforms and AI-first tools at Amazon, Peloton, HBO, and Microsoft. At Amazon, she leads AI enablement for Prime Video engineers, delivering agentic assistants for design...",
+    "topics": [
+      "progressive tool discovery",
+      "context at scale"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ8RFFF5AMYR7870S5ZK",
+    "photo_url": "https://avatars.sched.co/8/7c/23638799/avatar.jpg?bbc",
+    "linkedin_url": "https://www.linkedin.com/in/liliaparadis/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Sam Partee",
+    "company": "Arcade.dev",
+    "role": "CTO and Co-founder, Arcade.dev",
+    "bio": "Sam is the CTO and co-founder of Arcade.dev. Before starting Arcade, Sam lead the led the applied AI team at Redis responsible for the vector database offering. He is a avid OSS developer and has contributed on projects like Langchain, LlamaIndex, Chapel, DeterminedAI, and others...",
+    "topics": [
+      "tool abstraction",
+      "1000+ MCP tools"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ8SNS0X90A9WFCABWTN",
+    "photo_url": "https://avatars.sched.co/d/4e/24335753/avatar.jpg?41a",
+    "linkedin_url": "https://www.linkedin.com/in/sampartee/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Matt Carey",
+    "company": "Cloudflare",
+    "role": "Agents and MCP, Cloudflare",
+    "bio": "I work on Agents and MCP at Cloudflare and I'm one of the maintainers of the official MCP Typescript SDK.\n\nMy role is to build infrastructure for agent developers to be successful with MCP. I am currently working on the release of v2 of the Typescript SDK.\n\nFun fact: I was previously a professional windsurfer and raced for Malta at several World and European championships...",
+    "topics": [
+      "API as tool",
+      "agents"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ8TJ6CY8AYHW53PFV2H",
+    "photo_url": "https://avatars.sched.co/e/4e/24335465/avatar.jpg?898",
+    "linkedin_url": "https://www.linkedin.com/in/mattzcarey/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Max Gerber",
+    "company": "Twilio",
+    "role": "Principal Software Engineer, Twilio",
+    "bio": "Max Gerber is the software engineering lead for agent and AI identity at Twilio, where he works on core identity SDKs and APIs including OAuth, SAML, SSO, and RBAC. He previously led identity initiatives at Stytch and served as a lead engineer on MuleSoft’s IAM team during its integration...",
+    "topics": [
+      "single sign-on",
+      "cross-app access"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ8VXFSN2TA3AFPXZEK6",
+    "photo_url": "https://avatars.sched.co/3/02/24335471/avatar.jpg?755",
+    "linkedin_url": "https://www.linkedin.com/in/maxwellgerber/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Adam Cowley",
+    "company": "Neo4j",
+    "role": "Manager, Developer Education, Neo4j",
+    "bio": "Adam is a multi-disciplinary developer with over 20 years of experience building products that help people learn and grow. Currently Manager of Developer Education at Neo4j, he leads the team behind GraphAcademy - Neo4j's free learning platform.",
+    "topics": [
+      "UI in the age of AI",
+      "graph databases"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ8WJPQ56MNNMFMKG6BB",
+    "photo_url": "https://avatars.sched.co/7/fe/9276003/avatar.jpg?8c7",
+    "linkedin_url": "https://www.linkedin.com/in/adamcowley/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Riley Scheid",
+    "company": "Reboot (reboot.dev)",
+    "role": "Founding Engineer, Reboot (reboot.dev)",
+    "bio": "Full stack engineer / human Swiss Army Knife with a decade of professional experience",
+    "topics": [
+      "intelligent UIs",
+      "MCP apps"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ8X3A0BYJXMRZW2E7SE",
+    "photo_url": "https://avatars.sched.co/d/45/24335672/avatar.jpg?8e0",
+    "linkedin_url": "https://www.linkedin.com/in/rileyscheid/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Kurt Degiorgio",
+    "company": "Bloomberg",
+    "role": "Senior Engineer, Bloomberg",
+    "bio": "Kurt Degiorgio is a Senior Engineer at Bloomberg, working on building platforms for Generative AI. With 14 years of experience, his background includes Monzo, Diffblue and GFI Software (of TeamViewer fame), covering a wide technical spectrum—from developing network drivers to building...",
+    "topics": [
+      "interceptors",
+      "agentic middleware"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ8Y4H40SMXPCNKSJWJ6",
+    "photo_url": "https://avatars.sched.co/7/4c/23659391/avatar.jpg?1e8"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Cannis Chan",
+    "company": "Bloomberg",
+    "role": "Technical Product Manager, Bloomberg",
+    "bio": "Cannis Chan is a Technical Product Manager in the Office of the CTO at Bloomberg, building infrastructure platforms for AI products. With 10 years in B2B and Enterprise (AutogenAI, Deutsche Bank, Ondat/Akamai), she specializes in navigating complex products through pre- and post-product...",
+    "topics": [
+      "interceptors",
+      "agentic middleware"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ8Z65KS3F1A7WD69CQ3",
+    "photo_url": "https://avatars.sched.co/3/b4/24335384/avatar.jpg?35c"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Craig Jellick",
+    "company": "Obot AI",
+    "role": "",
+    "bio": "",
+    "topics": [
+      "security attacks",
+      "MCP vulnerabilities"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ90BMPCK2STRE10QVGC",
+    "linkedin_url": "https://www.linkedin.com/in/cjellick/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Andrew Espira",
+    "company": "Kustode",
+    "role": "Founding Engineer, Kustode",
+    "bio": "Andrew Espira is a Site Reliability Engineer with over seven years of experience in DevOps, Infrastructure, and Site Reliability Engineering. He specializes in optimizing large-scale system environments, cloud infrastructure, and distributed systems. Andrew is passionate about cloud-native...",
+    "topics": [
+      "healthcare billing",
+      "production MCP workflows"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ91QR98AQ3A42ZGKA5R",
+    "photo_url": "https://avatars.sched.co/1/e8/13691994/avatar.jpg?220",
+    "linkedin_url": "https://www.linkedin.com/in/andrew-espira/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Gaurav Saxena",
+    "company": "Independent",
+    "role": "Director of Engineering",
+    "bio": "Gaurav Saxena is an engineering leader in the field of platform and cloud engineering with over 20 years of experience in the software industry. His technical expertise includes Stream-based architectures, Kubernetes, Service Mesh, Software Supply Chain Security, and Observabilit...",
+    "topics": [
+      "agent evaluation",
+      "benchmarks",
+      "business value"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ92SZKGBSYV3SWJN7ZC",
+    "photo_url": "https://avatars.sched.co/3/4d/21961746/avatar.jpg?260"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Matvey Kukuy",
+    "company": "Archestra.AI",
+    "role": "CEO, Archestra.AI",
+    "bio": "Maintainer: Grafana OnCall, KeepHQ, Archestra.AI.\n\nEx-Engineering Director at Grafana Labs.",
+    "topics": [
+      "agent evaluation",
+      "benchmarks"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ936B4S0024CGX64F9D",
+    "photo_url": "https://avatars.sched.co/1/50/24335468/avatar.jpg?fb3",
+    "linkedin_url": "https://www.linkedin.com/in/motakuk/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Rizel Scarlett",
+    "company": "Block, Inc.",
+    "role": "Tech Lead, Open Source Developer Relations, Block, Inc.",
+    "bio": "Rizel Scarlett is driven by a singular mission: ensuring powerful technology feels human, joyful, and real. As the Tech Lead for Open Source DevRel at Block, she drives technical storytelling for goose, an open source AI agent. Previously at GitHub, she helped devs adopt GitHub Copilot...",
+    "topics": [
+      "intent engineering",
+      "prompt engineering"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ94DVFY3V16M96VCSY4",
+    "photo_url": "https://avatars.sched.co/4/af/23162857/avatar.jpg?dc0",
+    "linkedin_url": "https://www.linkedin.com/in/rizel-bobb-semple/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Lorenzo Verna",
+    "company": "Denied",
+    "role": "Co-founder and CPO, Denied",
+    "bio": "Lorenzo Verna (Math & CS) is Co-Founder & CPO at Denied.dev. A former CTO and founder with 3 startups and 2 exits, he has 15+ years building and scaling software products and AI platforms. His current work focuses on securing agentic systems, including MCP tool execution and policy...",
+    "topics": [
+      "sandbox security",
+      "host layer"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ95M0C9CMN1CEN3HD5Y",
+    "photo_url": "https://avatars.sched.co/e/d1/24335459/avatar.jpg?6de"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Pietro Valfre",
+    "company": "Denied",
+    "role": "",
+    "bio": "",
+    "topics": [
+      "sandbox security",
+      "host layer"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ96D4S3DXN78TJ0RJTN"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Jonathan Leitschuh",
+    "company": "Independent",
+    "role": "Open Source Security Researcher, Independent",
+    "bio": "Jonathan Leitschuh is an open source software security researcher and self-described Vulnerability Janitor. He was the inaugural Dan Kaminsky Fellow at HUMAN Security and later led research for OpenSSF’s Alpha-Omega project. He is best known for his 2019 Zoom zero-day disclosure...",
+    "topics": [
+      "MCP hacking",
+      "skeleton key vulnerability"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ98EK9244X27VSJKAEV",
+    "photo_url": "https://avatars.sched.co/a/ec/15096537/avatar.jpg?548",
+    "linkedin_url": "https://www.linkedin.com/in/jonathan-leitschuh/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Santhosh Misro",
+    "company": "Google",
+    "role": "Senior Engineering Manager, Google",
+    "bio": "",
+    "topics": [
+      "agentic cloud workflows"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ99QWB3DEZ9HNSKQ4X8",
+    "linkedin_url": "https://www.linkedin.com/in/misro/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Mayur Deshpande",
+    "company": "Google",
+    "role": "Staff Software Engineer, Google",
+    "bio": "",
+    "topics": [
+      "agentic cloud workflows"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ9A91EYGRA4VE15HB88",
+    "linkedin_url": "https://www.linkedin.com/in/mayur-deshpande-6182152/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Arnav Balyan",
+    "company": "Concierge AI",
+    "role": "Founder, Concierge AI",
+    "bio": "Arnav Balyan is an open-source advocate and contributor across AI infrastructure and distributed systems. His work focuses on reliable interfaces between LLMs and production systems. He is a contributor to key Apache projects and works on scaling real world MCP deployments. Previously...",
+    "topics": [
+      "MCP servers in the wild",
+      "tool complexity"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ9B3K9Q48HXY61QHX7Q",
+    "photo_url": "https://avatars.sched.co/3/6f/24335369/avatar.jpg?605",
+    "linkedin_url": "https://www.linkedin.com/in/arnavbalyan"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Ricardo Ferreira",
+    "company": "Redis",
+    "role": "Lead Developer Advocate, Redis",
+    "bio": "Ricardo leads the developer relations team at Redis. He built a successful career in DevRel working for companies such as AWS, Elastic, and Confluent. He spent two decades working as a software engineer, instructor, and solution architect before diving into the world of developer...",
+    "topics": [
+      "MCP anti-patterns",
+      "seven deadly sins"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ9CMD9TJ6J7RYMHQDCJ",
+    "photo_url": "https://avatars.sched.co/9/7e/24335627/avatar.jpg?04d",
+    "linkedin_url": "https://www.linkedin.com/in/riferrei/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Sebastian Villanelo",
+    "company": "PagerDuty",
+    "role": "Forward Deployment Engineer, PagerDuty",
+    "bio": "Develop custom reports that help each customer identify and monitor the metrics most relevant to their operations. Gather technical and functional requirements, working closely with the product team to translate customer needs into concrete improvements.",
+    "topics": [
+      "incident response",
+      "MCP transforms"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ9DDT3N0EP8CYCRPDMC",
+    "photo_url": "https://avatars.sched.co/5/03/24335762/avatar.jpg?003"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Rocio Bayon",
+    "company": "PagerDuty",
+    "role": "",
+    "bio": "",
+    "topics": [
+      "incident response",
+      "MCP transforms"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ9EWBPZ8XBA2DE1VBZR",
+    "linkedin_url": "https://www.linkedin.com/in/roc%C3%ADo-in%C3%A9s-bayon/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Lisa Tagliaferri",
+    "company": "Chainguard",
+    "role": "Senior Directory, Developer Enablement, Chainguard",
+    "bio": "Lisa Tagliaferri is Senior Director of Developer Enablement at Chainguard and a maintainer of Sigstore’s documentation. The author of “How To Code in Python” and a Linux Foundation course developer, Lisa focuses on helping developers and maintainers adopt CNCF and OpenSSF tooling...",
+    "topics": [
+      "MCP ecosystem security",
+      "transparency",
+      "trust"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ9FMXZCMC87C4GC80WZ",
+    "photo_url": "https://avatars.sched.co/0/f2/22193383/avatar.jpg?068",
+    "linkedin_url": "https://www.linkedin.com/in/lisa-tagliaferri"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Trevor Dunlap",
+    "company": "Chainguard",
+    "role": "Senior Software Engineer, Chainguard",
+    "bio": "Trevor Dunlap is a senior software engineer at Chainguard. He holds a Ph.D. in Computer Science with a focus on automating the enhancement of vulnerability data. Trevor is an advocate for open source software security and enjoys competing on Kaggle.",
+    "topics": [
+      "MCP ecosystem security",
+      "transparency"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ9GEMVJDS713PCYFJXJ",
+    "photo_url": "https://avatars.sched.co/8/c6/24493710/avatar.jpg?228",
+    "linkedin_url": "https://www.linkedin.com/in/tdunlap607/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Lahari Chowtoori",
+    "company": "Amazon Web Services, Inc.",
+    "role": "Open Source TPM, AI/ML, AWS",
+    "bio": "Lahari Chowtoori is an AI enthusiast and Technical Program Manager at AWS, focusing on open source, Machine Learning, and Artificial Intelligence. With a background in Data Science and Machine Learning, she is passionate about democratizing AI knowledge and fostering community collaboration.She...",
+    "topics": [
+      "MCP server lifecycle",
+      "abandonment"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ9HHMW2WTKJ9GFJD9VQ",
+    "photo_url": "https://avatars.sched.co/b/0d/23059213/avatar.jpg?a8d"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Adam Azzam",
+    "company": "Prefect",
+    "role": "VP Product, Prefect",
+    "bio": "Adam Azzam, Ph.D. is VP of Product at Prefect, where he leads product development for their open source automation and context platform. He is a maintainer of FastMCP.\n \n Before joining Prefect, Adam co-founded Openrole AI, where he served as CTO building an AI career co-pilot. He was previously Director of Product at Insight Data Science (YC S11). Adam holds a PhD in Mathematics from UCLA...",
+    "topics": [
+      "MCP tasks",
+      "SEP-1686"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ9J7MWBQ9WQ8M998CG4",
+    "photo_url": "https://avatars.sched.co/a/91/24335351/avatar.jpg?1c8",
+    "linkedin_url": "https://www.linkedin.com/in/adam-azzam/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Paulina Xu",
+    "company": "Agentic Fabriq",
+    "role": "CEO, Agentic Fabriq",
+    "bio": "Paulina Xu is the CEO of Agentic Fabriq, where she is building a centralized hub for agent identity, OAuth-based authentication, permissioning, and auditability, enabling organizations to safely manage what agents can access and do across tools, applications, and teams. Prior to founding...",
+    "topics": [
+      "enterprise MCP security",
+      "4-legged identity"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ9K7SYRB93XF44WHXYS",
+    "photo_url": "https://avatars.sched.co/5/1b/24542238/avatar.jpg?482",
+    "linkedin_url": "https://www.linkedin.com/in/paulina-xu-5bba0821b"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Carlos Santana",
+    "company": "AWS",
+    "role": "Sr. Kubernetes Specialist SA, AWS",
+    "bio": "Senior Specialist Solutions Architect at AWS leading Container solutions in the Worldwide Application Modernization (AppMod). He is experienced in distributed cloud application architecture, emerging technologies, open source, serverless, devops. kubernetes, gitops. He is CNCF Ambassador...",
+    "topics": [
+      "Kubernetes",
+      "agent discovery",
+      "registry"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ9MM4Y54SAEKWF99QWB",
+    "photo_url": "https://avatars.sched.co/4/9e/17993319/avatar.jpg?bf2",
+    "linkedin_url": "https://www.linkedin.com/in/csantanapr/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Vaibhav Tupe",
+    "company": "Equinix",
+    "role": "Tech Lead - Principal Engineer, Equinix",
+    "bio": "Vaibhav Tupe is a distinguished Technology Advisory Board Member and Engineering Leader specializing in cybersecurity, cloud, and AI-ready data center infrastructure. With over 13 years of experience, he currently serves as a Technology Leader at Equinix USA, where he drives high-performance...",
+    "topics": [
+      "MCP ecosystem",
+      "platform evolution"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ9NXAQWVYN9BVYBM1MF",
+    "photo_url": "https://avatars.sched.co/c/09/3742682/avatar.jpg?058",
+    "linkedin_url": "https://www.linkedin.com/in/vaibhavtupe/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Till Dohmen",
+    "company": "MotherDuck",
+    "role": "",
+    "bio": "",
+    "topics": [
+      "context engineering",
+      "MCP servers"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ9PZM2K7GYM2X1P264G"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Kay James",
+    "company": "Gravitee",
+    "role": "Technical Product Marketing Manager, Gravitee",
+    "bio": "",
+    "topics": [
+      "MCP elicitation",
+      "convenience vs security"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ9Q4DDCJ4NANKJ44Q79"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Peder Holdgaard Pedersen",
+    "company": "Saxo Bank",
+    "role": "",
+    "bio": "",
+    "topics": [
+      "context middleware",
+      "enterprise protocol extension"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ9R84H5YSEW84WG13VP",
+    "linkedin_url": "https://www.linkedin.com/in/peder-holdgaard-pedersen-3224b942/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Fred Araujo",
+    "company": "IBM",
+    "role": "Principal Research Scientist and Manager, IBM",
+    "bio": "Dr. Fred Araujo is a Principal Research Scientist and Manager at IBM Research, where he leads research on the security of AI agents and middleware. His work spans protocol security, access control, systems security, and program analysis, and has influenced several IBM and Red Hat...",
+    "topics": [
+      "hooks",
+      "modular enforcement",
+      "MCP agents"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ9S3WE098V0MJG39BTR",
+    "photo_url": "https://avatars.sched.co/d/4d/9463000/avatar.jpg?4b0",
+    "linkedin_url": "https://www.linkedin.com/in/fredericoaraujo/"
+  },
+  {
+    "type": "speaker",
+    "version": 1,
+    "relationships": [],
+    "name": "Teryl Taylor",
+    "company": "IBM",
+    "role": "Staff Research Scientist, IBM",
+    "bio": "Dr. Teryl Taylor is a Staff Research Scientist in the Trusted Digital Labor Group at IBM Research.  He has over 15 years of experience in cybersecurity related research including security of AI agents, system telemetry and analytics, cloud and system security, and cyber deception...",
+    "topics": [
+      "hooks",
+      "modular enforcement",
+      "MCP agents"
+    ],
+    "is_keynote": false,
+    "tags": [],
+    "id": "sk_01KMRSCQ9TTJANKK1C1QD2D5Y1",
+    "photo_url": "https://avatars.sched.co/8/d2/11513998/avatar.jpg?5c1",
+    "linkedin_url": "https://www.linkedin.com/in/teryl-taylor-778b54/"
+  }
+]

@@ -1,0 +1,29 @@
+# Dev/test files
+/tests/
+/.tasks/
+/.venv/
+/.pytest_cache/
+/.ruff_cache/
+__pycache__/
+
+# UI source (dist is kept for the built HTML)
+/ui/node_modules/
+/ui/src/
+/ui/.vite/
+
+# Runtime data
+/workspace/
+/data/
+
+# Build artifacts
+*.egg-info/
+*.mcpb
+
+# Scratch
+/seed/_id_map.json
+/seed/session_details.json
+/seed/speaker_details.json
+/seed/venue.json
+
+# Web landing page (not needed in bundle)
+/web/

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Speaker",
+  "description": "A speaker at MCP Dev Summit NA 2026",
+  "allOf": [
+    { "$ref": "https://upjack.dev/schemas/v1/upjack-entity.schema.json" }
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full name"
+    },
+    "company": {
+      "type": "string",
+      "description": "Organization"
+    },
+    "role": {
+      "type": "string",
+      "description": "Job title"
+    },
+    "bio": {
+      "type": "string",
+      "description": "Speaker bio"
+    },
+    "photo_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Headshot URL"
+    },
+    "linkedin_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "LinkedIn profile URL"
+    },
+    "topics": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Topics of expertise"
+    },
+    "is_keynote": {
+      "type": "boolean",
+      "default": false,
+      "description": "Keynote speaker flag"
+    },
+    "is_program_committee": {
+      "type": "boolean",
+      "default": false,
+      "description": "Program committee member flag"
+    }
+  },
+  "required": ["name"]
+}

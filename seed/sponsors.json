@@ -1,0 +1,774 @@
+[
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "AWS",
+    "tier": "diamond",
+    "description": "Amazon Web Services - cloud computing and AI services",
+    "website_url": "https://aws.amazon.com/opensource/",
+    "booth_activities": [
+      "Meet AWS Open Source at MCP Dev Summit"
+    ],
+    "products": [
+      "Amazon Bedrock",
+      "AWS Lambda",
+      "Amazon Q"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQ9VDXYDRP85T9T2FKN9"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Docker",
+    "tier": "diamond",
+    "description": "Container platform for building, sharing, and running applications",
+    "website_url": "https://www.docker.com/",
+    "booth_activities": [],
+    "products": [
+      "Docker Desktop",
+      "Docker Hub"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQ9WKTCF5ANW0ZABSJ84"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Obot.ai",
+    "tier": "diamond",
+    "description": "MCP Gateway and enterprise agent platform",
+    "website_url": "https://obot.ai/",
+    "booth_activities": [
+      "Coffee & Demos: Explore Obot AI's MCP Gateway Demos and Grab Exclusive Swag"
+    ],
+    "products": [
+      "Obot AI MCP Gateway"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQ9XFGEEFBKTGED2RFJS"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "PwC",
+    "tier": "diamond",
+    "description": "Professional services and consulting firm",
+    "website_url": "https://www.pwc.com/us/en.html",
+    "booth_activities": [],
+    "products": [],
+    "tags": [],
+    "id": "sx_01KMRSCQ9Y5X056P4GY2X9CTJQ"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Workato",
+    "tier": "diamond",
+    "description": "Enterprise automation and integration platform",
+    "website_url": "https://www.workato.com/developers",
+    "booth_activities": [],
+    "products": [
+      "Workato Platform"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQ9ZZV4SBRWVSX6RVJC7"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "WorkOS",
+    "tier": "diamond",
+    "description": "Developer APIs for enterprise features like SSO and directory sync",
+    "website_url": "https://workos.com/",
+    "booth_activities": [
+      "AMA with WorkOS Founder Michael Grinich"
+    ],
+    "products": [
+      "WorkOS AuthKit",
+      "WorkOS SSO"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQA0RN3R6B4F5CKS4T8J"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Anthropic",
+    "tier": "platinum",
+    "description": "AI safety company building Claude",
+    "website_url": "https://www.anthropic.com/",
+    "booth_activities": [],
+    "products": [
+      "Claude",
+      "MCP SDK"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQA1K2FQH3XZZ5BYKE35"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "FME by Safe Software",
+    "tier": "platinum",
+    "description": "Data integration and transformation platform",
+    "website_url": "https://fme.safe.com/",
+    "booth_activities": [],
+    "products": [
+      "FME"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQA26DFYCFXQHR9D53SM"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Google Cloud",
+    "tier": "platinum",
+    "description": "Cloud computing services by Google",
+    "website_url": "https://cloud.google.com/",
+    "booth_activities": [],
+    "products": [
+      "Vertex AI",
+      "Google Cloud AI"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQA37785K67TPAA9QDH9"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "mcp-use",
+    "tier": "platinum",
+    "description": "MCP tooling by Manufact",
+    "website_url": "https://manufact.com/",
+    "booth_activities": [],
+    "products": [
+      "mcp-use"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQA43PCN154J465PHHZF"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Prefect.io",
+    "tier": "platinum",
+    "description": "Workflow orchestration for data and AI pipelines",
+    "website_url": "https://prefect.io/",
+    "booth_activities": [],
+    "products": [
+      "Prefect"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQA5SQVKE6TAB5BEKA44"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Runlayer",
+    "tier": "platinum",
+    "description": "Security and compliance platform for AI agents",
+    "website_url": "https://www.runlayer.com/",
+    "booth_activities": [],
+    "products": [
+      "Runlayer"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQA7GY57CX7Z1Z3QTAXY"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Apollo MCP",
+    "tier": "gold",
+    "description": "GraphQL-based MCP server by Apollo GraphQL",
+    "website_url": "https://www.apollographql.com/apollo-mcp-server",
+    "booth_activities": [],
+    "products": [
+      "Apollo MCP Server"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQA8KZBPEXSE005HBEEG"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "BlueRock",
+    "tier": "gold",
+    "description": "",
+    "website_url": "https://www.bluerock.io/",
+    "booth_activities": [],
+    "products": [],
+    "tags": [],
+    "id": "sx_01KMRSCQA9CFJJ43H9KWS8N8B9"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Chainguard",
+    "tier": "gold",
+    "description": "Software supply chain security",
+    "website_url": "https://www.chainguard.dev/",
+    "booth_activities": [],
+    "products": [
+      "Chainguard Images"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQAA023YZB0KH7153Q2S"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Cloudflare",
+    "tier": "gold",
+    "description": "Cloud networking and security platform",
+    "website_url": "https://workers.cloudflare.com/",
+    "booth_activities": [],
+    "products": [
+      "Cloudflare Workers"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQAB6JTCMSK3GT696AT0"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "CP Edge",
+    "tier": "gold",
+    "description": "",
+    "website_url": "https://cpedge.ai/",
+    "booth_activities": [],
+    "products": [],
+    "tags": [],
+    "id": "sx_01KMRSCQACP4PFS2992D6KJBW6"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Datadog",
+    "tier": "gold",
+    "description": "Monitoring and observability platform",
+    "website_url": "https://www.datadoghq.com/",
+    "booth_activities": [],
+    "products": [
+      "Datadog",
+      "Dispatch Agents"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQAD4XSDGBH5Z0N9NM6K"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Descope",
+    "tier": "gold",
+    "description": "Authentication and user management platform",
+    "website_url": "https://www.descope.com/",
+    "booth_activities": [],
+    "products": [
+      "Descope"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQAEH5Z9RYR0P2ZWCYFA"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Elastic",
+    "tier": "gold",
+    "description": "Search and observability platform",
+    "website_url": "https://www.elastic.co/",
+    "booth_activities": [],
+    "products": [
+      "Elasticsearch",
+      "Elastic Observability"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQAFZK8027M04T9V3Z80"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "IBM",
+    "tier": "gold",
+    "description": "Enterprise technology and consulting",
+    "website_url": "https://developer.ibm.com/",
+    "booth_activities": [],
+    "products": [
+      "watsonx"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQAG1C2ZN0MKS5V7XMRB"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Kong",
+    "tier": "gold",
+    "description": "API gateway and service connectivity platform",
+    "website_url": "https://konghq.com/",
+    "booth_activities": [],
+    "products": [
+      "Kong Gateway"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQAHJV3F385X9TQB2EW5"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "MCP Manager by Usercentrics",
+    "tier": "gold",
+    "description": "MCP compliance and management platform",
+    "website_url": "https://mcpmanager.ai/",
+    "booth_activities": [],
+    "products": [
+      "MCP Manager"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQAJ04KT9D5N89ZP1MKR"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "MotherDuck",
+    "tier": "gold",
+    "description": "Serverless analytics platform built on DuckDB",
+    "website_url": "https://motherduck.com/",
+    "booth_activities": [],
+    "products": [
+      "MotherDuck"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQAKJD3H4CNNX3GN6EVS"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Neo4j",
+    "tier": "gold",
+    "description": "Graph database platform",
+    "website_url": "https://neo4j.com/",
+    "booth_activities": [],
+    "products": [
+      "Neo4j Graph Database"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQAM40AWH406VWKAB0E2"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "OpenSearch",
+    "tier": "gold",
+    "description": "Open-source search and analytics suite",
+    "website_url": "https://opensearch.org/",
+    "booth_activities": [],
+    "products": [
+      "OpenSearch"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQANN3ZAEWHG5YVZ6SY9"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Orkes",
+    "tier": "gold",
+    "description": "Workflow orchestration platform",
+    "website_url": "https://orkes.io/",
+    "booth_activities": [],
+    "products": [
+      "Orkes Conductor"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQAPHN67GPV64H8DKEVC"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Red Hat",
+    "tier": "gold",
+    "description": "Enterprise open-source software solutions",
+    "website_url": "https://www.redhat.com/",
+    "booth_activities": [],
+    "products": [
+      "OpenShift",
+      "RHEL"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQAQW6FGPMAM30TE9JW4"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Solo.io",
+    "tier": "gold",
+    "description": "API gateway and service mesh platform",
+    "website_url": "https://www.solo.io/",
+    "booth_activities": [],
+    "products": [
+      "Gloo Gateway"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQARNDW5QRBN477EAHY2"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "SonarSource",
+    "tier": "gold",
+    "description": "Code quality and security platform",
+    "website_url": "https://www.sonarsource.com/",
+    "booth_activities": [],
+    "products": [
+      "SonarQube",
+      "SonarCloud"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQASNNMZ8DANP7AMYV00"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Tailscale",
+    "tier": "gold",
+    "description": "Zero-config VPN and networking platform",
+    "website_url": "https://www.tailscale.com/",
+    "booth_activities": [],
+    "products": [
+      "Tailscale"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQATG0FR7AVDZF08PMBC"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Temporal",
+    "tier": "gold",
+    "description": "Durable execution platform for distributed applications",
+    "website_url": "https://temporal.io/",
+    "booth_activities": [],
+    "products": [
+      "Temporal"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQAVHP39V8MWMB1CY6KM"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Alpic",
+    "tier": "startup",
+    "description": "AI-native experience platform",
+    "website_url": "https://www.alpic.ai/",
+    "booth_activities": [],
+    "products": [],
+    "tags": [],
+    "id": "sx_01KMRSCQAWXZ644PV7E9V15Y9Y"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Alterion",
+    "tier": "startup",
+    "description": "",
+    "website_url": "https://www.alterion.ai/",
+    "booth_activities": [],
+    "products": [],
+    "tags": [],
+    "id": "sx_01KMRSCQAXE8FVJ4Q30Q5FTSPM"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Apify",
+    "tier": "startup",
+    "description": "Web scraping and automation platform",
+    "website_url": "https://apify.com/",
+    "booth_activities": [],
+    "products": [
+      "Apify"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQAYJH4CW52K01JG0WN0"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Arcade.dev",
+    "tier": "startup",
+    "description": "Agentic integration platform",
+    "website_url": "https://arcade.dev/",
+    "booth_activities": [],
+    "products": [
+      "Arcade"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQAZDC56M825VYMDVB0F"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Augment Code",
+    "tier": "startup",
+    "description": "AI-powered coding assistant",
+    "website_url": "https://www.augmentcode.com/",
+    "booth_activities": [],
+    "products": [
+      "Augment Code"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQB09DNBZ88EGA8WGD18"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Datastrato",
+    "tier": "startup",
+    "description": "",
+    "website_url": "https://datastrato.ai/",
+    "booth_activities": [],
+    "products": [],
+    "tags": [],
+    "id": "sx_01KMRSCQB1XJTJM7QAABR2H2CJ"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Kilo Code",
+    "tier": "startup",
+    "description": "",
+    "website_url": "https://kilo.ai/",
+    "booth_activities": [],
+    "products": [
+      "Kilo Code"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQB2K2G5QMEK89XS0AS6"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Mach11 (Holbox.ai)",
+    "tier": "startup",
+    "description": "",
+    "website_url": "https://mach11.io/",
+    "booth_activities": [],
+    "products": [],
+    "tags": [],
+    "id": "sx_01KMRSCQB34JKXZGS0P1EAXMT6"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "MCP Total",
+    "tier": "startup",
+    "description": "",
+    "website_url": "https://mcptotal.io/",
+    "booth_activities": [],
+    "products": [
+      "MCP Total"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQB5XJF3W539ZHN83XTR"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "MintMCP",
+    "tier": "startup",
+    "description": "MCP tooling and agent systems",
+    "website_url": "https://www.mintmcp.com/",
+    "booth_activities": [],
+    "products": [
+      "MintMCP"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQB67463JXT3Z8MZ2M32"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Natoma",
+    "tier": "startup",
+    "description": "",
+    "website_url": "https://natoma.ai/",
+    "booth_activities": [],
+    "products": [],
+    "tags": [],
+    "id": "sx_01KMRSCQB78HKDDRK5YANTJPEZ"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "pgEDGE",
+    "tier": "startup",
+    "description": "Distributed PostgreSQL platform",
+    "website_url": "https://www.pgedge.com/",
+    "booth_activities": [],
+    "products": [
+      "pgEdge"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQB874W6M3YSYQB106J7"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Reboot",
+    "tier": "startup",
+    "description": "Durable execution platform",
+    "website_url": "https://reboot.dev/",
+    "booth_activities": [],
+    "products": [
+      "Reboot"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQB9R6Z5BJP0BFV5QRN8"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Scalekit",
+    "tier": "startup",
+    "description": "Enterprise authentication platform",
+    "website_url": "https://www.scalekit.com/",
+    "booth_activities": [],
+    "products": [
+      "Scalekit"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQBAVXYCZEH1JXXYEK3R"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Semiotic AI",
+    "tier": "startup",
+    "description": "",
+    "website_url": "https://agentium.network/",
+    "booth_activities": [],
+    "products": [],
+    "tags": [],
+    "id": "sx_01KMRSCQBBB79HAKVHXF0CG72E"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Stacklok",
+    "tier": "startup",
+    "description": "Open-source software supply chain security",
+    "website_url": "https://www.stacklok.com/",
+    "booth_activities": [],
+    "products": [
+      "Minder"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQBCQ8PV4AWT7A570EM9"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Tigris",
+    "tier": "startup",
+    "description": "Globally distributed object storage",
+    "website_url": "https://www.tigrisdata.com/",
+    "booth_activities": [],
+    "products": [
+      "Tigris"
+    ],
+    "tags": [],
+    "id": "sx_01KMRSCQBD5E6MWM7YJB221VSD"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Ultra Security",
+    "tier": "startup",
+    "description": "",
+    "website_url": "https://ultra.security/",
+    "booth_activities": [],
+    "products": [],
+    "tags": [],
+    "id": "sx_01KMRSCQBE4T642PZP10E7G405"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "Valet",
+    "tier": "startup",
+    "description": "",
+    "website_url": "https://valet.dev/",
+    "booth_activities": [],
+    "products": [],
+    "tags": [],
+    "id": "sx_01KMRSCQBFHJEFH8ZVP6VPX4BM"
+  },
+  {
+    "type": "sponsor",
+    "version": 1,
+    "relationships": [],
+    "name": "XTrace",
+    "tier": "startup",
+    "description": "",
+    "website_url": "https://xtrace.ai/",
+    "booth_activities": [],
+    "products": [],
+    "tags": [],
+    "id": "sx_01KMRSCQBGNZ328TB5XBZDGZS6"
+  }
+]

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sponsor",
+  "description": "A sponsor of MCP Dev Summit NA 2026",
+  "allOf": [
+    { "$ref": "https://upjack.dev/schemas/v1/upjack-entity.schema.json" }
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["diamond", "platinum", "gold", "startup"],
+      "description": "Sponsorship tier"
+    },
+    "description": {
+      "type": "string",
+      "description": "What the company does"
+    },
+    "website_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Company website"
+    },
+    "booth_location": {
+      "type": "string",
+      "description": "Booth location in the venue"
+    },
+    "booth_activities": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Activities at their booth"
+    },
+    "logo_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Company logo URL"
+    },
+    "products": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Key products relevant to MCP"
+    }
+  },
+  "required": ["name", "tier"]
+}

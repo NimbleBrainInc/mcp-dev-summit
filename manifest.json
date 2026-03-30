@@ -1,0 +1,150 @@
+{
+  "manifest_version": "0.4",
+  "name": "@nimblebraininc/mcp-dev-summit",
+  "version": "0.1.0",
+  "description": "Conference companion for MCP Dev Summit NA 2026 — search sessions, build a personal schedule, capture notes, and get AI-powered recommendations",
+  "author": {
+    "name": "NimbleBrain Inc",
+    "email": "hello@nimblebrain.ai"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NimbleBrainInc/mcp-dev-summit"
+  },
+  "server": {
+    "type": "python",
+    "entry_point": "mcp_dev_summit.server",
+    "mcp_config": {
+      "command": "python",
+      "args": ["-m", "mcp_dev_summit.server"]
+    }
+  },
+  "_meta": {
+    "ai.nimblebrain/upjack": {
+      "upjack_version": "0.1",
+      "namespace": "apps/mcp-dev-summit",
+      "display": {
+        "name": "MCP Dev Summit",
+        "icon": "\ud83c\udfdf\ufe0f",
+        "category": "operations"
+      },
+      "entities": [
+        {
+          "name": "session",
+          "plural": "sessions",
+          "schema": "schemas/session.schema.json",
+          "prefix": "ss",
+          "index": true,
+          "tools": ["get"]
+        },
+        {
+          "name": "speaker",
+          "plural": "speakers",
+          "schema": "schemas/speaker.schema.json",
+          "prefix": "sk",
+          "index": true,
+          "tools": []
+        },
+        {
+          "name": "sponsor",
+          "plural": "sponsors",
+          "schema": "schemas/sponsor.schema.json",
+          "prefix": "sx",
+          "index": true,
+          "tools": []
+        },
+        {
+          "name": "bookmark",
+          "plural": "bookmarks",
+          "schema": "schemas/bookmark.schema.json",
+          "prefix": "bk",
+          "index": false,
+          "tools": ["create", "list", "delete"]
+        },
+        {
+          "name": "note",
+          "plural": "notes",
+          "schema": "schemas/note.schema.json",
+          "prefix": "nt",
+          "index": true,
+          "tools": ["create", "list", "update"]
+        },
+        {
+          "name": "connection",
+          "plural": "connections",
+          "schema": "schemas/connection.schema.json",
+          "prefix": "cn",
+          "index": true,
+          "tools": ["create", "list", "update"]
+        }
+      ],
+      "activities": false,
+      "utility_tools": ["seed_data"],
+      "views": [
+        {
+          "name": "todays-sessions",
+          "entity": "session",
+          "description": "All sessions for today",
+          "sort": "start_time"
+        },
+        {
+          "name": "keynotes",
+          "entity": "session",
+          "description": "Keynote sessions",
+          "filter": "$.session_type == 'keynote'",
+          "sort": "day,start_time"
+        },
+        {
+          "name": "workshops",
+          "entity": "session",
+          "description": "Workshop sessions",
+          "filter": "$.session_type == 'workshop'",
+          "sort": "day,start_time"
+        },
+        {
+          "name": "hot-connections",
+          "entity": "connection",
+          "description": "High-warmth connections",
+          "filter": "$.warmth == 'hot'",
+          "sort": "-created_at"
+        },
+        {
+          "name": "action-items",
+          "entity": "note",
+          "description": "Notes with action items",
+          "sort": "-created_at"
+        }
+      ],
+      "context": "context.md",
+      "seed": {
+        "data": "seed/",
+        "run_on_install": true
+      }
+    },
+    "ai.nimblebrain/platform": {
+      "ui": {
+        "name": "MCP Dev Summit",
+        "icon": "calendar",
+        "placements": [
+          {
+            "slot": "sidebar.apps",
+            "resourceUri": "ui://mcp-dev-summit/main",
+            "route": "@nimblebraininc/mcp-dev-summit",
+            "label": "Dev Summit",
+            "icon": "calendar"
+          }
+        ]
+      }
+    },
+    "org.mpaktrust": {
+      "mtf_version": "0.1",
+      "permissions": {
+        "filesystem": "read-write",
+        "network": "none",
+        "environment": "read",
+        "subprocess": "none",
+        "native": "none"
+      }
+    }
+  }
+}

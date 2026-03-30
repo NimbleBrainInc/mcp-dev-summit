@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Note",
+  "description": "Notes captured during or after a session, or freeform conference notes",
+  "allOf": [
+    { "$ref": "https://upjack.dev/schemas/v1/upjack-entity.schema.json" }
+  ],
+  "properties": {
+    "title": {
+      "type": "string",
+      "maxLength": 256,
+      "description": "Note title"
+    },
+    "content": {
+      "type": "string",
+      "description": "Markdown content"
+    },
+    "key_takeaways": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Bullet takeaways from the session"
+    },
+    "action_items": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Follow-up actions to take"
+    },
+    "sentiment": {
+      "type": "string",
+      "enum": ["loved_it", "good", "meh", "disappointed"],
+      "description": "How you felt about the session"
+    },
+    "quotable": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Memorable quotes worth sharing"
+    }
+  },
+  "required": ["content"]
+}

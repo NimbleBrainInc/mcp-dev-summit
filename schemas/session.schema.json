@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Conference Session",
+  "description": "A session at MCP Dev Summit NA 2026 — keynote, talk, workshop, break, social event, or sponsor activity",
+  "allOf": [
+    { "$ref": "https://upjack.dev/schemas/v1/upjack-entity.schema.json" }
+  ],
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Session title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Full session abstract"
+    },
+    "session_type": {
+      "type": "string",
+      "enum": ["keynote", "talk", "workshop", "break", "social", "sponsor_activity", "check_in"],
+      "description": "Type of session"
+    },
+    "track": {
+      "type": "string",
+      "enum": ["apps_and_agents", "mcp_best_practices", "protocol_in_depth", "security_and_operations", "keynote", "special_events", "workshop"],
+      "description": "Conference track"
+    },
+    "day": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the session (e.g., 2026-04-01)"
+    },
+    "start_time": {
+      "type": "string",
+      "description": "Start time in HH:MM format (ET)"
+    },
+    "end_time": {
+      "type": "string",
+      "description": "End time in HH:MM format (ET)"
+    },
+    "room": {
+      "type": "string",
+      "description": "Room name"
+    },
+    "floor": {
+      "type": "string",
+      "description": "Floor of the venue"
+    },
+    "speaker_names": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Speaker names denormalized for search"
+    },
+    "speaker_companies": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Speaker companies denormalized for search"
+    },
+    "requires_registration": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether pre-registration is needed (workshops)"
+    },
+    "registration_fee": {
+      "type": "number",
+      "description": "Additional cost in USD"
+    },
+    "sched_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Link to session on Sched"
+    }
+  },
+  "required": ["title", "day", "start_time", "end_time"]
+}

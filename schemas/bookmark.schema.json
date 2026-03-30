@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Bookmark",
+  "description": "A bookmarked session for your personal conference schedule",
+  "allOf": [
+    { "$ref": "https://upjack.dev/schemas/v1/upjack-entity.schema.json" }
+  ],
+  "properties": {
+    "priority": {
+      "type": "string",
+      "enum": ["must_attend", "want_to_attend", "maybe"],
+      "default": "want_to_attend",
+      "description": "How important this session is to you"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Why you bookmarked this session"
+    }
+  }
+}

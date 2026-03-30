@@ -1,0 +1,82 @@
+{
+  "name": "New York Marriott Marquis",
+  "address": "1535 Broadway, New York, NY 10036",
+  "rating": "5 stars",
+  "neighborhood": "Times Square",
+  "event_dates": {
+    "workshops": "2026-04-01",
+    "conference_day_1": "2026-04-02",
+    "conference_day_2": "2026-04-03"
+  },
+  "hotel": {
+    "name": "New York Marriott Marquis",
+    "address": "1535 Broadway, New York, NY 10036",
+    "room_block": {
+      "status": "closed",
+      "available_dates": ["2026-03-31", "2026-04-01", "2026-04-02", "2026-04-03"],
+      "rate_starting_from": "$389/night",
+      "taxes": "14.76% plus $3.50 nightly occupancy tax",
+      "booking_deadline": "2026-03-16T23:59:00-04:00",
+      "cancellation_fee": "1 night room and tax",
+      "booking_method": "Passkey booking link or call hotel directly. Linux Foundation does not make reservations by phone."
+    }
+  },
+  "alternate_hotels": [
+    {
+      "name": "Hyatt Centric Times Square",
+      "address": "135 W 45th St, New York, NY",
+      "phone": "(646) 364-1234",
+      "distance": "3-minute walk"
+    },
+    {
+      "name": "Millennium Hotel Broadway Times Square",
+      "address": "145 W 44th St, New York, NY",
+      "phone": "(212) 768-4400",
+      "distance": "3-minute walk"
+    }
+  ],
+  "transportation": {
+    "airports": [
+      {
+        "code": "LGA",
+        "name": "LaGuardia Airport",
+        "distance_miles": 9,
+        "drive_time": "~30 minutes"
+      },
+      {
+        "code": "JFK",
+        "name": "John F. Kennedy International Airport",
+        "distance_miles": 18.5,
+        "drive_time": "~1 hour"
+      }
+    ],
+    "public_transit": [
+      "MTA Times Square subway station (1/2/3/7/N/Q/R/W/S lines)",
+      "Port Authority Bus Terminal (adjacent)",
+      "Penn Station / Amtrak (short walk)",
+      "Grand Central Station (short walk)"
+    ],
+    "parking": {
+      "daily_valet": "$110",
+      "standard_valet_car": "$85",
+      "standard_valet_suv": "$95",
+      "standard_valet_oversized": "$110",
+      "note": "Includes 24-hour rate with in/out privileges for $30"
+    }
+  },
+  "rooms": [
+    "Broadway Ballroom (North/South)",
+    "Marquis Ballroom (Salon A, B, C)",
+    "Westside Ballroom (Salon 1, 2, 3, 4)",
+    "Astor Ballroom"
+  ],
+  "nearby_dining": {
+    "note": "Located in Times Square with hundreds of restaurants within walking distance.",
+    "neighborhoods": [
+      "Times Square (immediate area)",
+      "Hell's Kitchen / Restaurant Row (W 46th St between 8th and 9th Ave - 5 min walk)",
+      "Koreatown / K-Town (W 32nd St - 10 min walk)"
+    ]
+  },
+  "source_url": "https://events.linuxfoundation.org/mcp-dev-summit-north-america/attend/venue-travel/"
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Connection",
+  "description": "A person you met at MCP Dev Summit NA 2026",
+  "allOf": [
+    { "$ref": "https://upjack.dev/schemas/v1/upjack-entity.schema.json" }
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Person's name"
+    },
+    "company": {
+      "type": "string",
+      "description": "Their company"
+    },
+    "role": {
+      "type": "string",
+      "description": "Job title"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Contact email"
+    },
+    "linkedin_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "LinkedIn profile URL"
+    },
+    "context": {
+      "type": "string",
+      "description": "Where or how you met"
+    },
+    "conversation_notes": {
+      "type": "string",
+      "description": "What you talked about"
+    },
+    "follow_up": {
+      "type": "string",
+      "description": "What to do next"
+    },
+    "follow_up_by": {
+      "type": "string",
+      "format": "date",
+      "description": "Deadline for follow-up"
+    },
+    "warmth": {
+      "type": "string",
+      "enum": ["hot", "warm", "cool"],
+      "default": "warm",
+      "description": "How warm the connection is"
+    }
+  },
+  "required": ["name"]
+}
