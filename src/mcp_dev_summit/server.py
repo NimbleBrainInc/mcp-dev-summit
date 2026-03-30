@@ -152,7 +152,9 @@ if not _session_dir.exists() or not any(_session_dir.iterdir()):
 # =============================================================================
 
 
-@mcp.resource("ui://mcp-dev-summit/speaker-widget/{cache_bust}")
+@mcp.resource(
+    "ui://mcp-dev-summit/speaker-widget/{cache_bust}", mime_type="text/html;profile=mcp-app"
+)
 def speaker_widget_ui(cache_bust: str = "") -> str:
     """Speaker cards — server-side rendered from the most recent find_speaker_profiles result."""
     speakers = _last_widget_data.get("speakers", [])
