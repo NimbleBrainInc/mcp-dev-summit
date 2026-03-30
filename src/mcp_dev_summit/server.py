@@ -791,9 +791,7 @@ def whats_on(include_next: int = 2, track: str = "") -> dict:
     return _whats_on(upjack_app, include_next=include_next, track=track)
 
 
-@mcp.tool(
-    meta={"ui": {"resourceUri": "ui://mcp-dev-summit/speaker-widget/0"}},
-)
+@mcp.tool()
 def find_speaker_profiles(
     query: str = "",
     company: str = "",
