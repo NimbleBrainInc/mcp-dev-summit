@@ -929,6 +929,8 @@ def find_speaker_profiles(
         upjack_app, query=query, company=company, is_keynote=is_keynote, limit=limit
     )
     _inline_photos(result.get("results", []), max_speakers=5, use_thumbs=True)
+    return result
+
 
 @mcp.tool()
 def browse_sponsors(tier: str = "", query: str = "") -> dict:

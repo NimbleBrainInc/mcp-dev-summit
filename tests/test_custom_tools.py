@@ -72,6 +72,38 @@ def test_find_speaker_profiles_keynote_filter(upjack_app):
 
 
 # ---------------------------------------------------------------------------
+# find_speaker_profiles (MCP tool — return value + photo inlining)
+# ---------------------------------------------------------------------------
+
+
+def test_find_speaker_profiles_tool_returns_data(upjack_app):
+    """Regression: find_speaker_profiles must return result dict, not None."""
+    import mcp_dev_summit.server as srv
+
+    # Call the registered MCP tool function directly
+    result = srv.find_speaker_profiles(query="David Soria Parra")
+    assert result is not None, "find_speaker_profiles returned None — missing return statement?"
+    assert isinstance(result, dict), f"Expected dict, got {type(result)}"
+    assert "results" in result, "Missing 'results' key"
+    assert result["total"] >= 1, "Expected at least one speaker"
+
+
+def test_find_speaker_profiles_inlines_photos(upjack_app):
+    """Photos must be base64 data URIs, not external URLs (sandbox blocks external)."""
+    import mcp_dev_summit.server as srv
+
+    result = srv.find_speaker_profiles(query="David Soria Parra")
+    speakers = result["results"]
+    assert len(speakers) >= 1
+    for sp in speakers:
+        photo = sp.get("photo_url", "")
+        if photo:
+            assert photo.startswith("data:image/"), (
+                f"photo_url should be a data URI, got: {photo[:80]}..."
+            )
+
+
+# ---------------------------------------------------------------------------
 # browse_sponsors
 # ---------------------------------------------------------------------------
 
@@ -127,3 +159,71 @@ def test_post_conference_report_empty(upjack_app):
     assert result["stats"]["sessions_attended"] == 0
     assert result["stats"]["notes_captured"] == 0
     assert result["stats"]["connections_made"] == 0
+
+
+# ---------------------------------------------------------------------------
+# Speaker widget — MCP Apps spec compliance
+# ---------------------------------------------------------------------------
+
+
+def test_speaker_widget_html_has_spec_compliant_handshake():
+    """Widget must follow MCP Apps handshake: send ui/initialize, wait for response,
+    then send ui/notifications/initialized. Must NOT send initialized before host responds."""
+    import mcp_dev_summit.server as srv
+
+    html = srv.speaker_widget_ui()
+
+    # Must contain ui/initialize request
+    assert "ui/initialize" in html, "Widget must send ui/initialize"
+
+    # Must listen for host response before sending initialized
+    assert "ui/notifications/initialized" in html, "Widget must send initialized notification"
+
+    # Handshake ordering: initialize must come BEFORE initialized in the code,
+    # and initialized must be inside a message handler (not sent synchronously)
+    init_pos = html.index("ui/initialize")
+    initialized_pos = html.index("ui/notifications/initialized")
+    assert init_pos < initialized_pos, "ui/initialize must come before ui/notifications/initialized"
+
+    # initialized must be inside addEventListener callback, not at top level
+    # (it should be dispatched in response to the host's init reply)
+    listener_pos = html.index("addEventListener")
+    assert listener_pos < initialized_pos, (
+        "ui/notifications/initialized must be inside message listener (wait for host response)"
+    )
+
+
+def test_speaker_widget_listens_for_tool_result():
+    """Widget must handle ui/notifications/tool-result per MCP Apps spec."""
+    import mcp_dev_summit.server as srv
+
+    html = srv.speaker_widget_ui()
+    assert "ui/notifications/tool-result" in html, (
+        "Widget must listen for ui/notifications/tool-result"
+    )
+
+
+def test_speaker_widget_sends_initial_resize():
+    """Widget must send size-changed before handshake so host doesn't render at 0 height."""
+    import mcp_dev_summit.server as srv
+
+    html = srv.speaker_widget_ui()
+    assert "ui/notifications/size-changed" in html, "Widget must send size notification"
+
+    # resize() must be called before ui/initialize to set initial height
+    resize_call = html.index("resize()")
+    init_call = html.index("'ui/initialize'")
+    # Find the FIRST resize() call (not one inside render())
+    assert resize_call < init_call, "First resize() must fire before ui/initialize handshake"
+
+
+def test_speaker_widget_has_tool_meta():
+    """find_speaker_profiles tool must declare meta.ui.resourceUri for the widget."""
+    import mcp_dev_summit.server as srv
+
+    # Check the tool list whitelist includes the tool
+    assert "find_speaker_profiles" in srv._LISTED_TOOLS
+
+    # The widget resource must exist
+    html = srv.speaker_widget_ui()
+    assert "<!DOCTYPE html>" in html
