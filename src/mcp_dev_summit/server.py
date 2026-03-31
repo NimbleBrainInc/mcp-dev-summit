@@ -188,13 +188,6 @@ body{padding:8px;background:transparent}
 <div id="root"><p class="empty">Loading speakers...</p></div>
 <script>
 (function(){
-  // ext-apps handshake
-  window.parent.postMessage({jsonrpc:'2.0',id:'__init',method:'ui/initialize',
-    params:{protocolVersion:'2026-01-26',capabilities:{},
-    clientInfo:{name:'speaker-widget',version:'0.2.0'}}},'*');
-  window.parent.postMessage({jsonrpc:'2.0',method:'ui/notifications/initialized',params:{}},'*');
-  resize();
-
   function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
 
   function openLink(url){
@@ -212,7 +205,7 @@ body{padding:8px;background:transparent}
       var role=esc(sp.role||'');
       var company=esc(sp.company||'');
       var bio=(sp.bio||'').substring(0,120);
-      if(bio.length===120)bio=bio.substring(0,bio.lastIndexOf(' ')||120)+'…';
+      if(bio.length===120)bio=bio.substring(0,bio.lastIndexOf(' ')||120)+'\u2026';
       bio=esc(bio);
       var photo=sp.photo_url||'';
       var topics=(sp.topics||[]).slice(0,3);
@@ -242,7 +235,6 @@ body{padding:8px;background:transparent}
     });
     if(overflow>0){html+='<div class="more">+'+overflow+' more speaker'+(overflow>1?'s':'')+'</div>';}
     root.innerHTML=html;
-    // Attach link handlers after render
     var links=root.querySelectorAll('.link');
     shown.forEach(function(sp,i){
       if(sp.linkedin_url&&links[i]){links[i].onclick=function(e){e.preventDefault();openLink(sp.linkedin_url);};}
@@ -256,12 +248,10 @@ body{padding:8px;background:transparent}
       params:{width:400,height:(root?root.offsetHeight:0)+16}},'*');
   }
 
-  // Parse tool result — handles both raw JSON string and structured content array
   function parseSpeakers(data){
     if(!data)return[];
     var obj=data;
     if(typeof data==='string'){try{obj=JSON.parse(data);}catch(e){return[];}}
-    // MCP content array: [{type:"text",text:"..."}]
     if(Array.isArray(obj)){
       var text=obj.map(function(c){return c.text||'';}).join('');
       try{obj=JSON.parse(text);}catch(e){return[];}
@@ -269,15 +259,31 @@ body{padding:8px;background:transparent}
     return obj.results||obj.speakers||[];
   }
 
-  // Listen for tool result from host bridge
+  // Listen for ALL host messages (tool-input, tool-result, init response)
   window.addEventListener('message',function(e){
     var m=e.data;
     if(!m||typeof m!=='object')return;
-    if(m.method==='ui/toolresult'||m.method==='ui/notifications/tool-result'){
-      var speakers=parseSpeakers(m.params&&m.params.result!==undefined?m.params.result:m.params&&m.params.content);
+
+    // Step 1: Host responds to our ui/initialize — send initialized, then resize
+    if(m.id==='__init'&&m.result){
+      window.parent.postMessage({jsonrpc:'2.0',method:'ui/notifications/initialized',params:{}},'*');
+      resize();
+      return;
+    }
+
+    // Step 2: Host sends tool result — render speakers
+    if(m.method==='ui/notifications/tool-result'){
+      var content=m.params&&m.params.content;
+      var structured=m.params&&m.params.structuredContent;
+      var speakers=parseSpeakers(structured||content);
       if(speakers.length)render(speakers);
     }
   });
+
+  // Send ui/initialize per MCP Apps spec — wait for response before sending initialized
+  window.parent.postMessage({jsonrpc:'2.0',id:'__init',method:'ui/initialize',
+    params:{protocolVersion:'2026-01-26',appCapabilities:{},
+    clientInfo:{name:'speaker-widget',version:'1.0.0'}}},'*');
 })();
 </script>
 </body></html>"""
