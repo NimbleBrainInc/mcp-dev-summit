@@ -925,10 +925,10 @@ def find_speaker_profiles(
     limit: int = 20,
 ) -> dict:
     """Find speakers with their sessions inlined. Filter by name, company, topic, or keynote status. Returns speaker cards with photos, bios, and session links."""
-    return _find_speakers(
+    result = _find_speakers(
         upjack_app, query=query, company=company, is_keynote=is_keynote, limit=limit
     )
-
+    _inline_photos(result.get("results", []), max_speakers=5, use_thumbs=True)
 
 @mcp.tool()
 def browse_sponsors(tier: str = "", query: str = "") -> dict:
