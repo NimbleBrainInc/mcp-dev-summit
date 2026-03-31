@@ -431,18 +431,24 @@ body{padding:16px;background:transparent}
 
 
 def _wrap_widget(body_html: str, widget_name: str = "widget") -> str:
-    init_js = (
-        "window.parent.postMessage({jsonrpc:'2.0',id:'__init',method:'ui/initialize',"
-        f"params:{{protocolVersion:'2026-01-26',capabilities:{{}},clientInfo:{{name:'{widget_name}',version:'0.1.0'}}}}}},'*');"
-        "window.parent.postMessage({jsonrpc:'2.0',method:'ui/notifications/initialized',params:{}},'*');"
+    handshake_js = (
+        "function resize(){var h=document.body.scrollHeight+32;"
         "window.parent.postMessage({jsonrpc:'2.0',method:'ui/notifications/size-changed',"
-        "params:{width:400,height:document.body.scrollHeight+32}},'*');"
+        "params:{width:400,height:h}},'*');}"
+        "window.addEventListener('message',function(e){"
+        "var m=e.data;if(!m||typeof m!=='object')return;"
+        "if(m.id==='__init'){"
+        "window.parent.postMessage({jsonrpc:'2.0',method:'ui/notifications/initialized',params:{}},'*');"
+        "resize();}});"
+        "resize();"
+        "window.parent.postMessage({jsonrpc:'2.0',id:'__init',method:'ui/initialize',"
+        f"params:{{protocolVersion:'2026-01-26',capabilities:{{}},clientInfo:{{name:'{widget_name}',version:'1.0.0'}}}}}},'*');"
     )
     return (
         f"<!DOCTYPE html><html><head><meta charset='utf-8'>"
         f"<meta name='viewport' content='width=device-width,initial-scale=1'>"
         f"<style>{_WIDGET_CSS}</style></head>"
-        f'<body onload="{init_js}">{body_html}</body></html>'
+        f'<body onload="{handshake_js}">{body_html}</body></html>'
     )
 
 
@@ -589,14 +595,14 @@ body{font-family:var(--font-sans,-apple-system,BlinkMacSystemFont,"Segoe UI",san
     var m = e.data;
     if (!m || typeof m !== "object") return;
 
-    // Step 3: Host sends ui/initialize response — we already sent the request
-    if (m.id === "__init" && m.result) {
-      // Apply theme if provided
-      var ctx = m.result.hostContext || {};
+    if (m.id === "__init") {
+      window.parent.postMessage({jsonrpc:"2.0",method:"ui/notifications/initialized",params:{}}, "*");
+      var ctx = (m.result||{}).hostContext || {};
       if (ctx.styles && ctx.styles.variables) {
         var v = ctx.styles.variables;
         for (var k in v) if (v[k]) document.documentElement.style.setProperty(k, v[k]);
       }
+      resize();
     }
 
     // Step 6: Host sends tool-input with arguments
@@ -632,15 +638,12 @@ body{font-family:var(--font-sans,-apple-system,BlinkMacSystemFont,"Segoe UI",san
     }
   });
 
-  // Step 2: View sends ui/initialize request to host
+  resize();
   window.parent.postMessage({jsonrpc:"2.0", id:"__init", method:"ui/initialize", params:{
     protocolVersion: "2026-01-26",
     capabilities: {},
-    clientInfo: {name:"mcp-dev-summit-speaker", version:"0.1.0"}
+    clientInfo: {name:"mcp-dev-summit-speaker", version:"1.0.0"}
   }}, "*");
-
-  // Step 4: Send initialized notification
-  window.parent.postMessage({jsonrpc:"2.0", method:"ui/notifications/initialized", params:{}}, "*");
 })();
 </script>
 </body></html>
@@ -696,9 +699,11 @@ body{font-family:var(--font-sans,-apple-system,BlinkMacSystemFont,"Segoe UI",san
   }
   window.addEventListener("message",function(e){
     var m=e.data; if(!m||typeof m!=="object")return;
-    if(m.id==="__init"&&m.result){
-      var ctx=m.result.hostContext||{};
+    if(m.id==="__init"){
+      window.parent.postMessage({jsonrpc:"2.0",method:"ui/notifications/initialized",params:{}},"*");
+      var ctx=(m.result||{}).hostContext||{};
       if(ctx.styles&&ctx.styles.variables){var v=ctx.styles.variables;for(var k in v)if(v[k])document.documentElement.style.setProperty(k,v[k]);}
+      resize();
     }
     if(m.method==="ui/notifications/tool-result"){
       var r=m.params||{};var d=r.structuredContent;
@@ -709,9 +714,9 @@ body{font-family:var(--font-sans,-apple-system,BlinkMacSystemFont,"Segoe UI",san
       var p=m.params||{};if(p.styles&&p.styles.variables){var vars=p.styles.variables;for(var key in vars)if(vars[key])document.documentElement.style.setProperty(key,vars[key]);}
     }
   });
+  resize();
   window.parent.postMessage({jsonrpc:"2.0",id:"__init",method:"ui/initialize",params:{
-    protocolVersion:"2026-01-26",capabilities:{},clientInfo:{name:"mcp-dev-summit-sessions",version:"0.1.0"}}},"*");
-  window.parent.postMessage({jsonrpc:"2.0",method:"ui/notifications/initialized",params:{}},"*");
+    protocolVersion:"2026-01-26",capabilities:{},clientInfo:{name:"mcp-dev-summit-sessions",version:"1.0.0"}}},"*");
 })();
 </script>
 </body></html>
@@ -755,9 +760,11 @@ body{font-family:var(--font-sans,-apple-system,BlinkMacSystemFont,"Segoe UI",san
   }
   window.addEventListener("message",function(e){
     var m=e.data; if(!m||typeof m!=="object")return;
-    if(m.id==="__init"&&m.result){
-      var ctx=m.result.hostContext||{};
+    if(m.id==="__init"){
+      window.parent.postMessage({jsonrpc:"2.0",method:"ui/notifications/initialized",params:{}},"*");
+      var ctx=(m.result||{}).hostContext||{};
       if(ctx.styles&&ctx.styles.variables){var v=ctx.styles.variables;for(var k in v)if(v[k])document.documentElement.style.setProperty(k,v[k]);}
+      resize();
     }
     if(m.method==="ui/notifications/tool-result"){
       var r=m.params||{};var d=r.structuredContent;
@@ -768,9 +775,9 @@ body{font-family:var(--font-sans,-apple-system,BlinkMacSystemFont,"Segoe UI",san
       var p=m.params||{};if(p.styles&&p.styles.variables){var vars=p.styles.variables;for(var key in vars)if(vars[key])document.documentElement.style.setProperty(key,vars[key]);}
     }
   });
+  resize();
   window.parent.postMessage({jsonrpc:"2.0",id:"__init",method:"ui/initialize",params:{
-    protocolVersion:"2026-01-26",capabilities:{},clientInfo:{name:"mcp-dev-summit-schedule",version:"0.1.0"}}},"*");
-  window.parent.postMessage({jsonrpc:"2.0",method:"ui/notifications/initialized",params:{}},"*");
+    protocolVersion:"2026-01-26",capabilities:{},clientInfo:{name:"mcp-dev-summit-schedule",version:"1.0.0"}}},"*");
 })();
 </script>
 </body></html>
