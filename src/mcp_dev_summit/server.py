@@ -259,19 +259,19 @@ body{padding:8px;background:transparent}
     return obj.results||obj.speakers||[];
   }
 
-  // Listen for ALL host messages (tool-input, tool-result, init response)
+  // Listen for host messages
   window.addEventListener('message',function(e){
     var m=e.data;
     if(!m||typeof m!=='object')return;
 
-    // Step 1: Host responds to our ui/initialize — send initialized, then resize
-    if(m.id==='__init'&&m.result){
+    // Host responds to ui/initialize — complete handshake
+    if(m.id==='__init'){
       window.parent.postMessage({jsonrpc:'2.0',method:'ui/notifications/initialized',params:{}},'*');
       resize();
       return;
     }
 
-    // Step 2: Host sends tool result — render speakers
+    // Host sends tool result
     if(m.method==='ui/notifications/tool-result'){
       var content=m.params&&m.params.content;
       var structured=m.params&&m.params.structuredContent;
@@ -280,7 +280,10 @@ body{padding:8px;background:transparent}
     }
   });
 
-  // Send ui/initialize per MCP Apps spec — wait for response before sending initialized
+  // Announce initial size so host doesn't render at 0 height
+  resize();
+
+  // Start MCP Apps handshake
   window.parent.postMessage({jsonrpc:'2.0',id:'__init',method:'ui/initialize',
     params:{protocolVersion:'2026-01-26',capabilities:{},
     clientInfo:{name:'speaker-widget',version:'1.0.0'}}},'*');
