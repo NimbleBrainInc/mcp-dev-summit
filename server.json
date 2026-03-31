@@ -2,7 +2,7 @@
   "$schema": "https://schemas.nimblebrain.ai/v1/nimblebrain-server.schema.json",
   "name": "ai.nimblebrain/mcp-dev-summit",
   "description": "Conference companion for MCP Dev Summit NA 2026 — search sessions, build a personal schedule, capture notes, and get AI-powered recommendations",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "title": "MCP Dev Summit Companion",
   "repository": {
     "url": "https://github.com/NimbleBrainInc/mcp-dev-summit",

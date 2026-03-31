@@ -4,7 +4,6 @@ import {
   useCallTool,
   useDataSync,
   useSynapse,
-  useTheme,
 } from "@nimblebrain/synapse/react";
 
 /* ---------- types ---------- */
@@ -68,6 +67,272 @@ const DAYS = [
   { value: "2026-04-03", label: "Fri Apr 3" },
 ];
 
+/* ---------- CSS ---------- */
+
+const SUMMIT_CSS = `
+.summit-container {
+  background: var(--color-background-primary, #0f172a);
+  color: var(--color-text-primary, #e2e8f0);
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+  min-height: 100vh;
+  padding: 0.75rem;
+}
+.summit-tabs {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 0.75rem;
+  background: var(--color-background-secondary, #1e293b);
+  border-radius: var(--border-radius-sm, 0.5rem);
+  padding: 3px;
+}
+.summit-tab {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  border-radius: var(--border-radius-sm, 0.5rem);
+  background: transparent;
+  color: var(--color-text-secondary, #94a3b8);
+  font-size: 0.8rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.summit-tab--active {
+  background: var(--color-text-accent, #818cf8);
+  color: var(--nb-color-accent-foreground, #ffffff);
+  font-weight: 600;
+}
+.summit-day-picker {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 0.75rem;
+}
+.summit-day-btn {
+  flex: 1;
+  padding: 0.4rem;
+  border: 1px solid var(--color-border-primary, #334155);
+  border-radius: var(--border-radius-sm, 0.5rem);
+  background: transparent;
+  color: var(--color-text-primary, #e2e8f0);
+  font-size: 0.75rem;
+  cursor: pointer;
+  font-weight: 400;
+}
+.summit-day-btn--active {
+  border-color: var(--color-text-accent, #818cf8);
+  background: var(--color-text-accent, #818cf8);
+  color: var(--nb-color-accent-foreground, #ffffff);
+  font-weight: 600;
+}
+.summit-card {
+  background: var(--color-background-secondary, #1e293b);
+  border: 1px solid var(--color-border-primary, #334155);
+  border-radius: var(--border-radius-sm, 0.5rem);
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+.summit-card--clickable {
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.summit-card--clickable:hover {
+  border-color: var(--color-text-accent, #818cf8);
+}
+.summit-session-title {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-primary, #e2e8f0);
+  margin-bottom: 2px;
+}
+.summit-session-meta {
+  font-size: 0.7rem;
+  color: var(--color-text-secondary, #94a3b8);
+}
+.summit-time-slot-header {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-accent, #818cf8);
+  padding: 0.5rem 0 0.25rem;
+  border-bottom: 1px solid var(--color-border-primary, #334155);
+  margin-bottom: 0.5rem;
+}
+.summit-bookmark-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 2px 4px;
+  color: var(--color-text-secondary, #94a3b8);
+  opacity: 0.5;
+  transition: all 0.15s;
+}
+.summit-bookmark-btn--active {
+  color: #eab308;
+  opacity: 1;
+}
+.summit-input {
+  flex: 1;
+  padding: 0.5rem 0.6rem;
+  border-radius: var(--border-radius-sm, 0.5rem);
+  border: 1px solid var(--color-border-primary, #334155);
+  background: var(--color-background-secondary, #1e293b);
+  color: var(--color-text-primary, #e2e8f0);
+  font-size: 0.85rem;
+  outline: none;
+}
+.summit-btn {
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-sm, 0.5rem);
+  border: none;
+  background: var(--color-text-accent, #818cf8);
+  color: var(--nb-color-accent-foreground, #ffffff);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+.summit-btn--outline {
+  background: transparent;
+  border: 1px solid var(--color-border-primary, #334155);
+  color: var(--color-text-primary, #e2e8f0);
+}
+.summit-btn--unbookmark {
+  background: transparent;
+  border: 1px solid var(--color-border-primary, #334155);
+  color: var(--color-text-secondary, #94a3b8);
+}
+.summit-badge {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-right: 4px;
+  background: #64748b22;
+  color: #64748b;
+}
+.summit-badge--keynote { background: #eab30822; color: #eab308; }
+.summit-badge--talk { background: #6366f122; color: #6366f1; }
+.summit-badge--workshop { background: #22c55e22; color: #22c55e; }
+.summit-badge--break { background: #64748b22; color: #64748b; }
+.summit-badge--social { background: #ec489922; color: #ec4899; }
+.summit-badge--sponsor_activity { background: #f9731622; color: #f97316; }
+.summit-badge--track {
+  background: color-mix(in srgb, var(--color-text-accent, #818cf8) 13%, transparent);
+  color: var(--color-text-accent, #818cf8);
+}
+.summit-priority-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #64748b;
+  margin-right: 6px;
+}
+.summit-priority-dot--must { background: #ef4444; }
+.summit-priority-dot--want { background: #eab308; }
+.summit-empty {
+  text-align: center;
+  padding: 2rem;
+  color: var(--color-text-secondary, #94a3b8);
+  font-size: 0.85rem;
+}
+.summit-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+.summit-modal {
+  background: var(--color-background-secondary, #1e293b);
+  border: 1px solid var(--color-border-primary, #334155);
+  border-radius: 12px 12px 0 0;
+  padding: 1.25rem;
+  width: 100%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  color: var(--color-text-primary, #e2e8f0);
+}
+.summit-modal-close {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary, #94a3b8);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0 0.25rem;
+  line-height: 1;
+}
+.summit-label {
+  color: var(--color-text-secondary, #94a3b8);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.summit-speaker-photo {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.summit-speaker-photo--lg {
+  width: 48px;
+  height: 48px;
+}
+.summit-speaker-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-text-accent, #818cf8) 20%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--color-text-accent, #818cf8);
+  flex-shrink: 0;
+}
+.summit-speaker-avatar--lg {
+  width: 48px;
+  height: 48px;
+  font-size: 1.1rem;
+}
+.summit-topic-tag {
+  font-size: 0.6rem;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--color-text-accent, #818cf8) 8%, transparent);
+  color: var(--color-text-accent, #818cf8);
+  border: 1px solid color-mix(in srgb, var(--color-text-accent, #818cf8) 20%, transparent);
+}
+.summit-link {
+  color: var(--color-text-accent, #818cf8);
+  font-size: 0.7rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+.summit-link:visited,
+.summit-link:active {
+  color: var(--color-text-accent, #818cf8);
+}
+.summit-border-top {
+  border-top: 1px solid var(--color-border-primary, #334155);
+}
+.summit-border-bottom {
+  border-bottom: 1px solid color-mix(in srgb, var(--color-border-primary, #334155) 13%, transparent);
+}
+.summit-muted {
+  color: var(--color-text-secondary, #94a3b8);
+}
+.summit-accent {
+  color: var(--color-text-accent, #818cf8);
+}
+`;
+
 /* ---------- helpers ---------- */
 
 function getSessionIdFromBookmark(bk: BookmarkEntity): string | null {
@@ -114,24 +379,24 @@ function asList(raw: unknown): unknown[] {
   return [];
 }
 
+/* ---------- badge class helper ---------- */
+
+function badgeClass(type: string): string {
+  const known = ["keynote", "talk", "workshop", "break", "social", "sponsor_activity"];
+  if (known.includes(type)) return `summit-badge summit-badge--${type}`;
+  return "summit-badge";
+}
+
+function priorityDotClass(p: string): string {
+  if (p === "must_attend") return "summit-priority-dot summit-priority-dot--must";
+  if (p === "want_to_attend") return "summit-priority-dot summit-priority-dot--want";
+  return "summit-priority-dot";
+}
+
 /* ---------- main app ---------- */
 
 function SummitUI() {
   const synapse = useSynapse();
-  const theme = useTheme();
-  const t = theme.tokens;
-
-  // Use CSS var() so the host-injected tokens (set at parse time) always win.
-  // JS fallbacks only matter if useTheme() tokens arrive late; match light mode.
-  const bg = "var(--color-background-primary)";
-  const fg = "var(--color-text-primary)";
-  const card = "var(--color-background-secondary)";
-  const cardFg = "var(--color-text-primary)";
-  const primary = "var(--color-text-accent)";
-  const primaryFg = "var(--nb-color-accent-foreground, #ffffff)";
-  const muted = "var(--color-text-secondary)";
-  const border = "var(--color-border-primary)";
-  const radius = "var(--border-radius-sm, 0.5rem)";
 
   const [tab, setTab] = useState<Tab>("schedule");
   const [day, setDay] = useState("2026-04-02");
@@ -331,152 +596,6 @@ function SummitUI() {
     loadBookmarks();
   });
 
-  /* ---------- styles ---------- */
-
-  const s = {
-    container: {
-      background: bg,
-      color: fg,
-      fontFamily: "var(--font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif)",
-      minHeight: "100vh",
-      padding: "0.75rem",
-    } as React.CSSProperties,
-    tabs: {
-      display: "flex",
-      gap: "2px",
-      marginBottom: "0.75rem",
-      background: card,
-      borderRadius: radius,
-      padding: "3px",
-    } as React.CSSProperties,
-    tab: (active: boolean) => ({
-      flex: 1,
-      padding: "0.5rem",
-      border: "none",
-      borderRadius: radius,
-      background: active ? primary : "transparent",
-      color: active ? primaryFg : muted,
-      fontSize: "0.8rem",
-      fontWeight: active ? 600 : 400,
-      cursor: "pointer",
-      transition: "all 0.15s",
-    }) as React.CSSProperties,
-    dayPicker: {
-      display: "flex",
-      gap: "4px",
-      marginBottom: "0.75rem",
-    } as React.CSSProperties,
-    dayBtn: (active: boolean) => ({
-      flex: 1,
-      padding: "0.4rem",
-      border: `1px solid ${active ? primary : border}`,
-      borderRadius: radius,
-      background: active ? primary : "transparent",
-      color: active ? primaryFg : fg,
-      fontSize: "0.75rem",
-      cursor: "pointer",
-      fontWeight: active ? 600 : 400,
-    }) as React.CSSProperties,
-    card: {
-      background: card,
-      border: `1px solid ${border}`,
-      borderRadius: radius,
-      padding: "0.75rem",
-      marginBottom: "0.5rem",
-    } as React.CSSProperties,
-    sessionTitle: {
-      fontSize: "0.85rem",
-      fontWeight: 500,
-      color: cardFg,
-      marginBottom: "2px",
-    } as React.CSSProperties,
-    sessionMeta: {
-      fontSize: "0.7rem",
-      color: muted,
-    } as React.CSSProperties,
-    timeSlotHeader: {
-      fontSize: "0.75rem",
-      fontWeight: 600,
-      color: primary,
-      padding: "0.5rem 0 0.25rem",
-      borderBottom: `1px solid ${border}`,
-      marginBottom: "0.5rem",
-    } as React.CSSProperties,
-    bookmarkBtn: (isBookmarked: boolean) => ({
-      background: "none",
-      border: "none",
-      cursor: "pointer",
-      fontSize: "1.1rem",
-      padding: "2px 4px",
-      color: isBookmarked ? "#eab308" : muted,
-      opacity: isBookmarked ? 1 : 0.5,
-      transition: "all 0.15s",
-    }) as React.CSSProperties,
-    searchRow: {
-      display: "flex",
-      gap: "0.5rem",
-      marginBottom: "0.75rem",
-    } as React.CSSProperties,
-    input: {
-      flex: 1,
-      padding: "0.5rem 0.6rem",
-      borderRadius: radius,
-      border: `1px solid ${border}`,
-      background: card,
-      color: fg,
-      fontSize: "0.85rem",
-      outline: "none",
-    } as React.CSSProperties,
-    btn: {
-      padding: "0.5rem 1rem",
-      borderRadius: radius,
-      border: "none",
-      background: primary,
-      color: primaryFg,
-      fontSize: "0.85rem",
-      fontWeight: 500,
-      cursor: "pointer",
-    } as React.CSSProperties,
-    badge: (type: string) => {
-      const colors: Record<string, string> = {
-        keynote: "#eab308",
-        talk: "#6366f1",
-        workshop: "#22c55e",
-        break: "#64748b",
-        social: "#ec4899",
-        sponsor_activity: "#f97316",
-      };
-      return {
-        display: "inline-block",
-        padding: "1px 6px",
-        borderRadius: "3px",
-        fontSize: "0.6rem",
-        fontWeight: 600,
-        textTransform: "uppercase" as const,
-        background: (colors[type] || "#64748b") + "22",
-        color: colors[type] || "#64748b",
-        marginRight: "4px",
-      };
-    },
-    priorityDot: (p: string) => {
-      const c = p === "must_attend" ? "#ef4444" : p === "want_to_attend" ? "#eab308" : "#64748b";
-      return {
-        display: "inline-block",
-        width: 8,
-        height: 8,
-        borderRadius: "50%",
-        background: c,
-        marginRight: 6,
-      } as React.CSSProperties;
-    },
-    empty: {
-      textAlign: "center" as const,
-      padding: "2rem",
-      color: muted,
-      fontSize: "0.85rem",
-    },
-  };
-
   /* ---------- session card ---------- */
 
   function SessionCard({ session, compact }: { session: Session; compact?: boolean }) {
@@ -487,34 +606,26 @@ function SummitUI() {
     const isClickable = ["talk", "keynote", "workshop", "sponsor_activity"].includes(sessionType);
     return (
       <div
-        style={{
-          ...s.card,
-          display: "flex",
-          alignItems: "flex-start",
-          gap: "0.5rem",
-          cursor: isClickable ? "pointer" : "default",
-          transition: "border-color 0.15s",
-        }}
+        className={`summit-card ${isClickable ? "summit-card--clickable" : ""}`}
+        style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem" }}
         onClick={() => isClickable && openSessionDetail({ ...session, session_type: sessionType })}
-        onMouseEnter={(e) => { if (isClickable) (e.currentTarget as HTMLDivElement).style.borderColor = primary; }}
-        onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = border; }}
       >
         <button
-          style={s.bookmarkBtn(isBookmarked)}
+          className={`summit-bookmark-btn ${isBookmarked ? "summit-bookmark-btn--active" : ""}`}
           onClick={(e) => { e.stopPropagation(); toggleBookmark(session.id); }}
           title={isBookmarked ? "Remove bookmark" : "Bookmark session"}
         >
           {isBookmarked ? "\u2605" : "\u2606"}
         </button>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={s.sessionTitle}>{session.title}</div>
-          <div style={s.sessionMeta}>
-            <span style={s.badge(sessionType)}>{sessionType}</span>
+          <div className="summit-session-title">{session.title}</div>
+          <div className="summit-session-meta">
+            <span className={badgeClass(sessionType)}>{sessionType}</span>
             {session.room && <span>{session.room}</span>}
             {session.start_time && <span> &middot; {session.start_time}-{session.end_time}</span>}
           </div>
           {!compact && speakerNames.length > 0 && (
-            <div style={{ ...s.sessionMeta, marginTop: "3px" }}>
+            <div className="summit-session-meta" style={{ marginTop: "3px" }}>
               {speakerNames.join(", ")}
             </div>
           )}
@@ -535,39 +646,20 @@ function SummitUI() {
 
     return (
       <div
-        style={{
-          position: "fixed",
-          inset: 0,
-          background: "rgba(0,0,0,0.6)",
-          display: "flex",
-          alignItems: "flex-end",
-          justifyContent: "center",
-          zIndex: 1000,
-          padding: "1rem",
-        }}
+        className="summit-modal-overlay"
         onClick={() => setSelectedSession(null)}
       >
         <div
-          style={{
-            background: card,
-            border: `1px solid ${border}`,
-            borderRadius: "12px 12px 0 0",
-            padding: "1.25rem",
-            width: "100%",
-            maxWidth: 600,
-            maxHeight: "80vh",
-            overflowY: "auto",
-            color: cardFg,
-          }}
+          className="summit-modal"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1rem" }}>
             <div style={{ flex: 1 }}>
               <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", marginBottom: "0.5rem" }}>
-                <span style={s.badge(sess.session_type)}>{sess.session_type}</span>
+                <span className={badgeClass(sess.session_type)}>{sess.session_type}</span>
                 {sess.track && sess.track !== "keynote" && sess.track !== "special_events" && (
-                  <span style={{ ...s.badge(sess.track), background: `${primary}22`, color: primary }}>
+                  <span className="summit-badge summit-badge--track">
                     {sess.track.replace(/_/g, " ")}
                   </span>
                 )}
@@ -575,16 +667,8 @@ function SummitUI() {
               <h2 style={{ fontSize: "1.1rem", fontWeight: 600, lineHeight: 1.3, margin: 0 }}>{sess.title}</h2>
             </div>
             <button
+              className="summit-modal-close"
               onClick={() => setSelectedSession(null)}
-              style={{
-                background: "none",
-                border: "none",
-                color: muted,
-                fontSize: "1.5rem",
-                cursor: "pointer",
-                padding: "0 0.25rem",
-                lineHeight: 1,
-              }}
             >
               &times;
             </button>
@@ -593,12 +677,12 @@ function SummitUI() {
           {/* Time & location */}
           <div style={{ display: "flex", gap: "1rem", marginBottom: "1rem", fontSize: "0.85rem" }}>
             <div>
-              <div style={{ color: muted, fontSize: "0.7rem", textTransform: "uppercase", marginBottom: "2px" }}>When</div>
+              <div className="summit-label">When</div>
               <div>{dayLabel} &middot; {sess.start_time}-{sess.end_time}</div>
             </div>
             {sess.room && (
               <div>
-                <div style={{ color: muted, fontSize: "0.7rem", textTransform: "uppercase", marginBottom: "2px" }}>Where</div>
+                <div className="summit-label">Where</div>
                 <div>{sess.room}</div>
               </div>
             )}
@@ -607,23 +691,16 @@ function SummitUI() {
           {/* Speakers */}
           {(detailSpeakers.length > 0 || speakerNames.length > 0) && (
             <div style={{ marginBottom: "1rem" }}>
-              <div style={{ color: muted, fontSize: "0.7rem", textTransform: "uppercase", marginBottom: "8px" }}>Speakers</div>
+              <div className="summit-label" style={{ marginBottom: "8px" }}>Speakers</div>
               {detailSpeakers.length > 0 ? (
                 detailSpeakers.map((sp) => (
-                  <div key={sp.id} style={{
+                  <div key={sp.id} className="summit-border-bottom" style={{
                     display: "flex", gap: "0.75rem", padding: "0.5rem 0",
-                    borderBottom: `1px solid ${border}22`,
                   }}>
                     {sp.photo_url ? (
-                      <img src={sp.photo_url} alt={sp.name} style={{
-                        width: 44, height: 44, borderRadius: "50%", objectFit: "cover", flexShrink: 0,
-                      }} />
+                      <img src={sp.photo_url} alt={sp.name} className="summit-speaker-photo" />
                     ) : (
-                      <div style={{
-                        width: 44, height: 44, borderRadius: "50%", background: `${primary}33`,
-                        display: "flex", alignItems: "center", justifyContent: "center",
-                        fontSize: "1rem", color: primary, flexShrink: 0,
-                      }}>{sp.name.charAt(0)}</div>
+                      <div className="summit-speaker-avatar">{sp.name.charAt(0)}</div>
                     )}
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
@@ -631,16 +708,16 @@ function SummitUI() {
                         {(sp as Record<string, unknown>).linkedin_url && (
                           <a
                             href="#"
+                            className="summit-link"
                             onClick={(e) => { e.preventDefault(); e.stopPropagation(); synapse.openLink((sp as Record<string, unknown>).linkedin_url as string); }}
-                            style={{ color: primary, fontSize: "0.7rem", textDecoration: "none", cursor: "pointer" }}
                           >LinkedIn</a>
                         )}
                       </div>
-                      <div style={{ fontSize: "0.75rem", color: muted }}>
+                      <div className="summit-session-meta">
                         {sp.role ? `${sp.role}, ` : ""}{sp.company}
                       </div>
                       {sp.bio && (
-                        <div style={{ fontSize: "0.75rem", color: muted, marginTop: "4px", lineHeight: 1.4 }}>
+                        <div className="summit-muted" style={{ fontSize: "0.75rem", marginTop: "4px", lineHeight: 1.4 }}>
                           {sp.bio.length > 200 ? sp.bio.substring(0, 200) + "..." : sp.bio}
                         </div>
                       )}
@@ -651,7 +728,7 @@ function SummitUI() {
                 speakerNames.map((name, i) => (
                   <div key={i} style={{ fontSize: "0.85rem", padding: "2px 0" }}>
                     <span style={{ fontWeight: 500 }}>{name}</span>
-                    {speakerCompanies[i] && <span style={{ color: muted }}> &middot; {speakerCompanies[i]}</span>}
+                    {speakerCompanies[i] && <span className="summit-muted"> &middot; {speakerCompanies[i]}</span>}
                   </div>
                 ))
               )}
@@ -660,33 +737,28 @@ function SummitUI() {
 
           {/* Description */}
           {detailLoading ? (
-            <div style={{ color: muted, fontSize: "0.85rem" }}>Loading details...</div>
+            <div className="summit-muted" style={{ fontSize: "0.85rem" }}>Loading details...</div>
           ) : sess.description ? (
             <div style={{ marginBottom: "1rem" }}>
-              <div style={{ color: muted, fontSize: "0.7rem", textTransform: "uppercase", marginBottom: "4px" }}>About</div>
-              <div style={{ fontSize: "0.85rem", lineHeight: 1.6, color: cardFg, whiteSpace: "pre-wrap" }}>
+              <div className="summit-label" style={{ marginBottom: "4px" }}>About</div>
+              <div style={{ fontSize: "0.85rem", lineHeight: 1.6, whiteSpace: "pre-wrap" }}>
                 {sess.description}
               </div>
             </div>
           ) : null}
 
           {/* Actions */}
-          <div style={{ display: "flex", gap: "0.5rem", marginTop: "1rem", paddingTop: "1rem", borderTop: `1px solid ${border}` }}>
+          <div className="summit-border-top" style={{ display: "flex", gap: "0.5rem", marginTop: "1rem", paddingTop: "1rem" }}>
             <button
-              style={{
-                ...s.btn,
-                flex: 1,
-                background: isBookmarked ? "transparent" : primary,
-                color: isBookmarked ? muted : primaryFg,
-                border: isBookmarked ? `1px solid ${border}` : "none",
-              }}
+              className={`summit-btn ${isBookmarked ? "summit-btn--unbookmark" : ""}`}
+              style={{ flex: 1 }}
               onClick={() => toggleBookmark(sess.id)}
             >
               {isBookmarked ? "Remove Bookmark" : "Bookmark Session"}
             </button>
             {sess.sched_url && (
               <button
-                style={{ ...s.btn, background: "transparent", border: `1px solid ${border}`, color: fg }}
+                className="summit-btn summit-btn--outline"
                 onClick={() => sess.sched_url && window.parent.postMessage(
                   { jsonrpc: "2.0", id: "lnk", method: "ui/open-link", params: { url: sess.sched_url } }, "*"
                 )}
@@ -705,24 +777,24 @@ function SummitUI() {
   function ScheduleView() {
     return (
       <>
-        <div style={s.dayPicker}>
+        <div className="summit-day-picker">
           {DAYS.map((d) => (
-            <button key={d.value} style={s.dayBtn(day === d.value)} onClick={() => setDay(d.value)}>
+            <button key={d.value} className={`summit-day-btn ${day === d.value ? "summit-day-btn--active" : ""}`} onClick={() => setDay(d.value)}>
               {d.label}
             </button>
           ))}
         </div>
         {scheduleLabel && (
-          <div style={{ fontSize: "0.8rem", color: muted, marginBottom: "0.5rem" }}>{scheduleLabel}</div>
+          <div className="summit-muted" style={{ fontSize: "0.8rem", marginBottom: "0.5rem" }}>{scheduleLabel}</div>
         )}
         {scheduleTool.isPending ? (
-          <div style={s.empty}>Loading schedule...</div>
+          <div className="summit-empty">Loading schedule...</div>
         ) : schedule.length === 0 ? (
-          <div style={s.empty}>No sessions found for this day.</div>
+          <div className="summit-empty">No sessions found for this day.</div>
         ) : (
           schedule.map((slot) => (
             <div key={slot.time}>
-              <div style={s.timeSlotHeader}>{slot.time}</div>
+              <div className="summit-time-slot-header">{slot.time}</div>
               {slot.sessions.map((sess) => (
                 <SessionCard key={sess.id} session={sess} compact />
               ))}
@@ -752,9 +824,9 @@ function SummitUI() {
     })).filter((d) => d.items.length > 0);
 
     const renderBookmark = ({ bk, session, sessionId }: typeof enriched[0]) => (
-      <div key={bk.id} style={{ ...s.card, display: "flex", alignItems: "center", gap: "0.5rem" }}>
+      <div key={bk.id} className="summit-card" style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
         <button
-          style={s.bookmarkBtn(true)}
+          className="summit-bookmark-btn summit-bookmark-btn--active"
           onClick={() => sessionId && toggleBookmark(sessionId)}
           title="Remove bookmark"
         >
@@ -762,11 +834,11 @@ function SummitUI() {
         </button>
         <div style={{ flex: 1 }}>
           <div style={{ display: "flex", alignItems: "center" }}>
-            <span style={s.priorityDot(bk.priority || "want_to_attend")} />
-            <span style={s.sessionTitle}>{session?.title || sessionId || "Bookmarked session"}</span>
+            <span className={priorityDotClass(bk.priority || "want_to_attend")} />
+            <span className="summit-session-title">{session?.title || sessionId || "Bookmarked session"}</span>
           </div>
           {session && (
-            <div style={s.sessionMeta}>
+            <div className="summit-session-meta">
               {session.start_time}-{session.end_time} &middot; {session.room}
             </div>
           )}
@@ -777,9 +849,9 @@ function SummitUI() {
     return (
       <>
         {listBookmarksTool.isPending ? (
-          <div style={s.empty}>Loading bookmarks...</div>
+          <div className="summit-empty">Loading bookmarks...</div>
         ) : bookmarks.length === 0 ? (
-          <div style={s.empty}>
+          <div className="summit-empty">
             No sessions bookmarked yet.<br />
             Use the schedule tab to bookmark sessions.
           </div>
@@ -787,13 +859,13 @@ function SummitUI() {
           <>
             {byDay.map((d) => (
               <div key={d.value}>
-                <div style={s.timeSlotHeader}>{d.label}</div>
+                <div className="summit-time-slot-header">{d.label}</div>
                 {d.items.map(renderBookmark)}
               </div>
             ))}
             {withoutDay.length > 0 && (
               <div>
-                {byDay.length > 0 && <div style={s.timeSlotHeader}>Other</div>}
+                {byDay.length > 0 && <div className="summit-time-slot-header">Other</div>}
                 {withoutDay.map(renderBookmark)}
               </div>
             )}
@@ -813,7 +885,8 @@ function SummitUI() {
         {/* Search + filter */}
         <div style={{ marginBottom: "0.5rem" }}>
           <input
-            style={{ ...s.input, width: "100%", padding: "0.5rem 0.75rem", fontSize: "0.9rem", marginBottom: "0.5rem" }}
+            className="summit-input"
+            style={{ width: "100%", padding: "0.5rem 0.75rem", fontSize: "0.9rem", marginBottom: "0.5rem" }}
             type="text"
             placeholder="Search speakers..."
             value={speakerQuery}
@@ -821,32 +894,30 @@ function SummitUI() {
           />
           <div style={{ display: "flex", gap: "4px" }}>
             <button
-              style={s.dayBtn(speakerFilter === "all")}
+              className={`summit-day-btn ${speakerFilter === "all" ? "summit-day-btn--active" : ""}`}
               onClick={() => setSpeakerFilter("all")}
             >All Speakers</button>
             <button
-              style={s.dayBtn(speakerFilter === "keynote")}
+              className={`summit-day-btn ${speakerFilter === "keynote" ? "summit-day-btn--active" : ""}`}
               onClick={() => setSpeakerFilter("keynote")}
             >Keynotes Only</button>
           </div>
         </div>
 
         {speakersTool.isPending ? (
-          <div style={s.empty}>Loading speakers...</div>
+          <div className="summit-empty">Loading speakers...</div>
         ) : speakers.length === 0 ? (
-          <div style={s.empty}>No speakers found.</div>
+          <div className="summit-empty">No speakers found.</div>
         ) : (
           <>
-            <div style={{ fontSize: "0.75rem", color: muted, marginBottom: "0.5rem" }}>
+            <div className="summit-muted" style={{ fontSize: "0.75rem", marginBottom: "0.5rem" }}>
               {speakers.length} speakers
             </div>
             {speakers.map((sp) => (
               <div
                 key={sp.id}
-                style={{ ...s.card, cursor: "pointer", transition: "border-color 0.15s" }}
+                className="summit-card summit-card--clickable"
                 onClick={() => setExpandedSpeaker(isExpanded(sp.id) ? null : sp.id)}
-                onMouseEnter={(e) => (e.currentTarget.style.borderColor = primary)}
-                onMouseLeave={(e) => (e.currentTarget.style.borderColor = border)}
               >
                 <div style={{ display: "flex", gap: "0.75rem" }}>
                   {/* Photo */}
@@ -854,37 +925,29 @@ function SummitUI() {
                     <img
                       src={sp.photo_url}
                       alt={sp.name}
-                      style={{
-                        width: 48, height: 48, borderRadius: "50%",
-                        objectFit: "cover", flexShrink: 0,
-                      }}
+                      className="summit-speaker-photo summit-speaker-photo--lg"
                     />
                   ) : (
-                    <div style={{
-                      width: 48, height: 48, borderRadius: "50%",
-                      background: `${primary}33`, display: "flex",
-                      alignItems: "center", justifyContent: "center",
-                      fontSize: "1.1rem", color: primary, flexShrink: 0,
-                    }}>
+                    <div className="summit-speaker-avatar summit-speaker-avatar--lg">
                       {sp.name.charAt(0)}
                     </div>
                   )}
 
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "6px", flexWrap: "wrap" }}>
-                      <span style={{ ...s.sessionTitle, fontSize: "0.9rem" }}>{sp.name}</span>
-                      {sp.is_keynote && <span style={s.badge("keynote")}>keynote</span>}
+                      <span className="summit-session-title" style={{ fontSize: "0.9rem" }}>{sp.name}</span>
+                      {sp.is_keynote && <span className={badgeClass("keynote")}>keynote</span>}
                       {(sp as Record<string, unknown>).linkedin_url && (
                         <a
                           href={(sp as Record<string, unknown>).linkedin_url as string}
                           target="_blank"
                           rel="noopener"
+                          className="summit-link"
                           onClick={(e) => e.stopPropagation()}
-                          style={{ color: primary, fontSize: "0.7rem", textDecoration: "none" }}
                         >LinkedIn</a>
                       )}
                     </div>
-                    <div style={s.sessionMeta}>
+                    <div className="summit-session-meta">
                       {sp.role ? `${sp.role}, ` : ""}{sp.company}
                     </div>
 
@@ -892,10 +955,7 @@ function SummitUI() {
                     {sp.topics && sp.topics.length > 0 && (
                       <div style={{ marginTop: "4px", display: "flex", flexWrap: "wrap", gap: "3px" }}>
                         {sp.topics.map((topic, i) => (
-                          <span key={i} style={{
-                            fontSize: "0.6rem", padding: "1px 5px", borderRadius: "3px",
-                            background: `${primary}15`, color: primary, border: `1px solid ${primary}33`,
-                          }}>
+                          <span key={i} className="summit-topic-tag">
                             {topic}
                           </span>
                         ))}
@@ -906,17 +966,17 @@ function SummitUI() {
 
                 {/* Expanded: bio + sessions */}
                 {isExpanded(sp.id) && (
-                  <div style={{ marginTop: "0.75rem", paddingTop: "0.75rem", borderTop: `1px solid ${border}` }}>
+                  <div className="summit-border-top" style={{ marginTop: "0.75rem", paddingTop: "0.75rem" }}>
                     {sp.bio && (
-                      <div style={{ fontSize: "0.8rem", lineHeight: 1.5, color: muted, marginBottom: "0.75rem" }}>
+                      <div className="summit-muted" style={{ fontSize: "0.8rem", lineHeight: 1.5, marginBottom: "0.75rem" }}>
                         {sp.bio}
                       </div>
                     )}
                     {sp.sessions && sp.sessions.length > 0 && (
                       <div>
-                        <div style={{ fontSize: "0.7rem", color: muted, textTransform: "uppercase", marginBottom: "4px" }}>Sessions</div>
+                        <div className="summit-label" style={{ marginBottom: "4px" }}>Sessions</div>
                         {sp.sessions.map((sess) => (
-                          <div key={sess.id} style={{ ...s.sessionMeta, padding: "3px 0", fontSize: "0.8rem" }}>
+                          <div key={sess.id} className="summit-session-meta" style={{ padding: "3px 0", fontSize: "0.8rem" }}>
                             {DAYS.find(d => d.value === sess.day)?.label || sess.day} {sess.start_time} &mdash; {sess.title}
                           </div>
                         ))}
@@ -939,7 +999,8 @@ function SummitUI() {
       <>
         <div style={{ marginBottom: "0.75rem" }}>
           <input
-            style={{ ...s.input, width: "100%", padding: "0.6rem 0.75rem", fontSize: "0.9rem" }}
+            className="summit-input"
+            style={{ width: "100%", padding: "0.6rem 0.75rem", fontSize: "0.9rem" }}
             type="text"
             placeholder="Search sessions, speakers, topics..."
             value={searchQuery}
@@ -948,18 +1009,18 @@ function SummitUI() {
           />
         </div>
         {searching && (
-          <div style={s.empty}>Searching...</div>
+          <div className="summit-empty">Searching...</div>
         )}
         {!searching && searchQuery.trim() && searchTotal > 0 && (
-          <div style={{ fontSize: "0.75rem", color: muted, marginBottom: "0.5rem" }}>
+          <div className="summit-muted" style={{ fontSize: "0.75rem", marginBottom: "0.5rem" }}>
             {searchTotal} results
           </div>
         )}
         {!searching && searchQuery.trim() && searchTotal === 0 && searchResults.length === 0 && (
-          <div style={s.empty}>No sessions found for "{searchQuery}"</div>
+          <div className="summit-empty">No sessions found for "{searchQuery}"</div>
         )}
         {!searchQuery.trim() && (
-          <div style={s.empty}>Type to search across sessions, speakers, and topics</div>
+          <div className="summit-empty">Type to search across sessions, speakers, and topics</div>
         )}
         {searchResults.map((sess) => (
           <SessionCard key={sess.id} session={sess} />
@@ -971,23 +1032,26 @@ function SummitUI() {
   /* ---------- render ---------- */
 
   return (
-    <div style={s.container}>
-      <div style={s.tabs}>
-        <button style={s.tab(tab === "schedule")} onClick={() => setTab("schedule")}>Schedule</button>
-        <button style={s.tab(tab === "bookmarks")} onClick={() => setTab("bookmarks")}>
-          Bookmarks{bookmarks.length > 0 ? ` (${bookmarks.length})` : ""}
-        </button>
-        <button style={s.tab(tab === "speakers")} onClick={() => setTab("speakers")}>Speakers</button>
-        <button style={s.tab(tab === "search")} onClick={() => setTab("search")}>Search</button>
+    <>
+      <style>{SUMMIT_CSS}</style>
+      <div className="summit-container">
+        <div className="summit-tabs">
+          <button className={`summit-tab ${tab === "schedule" ? "summit-tab--active" : ""}`} onClick={() => setTab("schedule")}>Schedule</button>
+          <button className={`summit-tab ${tab === "bookmarks" ? "summit-tab--active" : ""}`} onClick={() => setTab("bookmarks")}>
+            Bookmarks{bookmarks.length > 0 ? ` (${bookmarks.length})` : ""}
+          </button>
+          <button className={`summit-tab ${tab === "speakers" ? "summit-tab--active" : ""}`} onClick={() => setTab("speakers")}>Speakers</button>
+          <button className={`summit-tab ${tab === "search" ? "summit-tab--active" : ""}`} onClick={() => setTab("search")}>Search</button>
+        </div>
+
+        {tab === "schedule" && ScheduleView()}
+        {tab === "bookmarks" && BookmarksView()}
+        {tab === "speakers" && SpeakersView()}
+        {tab === "search" && SearchView()}
+
+        {SessionDetailModal()}
       </div>
-
-      {tab === "schedule" && ScheduleView()}
-      {tab === "bookmarks" && BookmarksView()}
-      {tab === "speakers" && SpeakersView()}
-      {tab === "search" && SearchView()}
-
-      {SessionDetailModal()}
-    </div>
+    </>
   );
 }
 

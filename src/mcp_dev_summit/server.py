@@ -27,6 +27,15 @@ MODE = os.environ.get("MCP_SUMMIT_MODE", "local")
 
 # Paths
 MANIFEST = Path(__file__).parent.parent.parent / "manifest.json"
+_SYNAPSE_IIFE_PATH = (
+    Path(__file__).parent.parent.parent
+    / "ui"
+    / "node_modules"
+    / "@nimblebrain"
+    / "synapse"
+    / "dist"
+    / "connect.iife.global.js"
+)
 
 # Create Upjack server (root from UPJACK_ROOT env var or .upjack default)
 mcp = create_server(str(MANIFEST))
@@ -154,49 +163,50 @@ if not _session_dir.exists() or not any(_session_dir.iterdir()):
 
 @mcp.resource("ui://mcp-dev-summit/speaker-widget")
 def speaker_widget_ui() -> str:
-    """Speaker card widget — empty shell that renders from tool result data via bridge."""
-    # The host sends the tool result via ui/notifications/tool-result after the
-    # iframe loads. The widget parses the speaker data and renders client-side.
-    # No dependency on _last_widget_data — works on conversation reload too.
-    return """<!DOCTYPE html><html><head><meta charset="utf-8">
+    """Speaker card widget using Synapse.connect() for MCP Apps protocol."""
+    synapse_js = _SYNAPSE_IIFE_PATH.read_text()
+    return (
+        """<!DOCTYPE html><html><head><meta charset="utf-8">
 <style>
-body{padding:8px;background:transparent}
+body{padding:8px;background:transparent;color:var(--color-text-primary,#e2e8f0);
+  font-family:var(--font-sans,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif)}
 .card{margin-bottom:8px}
 .header{display:flex;gap:10px;margin-bottom:6px}
 .photo{width:40px;height:40px;border-radius:50%;object-fit:cover;flex-shrink:0}
 .initial{width:40px;height:40px;border-radius:50%;flex-shrink:0;
-  background:var(--color-background-tertiary);
+  background:var(--color-background-tertiary,#1e293b);
   display:flex;align-items:center;justify-content:center;font-size:15px;
-  color:var(--color-text-accent)}
-.name{font-size:13px;font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
-.subtitle{font-size:var(--font-text-xs-size);color:var(--color-text-secondary);margin-top:1px}
-.bio{font-size:var(--font-text-xs-size);line-height:1.4;color:var(--color-text-secondary);margin:6px 0}
+  color:var(--color-text-accent,#818cf8)}
+.name{font-size:13px;font-weight:var(--font-weight-semibold,600);color:var(--color-text-primary,#e2e8f0)}
+.subtitle{font-size:var(--font-text-xs-size,12px);color:var(--color-text-secondary,#94a3b8);margin-top:1px}
+.bio{font-size:var(--font-text-xs-size,12px);line-height:1.4;color:var(--color-text-secondary,#94a3b8);margin:6px 0}
 .tags{display:flex;flex-wrap:wrap;gap:3px;margin:4px 0}
-.tag{display:inline-block;padding:1px 6px;border-radius:var(--border-radius-xs);font-size:10px;
-  background:var(--color-background-tertiary);
-  color:var(--color-text-accent);
-  border:var(--border-width-regular) solid var(--color-border-primary)}
-.label{font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--color-text-tertiary);margin:6px 0 2px}
-.sess{font-size:var(--font-text-xs-size);color:var(--color-text-secondary);padding:1px 0;
+.tag{display:inline-block;padding:1px 6px;border-radius:var(--border-radius-xs,4px);font-size:10px;
+  background:var(--color-background-tertiary,#1e293b);
+  color:var(--color-text-accent,#818cf8);
+  border:var(--border-width-regular,1px) solid var(--color-border-primary,#334155)}
+.label{font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--color-text-tertiary,#64748b);margin:6px 0 2px}
+.sess{font-size:var(--font-text-xs-size,12px);color:var(--color-text-secondary,#94a3b8);padding:1px 0;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.link{color:var(--color-text-accent);text-decoration:none;font-size:var(--font-text-xs-size);display:inline-block;margin-top:4px}
+.link,.link:visited,.link:active{color:var(--color-text-accent,#818cf8);text-decoration:none;font-size:var(--font-text-xs-size,12px);display:inline-block;margin-top:4px}
 .link:hover{text-decoration:underline}
-.empty{color:var(--color-text-tertiary);font-size:var(--font-text-sm-size)}
-.more{font-size:11px;color:var(--color-text-tertiary);margin-top:4px}
+.empty{color:var(--color-text-tertiary,#64748b);font-size:var(--font-text-sm-size,13px)}
+.more{font-size:11px;color:var(--color-text-tertiary,#64748b);margin-top:4px}
 </style>
 </head><body>
 <div id="root"><p class="empty">Loading speakers...</p></div>
+<script>"""
+        + synapse_js
+        + """</script>
 <script>
 (function(){
-  function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+  var app;
 
-  function openLink(url){
-    window.parent.postMessage({jsonrpc:'2.0',id:'lnk',method:'ui/open-link',params:{url:url}},'*');
-  }
+  function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
 
   function render(speakers){
     var root=document.getElementById('root');
-    if(!speakers||!speakers.length){root.innerHTML='<p class="empty">No speakers found</p>';resize();return;}
+    if(!speakers||!speakers.length){root.innerHTML='<p class="empty">No speakers found</p>';if(app)app.resize();return;}
     var shown=speakers.slice(0,3);
     var overflow=speakers.length-shown.length;
     var html='';
@@ -220,11 +230,11 @@ body{padding:8px;background:transparent}
       var sessH='';
       if(sessions.length){
         sessH='<div class="label">Sessions</div>'+sessions.map(function(s){
-          return'<div class="sess">'+esc((s.day||'').slice(-5))+' '+esc(s.start_time||'')+' \u2014 '+esc(s.title||'')+'</div>';
+          return'<div class="sess">'+esc((s.day||'').slice(-5))+' '+esc(s.start_time||'')+' \\u2014 '+esc(s.title||'')+'</div>';
         }).join('');
       }
       var linkH='';
-      if(linkedin){linkH='<a href="#" class="link" onclick="return false">LinkedIn \u2197</a>';}
+      if(linkedin){linkH='<a href="#" class="link" onclick="return false">LinkedIn \\u2197</a>';}
 
       html+='<div class="card"><div class="header">'+photoH+'<div>'
         +'<div class="name">'+name+'</div>'
@@ -237,59 +247,23 @@ body{padding:8px;background:transparent}
     root.innerHTML=html;
     var links=root.querySelectorAll('.link');
     shown.forEach(function(sp,i){
-      if(sp.linkedin_url&&links[i]){links[i].onclick=function(e){e.preventDefault();openLink(sp.linkedin_url);};}
+      if(sp.linkedin_url&&links[i]){links[i].onclick=function(e){e.preventDefault();app.openLink(sp.linkedin_url);};}
     });
-    resize();
+    if(app)app.resize();
   }
 
-  function resize(){
-    var root=document.getElementById('root');
-    window.parent.postMessage({jsonrpc:'2.0',method:'ui/notifications/size-changed',
-      params:{width:400,height:(root?root.offsetHeight:0)+16}},'*');
-  }
-
-  function parseSpeakers(data){
-    if(!data)return[];
-    var obj=data;
-    if(typeof data==='string'){try{obj=JSON.parse(data);}catch(e){return[];}}
-    if(Array.isArray(obj)){
-      var text=obj.map(function(c){return c.text||'';}).join('');
-      try{obj=JSON.parse(text);}catch(e){return[];}
-    }
-    return obj.results||obj.speakers||[];
-  }
-
-  // Listen for host messages
-  window.addEventListener('message',function(e){
-    var m=e.data;
-    if(!m||typeof m!=='object')return;
-
-    // Host responds to ui/initialize — complete handshake
-    if(m.id==='__init'){
-      window.parent.postMessage({jsonrpc:'2.0',method:'ui/notifications/initialized',params:{}},'*');
-      resize();
-      return;
-    }
-
-    // Host sends tool result
-    if(m.method==='ui/notifications/tool-result'){
-      var content=m.params&&m.params.content;
-      var structured=m.params&&m.params.structuredContent;
-      var speakers=parseSpeakers(structured||content);
+  Synapse.connect({name:'speaker-widget',version:'1.0.0',autoResize:false}).then(function(a){
+    app=a;
+    a.on('tool-result',function(data){
+      var d=data.content;
+      var speakers=(d&&d.results)||[];
       if(speakers.length)render(speakers);
-    }
+    });
   });
-
-  // Announce initial size so host doesn't render at 0 height
-  resize();
-
-  // Start MCP Apps handshake
-  window.parent.postMessage({jsonrpc:'2.0',id:'__init',method:'ui/initialize',
-    params:{protocolVersion:'2026-01-26',capabilities:{},
-    clientInfo:{name:'speaker-widget',version:'1.0.0'}}},'*');
 })();
 </script>
 </body></html>"""
+    )
 
 
 @mcp.resource("ui://mcp-dev-summit/session-widget")
@@ -349,28 +323,31 @@ def speaker_card_ui(speaker_id: str) -> str:
     links_html = ""
     if linkedin:
         links_html += (
-            f'<a href="#" onclick="window.parent.postMessage({{jsonrpc:&quot;2.0&quot;,id:&quot;lnk&quot;,'
-            f"method:&quot;ui/open-link&quot;,params:{{url:&quot;{linkedin}&quot;}}}},&quot;*&quot;);"
+            f'<a href="#" onclick="window._app&&window._app.openLink(\'{linkedin}\');'
             f'return false" class="link">LinkedIn ↗</a>'
         )
 
-    return f"""<!DOCTYPE html>
+    synapse_js = _SYNAPSE_IIFE_PATH.read_text()
+
+    return (
+        f"""<!DOCTYPE html>
 <html><head><meta charset="utf-8"><style>
-body {{ padding:16px; background:transparent; }}
+body {{ padding:16px; background:transparent; color:var(--color-text-primary,#e2e8f0);
+  font-family:var(--font-sans,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif); }}
 .card {{ max-width:400px; }}
 .header {{ display:flex; gap:12px; margin-bottom:12px; }}
 .photo {{ width:56px; height:56px; border-radius:50%; object-fit:cover; }}
-.initial {{ width:56px; height:56px; border-radius:50%; background:var(--color-background-tertiary);
-  display:flex; align-items:center; justify-content:center; font-size:20px; color:var(--color-text-accent); }}
-.name {{ font-size:16px; font-weight:var(--font-weight-semibold); }}
-.role {{ font-size:var(--font-text-xs-size); color:var(--color-text-secondary); }}
-.bio {{ font-size:var(--font-text-sm-size); line-height:1.5; color:var(--color-text-secondary); margin:12px 0; }}
-.section-label {{ font-size:11px; text-transform:uppercase; color:var(--color-text-tertiary); margin:12px 0 4px; }}
+.initial {{ width:56px; height:56px; border-radius:50%; background:var(--color-background-tertiary,#1e293b);
+  display:flex; align-items:center; justify-content:center; font-size:20px; color:var(--color-text-accent,#818cf8); }}
+.name {{ font-size:16px; font-weight:var(--font-weight-semibold,600); color:var(--color-text-primary,#e2e8f0); }}
+.role {{ font-size:var(--font-text-xs-size,12px); color:var(--color-text-secondary,#94a3b8); }}
+.bio {{ font-size:var(--font-text-sm-size,13px); line-height:1.5; color:var(--color-text-secondary,#94a3b8); margin:12px 0; }}
+.section-label {{ font-size:11px; text-transform:uppercase; color:var(--color-text-tertiary,#64748b); margin:12px 0 4px; }}
 .topics {{ display:flex; flex-wrap:wrap; gap:4px; }}
-.tag {{ display:inline-block; padding:2px 8px; border-radius:var(--border-radius-xs);
-  background:var(--color-background-tertiary); color:var(--color-text-accent); font-size:var(--font-text-xs-size); }}
-.sess {{ font-size:var(--font-text-xs-size); color:var(--color-text-secondary); padding:4px 0; }}
-.link {{ color:var(--color-text-accent); text-decoration:none; font-size:var(--font-text-xs-size); display:inline-block; margin-top:8px; }}
+.tag {{ display:inline-block; padding:2px 8px; border-radius:var(--border-radius-xs,4px);
+  background:var(--color-background-tertiary,#1e293b); color:var(--color-text-accent,#818cf8); font-size:var(--font-text-xs-size,12px); }}
+.sess {{ font-size:var(--font-text-xs-size,12px); color:var(--color-text-secondary,#94a3b8); padding:4px 0; }}
+.link,.link:visited,.link:active {{ color:var(--color-text-accent,#818cf8); text-decoration:none; font-size:var(--font-text-xs-size,12px); display:inline-block; margin-top:8px; }}
 .link:hover {{ text-decoration:underline; }}
 .links {{ margin-top:12px; }}
 </style></head><body>
@@ -387,7 +364,14 @@ body {{ padding:16px; background:transparent; }}
   {f'<div class="section-label">Sessions</div>{sessions_html}' if sessions_html else ""}
   {f'<div class="links">{links_html}</div>' if links_html else ""}
 </div>
+<script>"""
+        + synapse_js
+        + """</script>
+<script>
+Synapse.connect({name:'speaker-card',version:'1.0.0',autoResize:true}).then(function(a){ window._app=a; });
+</script>
 </body></html>"""
+    )
 
 
 # Shared state for baked-in widget data. The tool stores its result here,
@@ -395,60 +379,54 @@ body {{ padding:16px; background:transparent; }}
 _last_widget_data: dict[str, Any] = {}
 
 _WIDGET_CSS = """\
-body{padding:16px;background:transparent}
+body{padding:16px;background:transparent;color:var(--color-text-primary,#e2e8f0);
+  font-family:var(--font-sans,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif)}
 .card{max-width:420px;margin-bottom:12px}
 .header{display:flex;gap:12px;margin-bottom:10px}
 .photo{width:52px;height:52px;border-radius:50%;object-fit:cover;flex-shrink:0}
 .initial{width:52px;height:52px;border-radius:50%;
-  background:var(--color-background-tertiary);
+  background:var(--color-background-tertiary,#1e293b);
   display:flex;align-items:center;justify-content:center;font-size:18px;
-  color:var(--color-text-accent);flex-shrink:0}
-.name{font-size:15px;font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
-.role{font-size:var(--font-text-xs-size);color:var(--color-text-secondary);margin-top:2px}
-.bio{font-size:var(--font-text-xs-size);line-height:1.5;color:var(--color-text-secondary);margin:10px 0}
+  color:var(--color-text-accent,#818cf8);flex-shrink:0}
+.name{font-size:15px;font-weight:var(--font-weight-semibold,600);color:var(--color-text-primary,#e2e8f0)}
+.role{font-size:var(--font-text-xs-size,12px);color:var(--color-text-secondary,#94a3b8);margin-top:2px}
+.bio{font-size:var(--font-text-xs-size,12px);line-height:1.5;color:var(--color-text-secondary,#94a3b8);margin:10px 0}
 .tags{display:flex;flex-wrap:wrap;gap:3px;margin:6px 0}
-.tag{display:inline-block;padding:1px 6px;border-radius:var(--border-radius-xs);
-  background:var(--color-background-tertiary);
-  color:var(--color-text-accent);font-size:10px;
-  border:var(--border-width-regular) solid var(--color-border-primary)}
-.label{font-size:9px;text-transform:uppercase;letter-spacing:0.5px;color:var(--color-text-tertiary);margin:10px 0 3px}
-.sess{font-size:var(--font-text-xs-size);color:var(--color-text-secondary);padding:2px 0}
-.link{color:var(--color-text-accent);text-decoration:none;font-size:var(--font-text-xs-size);display:inline-block;margin-top:6px}
-.session-card{border:var(--border-width-regular) solid var(--color-border-primary);border-radius:var(--border-radius-md);padding:12px;margin-bottom:8px}
-.session-title{font-size:14px;font-weight:var(--font-weight-semibold);margin-bottom:4px;color:var(--color-text-primary)}
-.session-info{font-size:var(--font-text-xs-size);color:var(--color-text-secondary);display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px}
-.badge{display:inline-block;padding:1px 6px;border-radius:var(--border-radius-xs);font-size:9px;font-weight:var(--font-weight-semibold);text-transform:uppercase;white-space:nowrap;max-width:80px;overflow:hidden;text-overflow:ellipsis;vertical-align:middle}
+.tag{display:inline-block;padding:1px 6px;border-radius:var(--border-radius-xs,4px);
+  background:var(--color-background-tertiary,#1e293b);
+  color:var(--color-text-accent,#818cf8);font-size:10px;
+  border:var(--border-width-regular,1px) solid var(--color-border-primary,#334155)}
+.label{font-size:9px;text-transform:uppercase;letter-spacing:0.5px;color:var(--color-text-tertiary,#64748b);margin:10px 0 3px}
+.sess{font-size:var(--font-text-xs-size,12px);color:var(--color-text-secondary,#94a3b8);padding:2px 0}
+.link,.link:visited,.link:active{color:var(--color-text-accent,#818cf8);text-decoration:none;font-size:var(--font-text-xs-size,12px);display:inline-block;margin-top:6px}
+.link:hover{text-decoration:underline}
+.session-card{border:var(--border-width-regular,1px) solid var(--color-border-primary,#334155);border-radius:var(--border-radius-md,8px);padding:12px;margin-bottom:8px}
+.session-title{font-size:14px;font-weight:var(--font-weight-semibold,600);margin-bottom:4px;color:var(--color-text-primary,#e2e8f0)}
+.session-info{font-size:var(--font-text-xs-size,12px);color:var(--color-text-secondary,#94a3b8);display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+.badge{display:inline-block;padding:1px 6px;border-radius:var(--border-radius-xs,4px);font-size:9px;font-weight:var(--font-weight-semibold,600);text-transform:uppercase;white-space:nowrap;max-width:80px;overflow:hidden;text-overflow:ellipsis;vertical-align:middle}
 .badge-keynote{background:#eab30822;color:#eab308}
-.badge-talk{background:var(--color-background-tertiary);color:var(--color-text-accent)}
+.badge-talk{background:var(--color-background-tertiary,#1e293b);color:var(--color-text-accent,#818cf8)}
 .badge-workshop{background:#22c55e22;color:#22c55e}
 .badge-sponsor_activity{background:#f9731622;color:#f97316}
-.time-slot{font-size:var(--font-text-xs-size);font-weight:var(--font-weight-semibold);color:var(--color-text-accent);margin:10px 0 4px;padding-bottom:4px;border-bottom:var(--border-width-regular) solid var(--color-border-primary)}
-.schedule-item{font-size:var(--font-text-xs-size);padding:3px 0;display:flex;gap:8px;color:var(--color-text-primary)}
+.time-slot{font-size:var(--font-text-xs-size,12px);font-weight:var(--font-weight-semibold,600);color:var(--color-text-accent,#818cf8);margin:10px 0 4px;padding-bottom:4px;border-bottom:var(--border-width-regular,1px) solid var(--color-border-primary,#334155)}
+.schedule-item{font-size:var(--font-text-xs-size,12px);padding:3px 0;display:flex;gap:8px;color:var(--color-text-primary,#e2e8f0)}
 .schedule-title{flex:1}
-.schedule-room{color:var(--color-text-tertiary);font-size:11px}
-.meta{font-size:11px;color:var(--color-text-secondary);margin-bottom:8px}
+.schedule-room{color:var(--color-text-tertiary,#64748b);font-size:11px}
+.meta{font-size:11px;color:var(--color-text-secondary,#94a3b8);margin-bottom:8px}
 """
 
 
 def _wrap_widget(body_html: str, widget_name: str = "widget") -> str:
-    handshake_js = (
-        "function resize(){var h=document.body.scrollHeight+32;"
-        "window.parent.postMessage({jsonrpc:'2.0',method:'ui/notifications/size-changed',"
-        "params:{width:400,height:h}},'*');}"
-        "window.addEventListener('message',function(e){"
-        "var m=e.data;if(!m||typeof m!=='object')return;"
-        "if(m.id==='__init'){"
-        "window.parent.postMessage({jsonrpc:'2.0',method:'ui/notifications/initialized',params:{}},'*');"
-        "resize();}});"
-        "resize();"
-        "window.parent.postMessage({jsonrpc:'2.0',id:'__init',method:'ui/initialize',"
-        f"params:{{protocolVersion:'2026-01-26',capabilities:{{}},clientInfo:{{name:'{widget_name}',version:'1.0.0'}}}}}},'*');"
-    )
+    synapse_js = _SYNAPSE_IIFE_PATH.read_text()
+    widget_js = f"Synapse.connect({{name:'{widget_name}',version:'1.0.0',autoResize:true}});"
     return (
-        f"<!DOCTYPE html><html><head><meta charset='utf-8'>"
-        f"<meta name='viewport' content='width=device-width,initial-scale=1'>"
+        "<!DOCTYPE html><html><head><meta charset='utf-8'>"
+        "<meta name='viewport' content='width=device-width,initial-scale=1'>"
         f"<style>{_WIDGET_CSS}</style></head>"
-        f'<body onload="{handshake_js}">{body_html}</body></html>'
+        f"<body>{body_html}"
+        f"<script>{synapse_js}</script>"
+        f"<script>{widget_js}</script>"
+        "</body></html>"
     )
 
 
@@ -694,29 +672,13 @@ body{font-family:var(--font-sans,-apple-system,BlinkMacSystemFont,"Segoe UI",san
         +desc+'</div>';
     });
     root.innerHTML = h;
-    try{window.parent.postMessage({jsonrpc:"2.0",method:"ui/notifications/size-changed",
-      params:{width:root.scrollWidth,height:root.scrollHeight+32}},"*");}catch(e){}
   }
-  window.addEventListener("message",function(e){
-    var m=e.data; if(!m||typeof m!=="object")return;
-    if(m.id==="__init"){
-      window.parent.postMessage({jsonrpc:"2.0",method:"ui/notifications/initialized",params:{}},"*");
-      var ctx=(m.result||{}).hostContext||{};
-      if(ctx.styles&&ctx.styles.variables){var v=ctx.styles.variables;for(var k in v)if(v[k])document.documentElement.style.setProperty(k,v[k]);}
-      resize();
-    }
-    if(m.method==="ui/notifications/tool-result"){
-      var r=m.params||{};var d=r.structuredContent;
-      if(!d&&r.content){try{d=JSON.parse(r.content.map(function(c){return c.text||"";}).join(""));}catch(ex){}}
-      if(d)render(d);
-    }
-    if(m.method==="ui/notifications/host-context-changed"){
-      var p=m.params||{};if(p.styles&&p.styles.variables){var vars=p.styles.variables;for(var key in vars)if(vars[key])document.documentElement.style.setProperty(key,vars[key]);}
-    }
+  Synapse.connect({name:'mcp-dev-summit-sessions',version:'1.0.0',autoResize:true}).then(function(syn){
+    syn.on('tool-result',function(result){
+      var parsed = result.content != null ? result.content : result;
+      if(parsed)render(parsed);
+    });
   });
-  resize();
-  window.parent.postMessage({jsonrpc:"2.0",id:"__init",method:"ui/initialize",params:{
-    protocolVersion:"2026-01-26",capabilities:{},clientInfo:{name:"mcp-dev-summit-sessions",version:"1.0.0"}}},"*");
 })();
 </script>
 </body></html>
@@ -755,29 +717,13 @@ body{font-family:var(--font-sans,-apple-system,BlinkMacSystemFont,"Segoe UI",san
       });
     });
     root.innerHTML = h;
-    try{window.parent.postMessage({jsonrpc:"2.0",method:"ui/notifications/size-changed",
-      params:{width:root.scrollWidth,height:Math.min(root.scrollHeight+32,600)}},"*");}catch(e){}
   }
-  window.addEventListener("message",function(e){
-    var m=e.data; if(!m||typeof m!=="object")return;
-    if(m.id==="__init"){
-      window.parent.postMessage({jsonrpc:"2.0",method:"ui/notifications/initialized",params:{}},"*");
-      var ctx=(m.result||{}).hostContext||{};
-      if(ctx.styles&&ctx.styles.variables){var v=ctx.styles.variables;for(var k in v)if(v[k])document.documentElement.style.setProperty(k,v[k]);}
-      resize();
-    }
-    if(m.method==="ui/notifications/tool-result"){
-      var r=m.params||{};var d=r.structuredContent;
-      if(!d&&r.content){try{d=JSON.parse(r.content.map(function(c){return c.text||"";}).join(""));}catch(ex){}}
-      if(d)render(d);
-    }
-    if(m.method==="ui/notifications/host-context-changed"){
-      var p=m.params||{};if(p.styles&&p.styles.variables){var vars=p.styles.variables;for(var key in vars)if(vars[key])document.documentElement.style.setProperty(key,vars[key]);}
-    }
+  Synapse.connect({name:'mcp-dev-summit-schedule',version:'1.0.0',autoResize:true}).then(function(syn){
+    syn.on('tool-result',function(result){
+      var parsed = result.content != null ? result.content : result;
+      if(parsed)render(parsed);
+    });
   });
-  resize();
-  window.parent.postMessage({jsonrpc:"2.0",id:"__init",method:"ui/initialize",params:{
-    protocolVersion:"2026-01-26",capabilities:{},clientInfo:{name:"mcp-dev-summit-schedule",version:"1.0.0"}}},"*");
 })();
 </script>
 </body></html>

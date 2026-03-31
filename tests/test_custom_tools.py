@@ -166,64 +166,31 @@ def test_post_conference_report_empty(upjack_app):
 # ---------------------------------------------------------------------------
 
 
+def test_speaker_widget_uses_synapse_connect():
+    """Widget must use Synapse.connect() — no hand-rolled protocol code."""
+    import mcp_dev_summit.server as srv
+
+    html = srv.speaker_widget_ui()
+    assert "Synapse.connect(" in html, "Widget must use Synapse.connect()"
+    assert "tool-result" in html, "Widget must handle tool-result event"
+
+
 def test_speaker_widget_html_has_spec_compliant_handshake():
-    """Widget must follow MCP Apps handshake: send ui/initialize, wait for response,
-    then send ui/notifications/initialized. Must NOT send initialized before host responds."""
+    """Widget must include the Synapse runtime which handles the MCP Apps handshake."""
     import mcp_dev_summit.server as srv
 
     html = srv.speaker_widget_ui()
-
-    # Must contain ui/initialize request
-    assert "ui/initialize" in html, "Widget must send ui/initialize"
-
-    # Must listen for host response before sending initialized
-    assert "ui/notifications/initialized" in html, "Widget must send initialized notification"
-
-    # Handshake ordering: initialize must come BEFORE initialized in the code,
-    # and initialized must be inside a message handler (not sent synchronously)
-    init_pos = html.index("ui/initialize")
-    initialized_pos = html.index("ui/notifications/initialized")
-    assert init_pos < initialized_pos, "ui/initialize must come before ui/notifications/initialized"
-
-    # initialized must be inside addEventListener callback, not at top level
-    # (it should be dispatched in response to the host's init reply)
-    listener_pos = html.index("addEventListener")
-    assert listener_pos < initialized_pos, (
-        "ui/notifications/initialized must be inside message listener (wait for host response)"
-    )
-
-
-def test_speaker_widget_listens_for_tool_result():
-    """Widget must handle ui/notifications/tool-result per MCP Apps spec."""
-    import mcp_dev_summit.server as srv
-
-    html = srv.speaker_widget_ui()
-    assert "ui/notifications/tool-result" in html, (
-        "Widget must listen for ui/notifications/tool-result"
-    )
-
-
-def test_speaker_widget_sends_initial_resize():
-    """Widget must send size-changed before handshake so host doesn't render at 0 height."""
-    import mcp_dev_summit.server as srv
-
-    html = srv.speaker_widget_ui()
-    assert "ui/notifications/size-changed" in html, "Widget must send size notification"
-
-    # resize() must be called before ui/initialize to set initial height
-    resize_call = html.index("resize()")
-    init_call = html.index("'ui/initialize'")
-    # Find the FIRST resize() call (not one inside render())
-    assert resize_call < init_call, "First resize() must fire before ui/initialize handshake"
+    # The inlined Synapse IIFE handles ui/initialize and ui/notifications/initialized
+    assert "ui/initialize" in html, "Synapse runtime must handle ui/initialize"
+    assert "ui/notifications/initialized" in html, "Synapse runtime must send initialized"
+    assert "ui/notifications/size-changed" in html, "Synapse runtime must handle resize"
 
 
 def test_speaker_widget_has_tool_meta():
     """find_speaker_profiles tool must declare meta.ui.resourceUri for the widget."""
     import mcp_dev_summit.server as srv
 
-    # Check the tool list whitelist includes the tool
     assert "find_speaker_profiles" in srv._LISTED_TOOLS
 
-    # The widget resource must exist
     html = srv.speaker_widget_ui()
     assert "<!DOCTYPE html>" in html
