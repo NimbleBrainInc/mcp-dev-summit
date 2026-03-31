@@ -1,6 +1,5 @@
 """MCP Dev Summit Companion — Upjack Server."""
 
-import base64
 import json
 import logging
 import os
@@ -153,25 +152,135 @@ if not _session_dir.exists() or not any(_session_dir.iterdir()):
 # =============================================================================
 
 
-@mcp.resource("ui://mcp-dev-summit/speakers/{encoded_ids}", mime_type="text/html;profile=mcp-app")
-def speaker_widget_ui(encoded_ids: str) -> str:
-    """Speaker cards rendered from base64-encoded speaker IDs in the URI — no shared state."""
-    try:
-        padding = (4 - len(encoded_ids) % 4) % 4
-        ids = base64.urlsafe_b64decode(encoded_ids + "=" * padding).decode().split(",")
-        speakers = [upjack_app.get_entity("speaker", sid) for sid in ids if sid]
-        speakers = [sp for sp in speakers if sp]
-    except Exception:
-        speakers = []
-    _inline_photos(speakers, max_speakers=3, use_thumbs=True)
-    if not speakers:
-        return _wrap_widget('<p class="empty">No speakers found</p>', "speaker-widget")
-    shown = speakers[:3]
-    overflow = len(speakers) - len(shown)
-    cards = "".join(_render_speaker_card(sp) for sp in shown)
-    if overflow > 0:
-        cards += f'<div class="meta">+{overflow} more speaker{"s" if overflow > 1 else ""}</div>'
-    return _wrap_widget(cards, "speaker-widget")
+@mcp.resource("ui://mcp-dev-summit/speaker-widget")
+def speaker_widget_ui() -> str:
+    """Speaker card widget — empty shell that renders from tool result data via bridge."""
+    # The host sends the tool result via ui/notifications/tool-result after the
+    # iframe loads. The widget parses the speaker data and renders client-side.
+    # No dependency on _last_widget_data — works on conversation reload too.
+    return """<!DOCTYPE html><html><head><meta charset="utf-8">
+<style>
+body{padding:8px;background:transparent}
+.card{margin-bottom:8px}
+.header{display:flex;gap:10px;margin-bottom:6px}
+.photo{width:40px;height:40px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.initial{width:40px;height:40px;border-radius:50%;flex-shrink:0;
+  background:var(--color-background-tertiary);
+  display:flex;align-items:center;justify-content:center;font-size:15px;
+  color:var(--color-text-accent)}
+.name{font-size:13px;font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+.subtitle{font-size:var(--font-text-xs-size);color:var(--color-text-secondary);margin-top:1px}
+.bio{font-size:var(--font-text-xs-size);line-height:1.4;color:var(--color-text-secondary);margin:6px 0}
+.tags{display:flex;flex-wrap:wrap;gap:3px;margin:4px 0}
+.tag{display:inline-block;padding:1px 6px;border-radius:var(--border-radius-xs);font-size:10px;
+  background:var(--color-background-tertiary);
+  color:var(--color-text-accent);
+  border:var(--border-width-regular) solid var(--color-border-primary)}
+.label{font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--color-text-tertiary);margin:6px 0 2px}
+.sess{font-size:var(--font-text-xs-size);color:var(--color-text-secondary);padding:1px 0;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.link{color:var(--color-text-accent);text-decoration:none;font-size:var(--font-text-xs-size);display:inline-block;margin-top:4px}
+.link:hover{text-decoration:underline}
+.empty{color:var(--color-text-tertiary);font-size:var(--font-text-sm-size)}
+.more{font-size:11px;color:var(--color-text-tertiary);margin-top:4px}
+</style>
+</head><body>
+<div id="root"><p class="empty">Loading speakers...</p></div>
+<script>
+(function(){
+  // ext-apps handshake
+  window.parent.postMessage({jsonrpc:'2.0',id:'__init',method:'ui/initialize',
+    params:{protocolVersion:'2026-01-26',capabilities:{},
+    clientInfo:{name:'speaker-widget',version:'0.2.0'}}},'*');
+  window.parent.postMessage({jsonrpc:'2.0',method:'ui/notifications/initialized',params:{}},'*');
+  resize();
+
+  function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+
+  function openLink(url){
+    window.parent.postMessage({jsonrpc:'2.0',id:'lnk',method:'ui/open-link',params:{url:url}},'*');
+  }
+
+  function render(speakers){
+    var root=document.getElementById('root');
+    if(!speakers||!speakers.length){root.innerHTML='<p class="empty">No speakers found</p>';resize();return;}
+    var shown=speakers.slice(0,3);
+    var overflow=speakers.length-shown.length;
+    var html='';
+    shown.forEach(function(sp){
+      var name=esc(sp.name||'');
+      var role=esc(sp.role||'');
+      var company=esc(sp.company||'');
+      var bio=(sp.bio||'').substring(0,120);
+      if(bio.length===120)bio=bio.substring(0,bio.lastIndexOf(' ')||120)+'…';
+      bio=esc(bio);
+      var photo=sp.photo_url||'';
+      var topics=(sp.topics||[]).slice(0,3);
+      var sessions=(sp.sessions||[]).slice(0,2);
+      var linkedin=sp.linkedin_url||'';
+
+      var photoH=photo
+        ?'<img src="'+photo+'" class="photo" alt="">'
+        :'<div class="initial">'+(name.charAt(0)||'?')+'</div>';
+      var topicsH='';
+      if(topics.length){topicsH='<div class="tags">'+topics.map(function(t){return'<span class="tag">'+esc(t)+'</span>';}).join('')+'</div>';}
+      var sessH='';
+      if(sessions.length){
+        sessH='<div class="label">Sessions</div>'+sessions.map(function(s){
+          return'<div class="sess">'+esc((s.day||'').slice(-5))+' '+esc(s.start_time||'')+' \u2014 '+esc(s.title||'')+'</div>';
+        }).join('');
+      }
+      var linkH='';
+      if(linkedin){linkH='<a href="#" class="link" onclick="return false">LinkedIn \u2197</a>';}
+
+      html+='<div class="card"><div class="header">'+photoH+'<div>'
+        +'<div class="name">'+name+'</div>'
+        +'<div class="subtitle">'+(role?role+', ':'')+company+'</div>'
+        +'</div></div>'
+        +(bio?'<div class="bio">'+bio+'</div>':'')
+        +topicsH+sessH+linkH+'</div>';
+    });
+    if(overflow>0){html+='<div class="more">+'+overflow+' more speaker'+(overflow>1?'s':'')+'</div>';}
+    root.innerHTML=html;
+    // Attach link handlers after render
+    var links=root.querySelectorAll('.link');
+    shown.forEach(function(sp,i){
+      if(sp.linkedin_url&&links[i]){links[i].onclick=function(e){e.preventDefault();openLink(sp.linkedin_url);};}
+    });
+    resize();
+  }
+
+  function resize(){
+    var root=document.getElementById('root');
+    window.parent.postMessage({jsonrpc:'2.0',method:'ui/notifications/size-changed',
+      params:{width:400,height:(root?root.offsetHeight:0)+16}},'*');
+  }
+
+  // Parse tool result — handles both raw JSON string and structured content array
+  function parseSpeakers(data){
+    if(!data)return[];
+    var obj=data;
+    if(typeof data==='string'){try{obj=JSON.parse(data);}catch(e){return[];}}
+    // MCP content array: [{type:"text",text:"..."}]
+    if(Array.isArray(obj)){
+      var text=obj.map(function(c){return c.text||'';}).join('');
+      try{obj=JSON.parse(text);}catch(e){return[];}
+    }
+    return obj.results||obj.speakers||[];
+  }
+
+  // Listen for tool result from host bridge
+  window.addEventListener('message',function(e){
+    var m=e.data;
+    if(!m||typeof m!=='object')return;
+    if(m.method==='ui/toolresult'||m.method==='ui/notifications/tool-result'){
+      var speakers=parseSpeakers(m.params&&m.params.result!==undefined?m.params.result:m.params&&m.params.content);
+      if(speakers.length)render(speakers);
+    }
+  });
+})();
+</script>
+</body></html>"""
 
 
 @mcp.resource("ui://mcp-dev-summit/session-widget")
@@ -272,6 +381,8 @@ body {{ padding:16px; background:transparent; }}
 </body></html>"""
 
 
+# Shared state for baked-in widget data. The tool stores its result here,
+# and the resource reads it when Claude Desktop fetches the widget HTML.
 _last_widget_data: dict[str, Any] = {}
 
 _WIDGET_CSS = """\
@@ -795,25 +906,18 @@ def whats_on(include_next: int = 2, track: str = "") -> dict:
     return _whats_on(upjack_app, include_next=include_next, track=track)
 
 
-@mcp.tool()
+@mcp.tool(
+    meta={"ui": {"resourceUri": "ui://mcp-dev-summit/speaker-widget"}},
+)
 def find_speaker_profiles(
     query: str = "",
     company: str = "",
     is_keynote: bool = False,
     limit: int = 20,
-) -> Any:
+) -> dict:
     """Find speakers with their sessions inlined. Filter by name, company, topic, or keynote status. Returns speaker cards with photos, bios, and session links."""
-    from fastmcp.tools import ToolResult
-
-    result = _find_speakers(
+    return _find_speakers(
         upjack_app, query=query, company=company, is_keynote=is_keynote, limit=limit
-    )
-    ids = [sp["id"] for sp in result.get("results", []) if sp.get("id")]
-    encoded = base64.urlsafe_b64encode(",".join(ids).encode()).decode().rstrip("=") if ids else ""
-    resource_uri = f"ui://mcp-dev-summit/speakers/{encoded}" if encoded else None
-    return ToolResult(
-        content=result,
-        meta={"ui": {"resourceUri": resource_uri}} if resource_uri else None,
     )
 
 

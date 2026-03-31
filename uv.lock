@@ -539,7 +539,7 @@ wheels = [
 
 [[package]]
 name = "mcp-dev-summit"
-version = "0.1.7"
+version = "0.1.8"
 source = { editable = "." }
 dependencies = [
     { name = "python-dotenv" },
