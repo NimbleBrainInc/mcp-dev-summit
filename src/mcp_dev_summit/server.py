@@ -282,7 +282,7 @@ body{padding:8px;background:transparent}
 
   // Send ui/initialize per MCP Apps spec — wait for response before sending initialized
   window.parent.postMessage({jsonrpc:'2.0',id:'__init',method:'ui/initialize',
-    params:{protocolVersion:'2026-01-26',appCapabilities:{},
+    params:{protocolVersion:'2026-01-26',capabilities:{},
     clientInfo:{name:'speaker-widget',version:'1.0.0'}}},'*');
 })();
 </script>

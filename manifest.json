@@ -1,7 +1,7 @@
 {
   "manifest_version": "0.4",
   "name": "@nimblebraininc/mcp-dev-summit",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Conference companion for MCP Dev Summit NA 2026 — search sessions, build a personal schedule, capture notes, and get AI-powered recommendations",
   "author": {
     "name": "NimbleBrain Inc",
