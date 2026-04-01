@@ -4,6 +4,7 @@ import json
 import logging
 import os
 import sys
+from importlib.resources import files
 from pathlib import Path
 from typing import Any
 
@@ -27,7 +28,7 @@ MODE = os.environ.get("MCP_SUMMIT_MODE", "local")
 
 # Paths
 MANIFEST = Path(__file__).parent.parent.parent / "manifest.json"
-_SYNAPSE_IIFE_PATH = Path(__file__).parent / "synapse.js"
+_SYNAPSE_JS = files("mcp_dev_summit").joinpath("synapse.js").read_text()
 
 # Create Upjack server (root from UPJACK_ROOT env var or .upjack default)
 mcp = create_server(str(MANIFEST))
@@ -156,7 +157,7 @@ if not _session_dir.exists() or not any(_session_dir.iterdir()):
 @mcp.resource("ui://mcp-dev-summit/speaker-widget")
 def speaker_widget_ui() -> str:
     """Speaker card widget using Synapse.connect() for MCP Apps protocol."""
-    synapse_js = _SYNAPSE_IIFE_PATH.read_text()
+    synapse_js = _SYNAPSE_JS
     return (
         """<!DOCTYPE html><html><head><meta charset="utf-8">
 <style>
@@ -319,7 +320,7 @@ def speaker_card_ui(speaker_id: str) -> str:
             f'return false" class="link">LinkedIn ↗</a>'
         )
 
-    synapse_js = _SYNAPSE_IIFE_PATH.read_text()
+    synapse_js = _SYNAPSE_JS
 
     return (
         f"""<!DOCTYPE html>
@@ -409,7 +410,7 @@ body{padding:16px;background:transparent;color:var(--color-text-primary,#e2e8f0)
 
 
 def _wrap_widget(body_html: str, widget_name: str = "widget") -> str:
-    synapse_js = _SYNAPSE_IIFE_PATH.read_text()
+    synapse_js = _SYNAPSE_JS
     widget_js = f"Synapse.connect({{name:'{widget_name}',version:'1.0.0',autoResize:true}});"
     return (
         "<!DOCTYPE html><html><head><meta charset='utf-8'>"
