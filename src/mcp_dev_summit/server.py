@@ -27,15 +27,7 @@ MODE = os.environ.get("MCP_SUMMIT_MODE", "local")
 
 # Paths
 MANIFEST = Path(__file__).parent.parent.parent / "manifest.json"
-_SYNAPSE_IIFE_PATH = (
-    Path(__file__).parent.parent.parent
-    / "ui"
-    / "node_modules"
-    / "@nimblebrain"
-    / "synapse"
-    / "dist"
-    / "connect.iife.global.js"
-)
+_SYNAPSE_IIFE_PATH = Path(__file__).parent / "synapse.js"
 
 # Create Upjack server (root from UPJACK_ROOT env var or .upjack default)
 mcp = create_server(str(MANIFEST))
