@@ -252,14 +252,14 @@ body{padding:8px;background:transparent;color:var(--color-text-primary,#e2e8f0);
     if(app)app.resize();
   }
 
-  Synapse.connect({name:'speaker-widget',version:'1.0.0',autoResize:false}).then(function(a){
-    app=a;
-    a.on('tool-result',function(data){
+  Synapse.connect({
+    name:'speaker-widget',version:'1.0.0',autoResize:false,
+    on:{'tool-result':function(data){
       var d=data.content;
       var speakers=(d&&d.results)||[];
       if(speakers.length)render(speakers);
-    });
-  });
+    }}
+  }).then(function(a){ app=a; });
 })();
 </script>
 </body></html>"""
