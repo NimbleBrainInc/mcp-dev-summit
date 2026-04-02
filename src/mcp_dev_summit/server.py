@@ -261,11 +261,60 @@ body{padding:8px;background:transparent;color:var(--color-text-primary,#e2e8f0);
 
 @mcp.resource("ui://mcp-dev-summit/session-widget")
 def session_widget_ui() -> str:
-    """Session search results widget."""
-    sessions = _last_widget_data.get("sessions", [])
-    if not sessions:
-        return "<html><body><p>No sessions</p></body></html>"
-    return _wrap_widget(_render_session_list(sessions), "session-widget")
+    """Session search results widget using Synapse.connect() for MCP Apps protocol."""
+    synapse_js = _SYNAPSE_JS
+    return (
+        '<!DOCTYPE html><html><head><meta charset="utf-8">\n'
+        f"<style>{_WIDGET_CSS}</style>\n"
+        "</head><body>\n"
+        '<div id="root"><p class="meta">Loading sessions...</p></div>\n'
+        f"<script>{synapse_js}</script>\n"
+        """<script>
+(function(){
+  var app;
+  function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+
+  function render(sessions){
+    var root=document.getElementById('root');
+    if(!sessions||!sessions.length){root.innerHTML='<p class="meta">No sessions found</p>';if(app)app.resize();return;}
+    var shown=sessions.slice(0,10);
+    var overflow=sessions.length-shown.length;
+    var html='<div class="meta">'+sessions.length+' sessions</div>';
+    shown.forEach(function(s){
+      var title=esc(s.title||'');
+      var stype=s.session_type||s.type||'';
+      var room=esc(s.room||'');
+      var start=s.start_time||'';
+      var end=s.end_time||'';
+      var day=(s.day||'').slice(-5);
+      var speakers=(s.speakers||[]).map(function(sp){return esc(sp.name||'');}).join(', ');
+      if(!speakers) speakers=(s.speaker_names||[]).map(function(n){return esc(n);}).join(', ');
+      var desc=esc((s.description_preview||'').slice(0,150));
+      html+='<div class="session-card">';
+      html+='<span class="badge badge-'+stype+'">'+stype+'</span> ';
+      html+='<span class="session-title">'+title+'</span>';
+      html+='<div class="session-info"><span>'+day+' '+start+'-'+end+'</span><span>'+room+'</span></div>';
+      if(speakers) html+='<div class="sess">'+speakers+'</div>';
+      if(desc) html+='<div style="font-size:11px;margin-top:4px" class="sess">'+desc+'</div>';
+      html+='</div>';
+    });
+    if(overflow>0) html+='<div class="meta">+ '+overflow+' more</div>';
+    root.innerHTML=html;
+    if(app)app.resize();
+  }
+
+  Synapse.connect({
+    name:'session-widget',version:'1.0.0',autoResize:false,
+    on:{'tool-result':function(data){
+      var d=data.content;
+      var sessions=(d&&d.results)||[];
+      if(sessions.length)render(sessions);
+    }}
+  }).then(function(a){ app=a; });
+})();
+</script>
+</body></html>"""
+    )
 
 
 @mcp.resource("ui://mcp-dev-summit/schedule-widget/{cache_bust}")
@@ -818,7 +867,9 @@ from .tools.search import find_speakers as _find_speakers  # noqa: E402
 from .tools.search import search_sessions as _search_sessions  # noqa: E402
 
 
-@mcp.tool()
+@mcp.tool(
+    meta={"ui": {"resourceUri": "ui://mcp-dev-summit/session-widget"}},
+)
 def find_sessions(
     query: str = "",
     day: str = "",
