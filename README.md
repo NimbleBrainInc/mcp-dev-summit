@@ -3,7 +3,7 @@
 [![CI](https://github.com/NimbleBrainInc/mcp-dev-summit/actions/workflows/ci.yml/badge.svg)](https://github.com/NimbleBrainInc/mcp-dev-summit/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.13+](https://img.shields.io/badge/python-3.13+-blue.svg)](https://www.python.org/)
-[![mpak](https://img.shields.io/badge/mpak-%40nimblebraininc%2Fmcp--dev--summit-5B4FE8)](https://mpak.dev/bundles/@nimblebraininc/mcp-dev-summit)
+[![mpak](https://img.shields.io/badge/mpak-%40nimblebraininc%2Fmcp--dev--summit-5B4FE8)](https://mpak.dev/packages/@nimblebraininc/mcp-dev-summit)
 
 An MCP server for [MCP Dev Summit North America 2026](https://mcpdevsummitna.sched.com/). Ask your AI assistant natural language questions about the full conference program — 145 sessions, 144 speakers, 52 sponsors — and manage a personal schedule, session notes, and connections.
 
