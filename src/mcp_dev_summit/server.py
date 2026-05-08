@@ -47,7 +47,9 @@ mcp.instructions = (
     "- get_day_schedule: full schedule for a day\n"
     "- whats_on: what's happening now/next\n"
     "- browse_sponsors: sponsor directory by tier\n"
-    "- create_bookmark / list_bookmarks: manage personal schedule\n"
+    "- bookmark_session(session_id): add a session to the user's personal schedule "
+    "(use this — it links the bookmark to the session). list_bookmarks / delete_bookmark "
+    "for read/remove.\n"
     "- create_note / list_notes: capture session notes\n"
     "- create_connection: track people you meet"
 )
@@ -69,6 +71,7 @@ _LISTED_TOOLS: set[str] = {
     "create_bookmark",
     "list_bookmarks",
     "delete_bookmark",
+    "bookmark_session",
     "create_note",
     "list_notes",
     "update_note",
@@ -159,47 +162,20 @@ def speaker_widget_ui() -> str:
     """Speaker card widget using Synapse.connect() for MCP Apps protocol."""
     synapse_js = _SYNAPSE_JS
     return (
-        """<!DOCTYPE html><html><head><meta charset="utf-8">
-<style>
-body{padding:8px;background:transparent;color:var(--color-text-primary,#e2e8f0);
-  font-family:var(--font-sans,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif)}
-.card{margin-bottom:8px}
-.header{display:flex;gap:10px;margin-bottom:6px}
-.photo{width:40px;height:40px;border-radius:50%;object-fit:cover;flex-shrink:0}
-.initial{width:40px;height:40px;border-radius:50%;flex-shrink:0;
-  background:var(--color-background-tertiary,#1e293b);
-  display:flex;align-items:center;justify-content:center;font-size:15px;
-  color:var(--color-text-accent,#818cf8)}
-.name{font-size:13px;font-weight:var(--font-weight-semibold,600);color:var(--color-text-primary,#e2e8f0)}
-.subtitle{font-size:var(--font-text-xs-size,12px);color:var(--color-text-secondary,#94a3b8);margin-top:1px}
-.bio{font-size:var(--font-text-xs-size,12px);line-height:1.4;color:var(--color-text-secondary,#94a3b8);margin:6px 0}
-.tags{display:flex;flex-wrap:wrap;gap:3px;margin:4px 0}
-.tag{display:inline-block;padding:1px 6px;border-radius:var(--border-radius-xs,4px);font-size:10px;
-  background:var(--color-background-tertiary,#1e293b);
-  color:var(--color-text-accent,#818cf8);
-  border:var(--border-width-regular,1px) solid var(--color-border-primary,#334155)}
-.label{font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--color-text-tertiary,#64748b);margin:6px 0 2px}
-.sess{font-size:var(--font-text-xs-size,12px);color:var(--color-text-secondary,#94a3b8);padding:1px 0;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.link,.link:visited,.link:active{color:var(--color-text-accent,#818cf8);text-decoration:none;font-size:var(--font-text-xs-size,12px);display:inline-block;margin-top:4px}
-.link:hover{text-decoration:underline}
-.empty{color:var(--color-text-tertiary,#64748b);font-size:var(--font-text-sm-size,13px)}
-.more{font-size:11px;color:var(--color-text-tertiary,#64748b);margin-top:4px}
-</style>
-</head><body>
-<div id="root"><p class="empty">Loading speakers...</p></div>
-<script>"""
-        + synapse_js
-        + """</script>
-<script>
+        '<!DOCTYPE html><html data-theme="light"><head><meta charset="utf-8">\n'
+        f"<style>{_WIDGET_CSS}</style>\n"
+        "</head><body>\n"
+        '<div id="root"><p class="empty">Loading speakers&hellip;</p></div>\n'
+        f"<script>{synapse_js}</script>\n"
+        f"<script>{_WIDGET_THEME_BOOT}</script>\n"
+        """<script>
 (function(){
   var app;
-
   function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
 
   function render(speakers){
     var root=document.getElementById('root');
-    if(!speakers||!speakers.length){root.innerHTML='<p class="empty">No speakers found</p>';if(app)app.resize();return;}
+    if(!speakers||!speakers.length){root.innerHTML='<p class="empty">No speakers found.</p>';if(app)app.resize();return;}
     var shown=speakers.slice(0,3);
     var overflow=speakers.length-shown.length;
     var html='';
@@ -207,8 +183,8 @@ body{padding:8px;background:transparent;color:var(--color-text-primary,#e2e8f0);
       var name=esc(sp.name||'');
       var role=esc(sp.role||'');
       var company=esc(sp.company||'');
-      var bio=(sp.bio||'').substring(0,120);
-      if(bio.length===120)bio=bio.substring(0,bio.lastIndexOf(' ')||120)+'\u2026';
+      var bio=(sp.bio||'').substring(0,200);
+      if((sp.bio||'').length>200){bio=bio.substring(0,bio.lastIndexOf(' ')||200)+'\\u2026';}
       bio=esc(bio);
       var photo=sp.photo_url||'';
       var topics=(sp.topics||[]).slice(0,3);
@@ -218,41 +194,50 @@ body{padding:8px;background:transparent;color:var(--color-text-primary,#e2e8f0);
       var photoH=photo
         ?'<img src="'+photo+'" class="photo" alt="">'
         :'<div class="initial">'+(name.charAt(0)||'?')+'</div>';
+
+      var subtitle=(role?role+', ':'')+company;
+      var nameRow='<span>'+name+'</span>';
+      if(linkedin){nameRow+='<a href="#" class="link" data-li="1">LinkedIn \\u2197</a>';}
+
       var topicsH='';
       if(topics.length){topicsH='<div class="tags">'+topics.map(function(t){return'<span class="tag">'+esc(t)+'</span>';}).join('')+'</div>';}
+
       var sessH='';
       if(sessions.length){
         sessH='<div class="label">Sessions</div>'+sessions.map(function(s){
-          return'<div class="sess">'+esc((s.day||'').slice(-5))+' '+esc(s.start_time||'')+' \\u2014 '+esc(s.title||'')+'</div>';
+          return'<div class="sess"><span class="sess-time">'+esc((s.day||'').slice(-5))+' '+esc(s.start_time||'')+'</span><span>'+esc(s.title||'')+'</span></div>';
         }).join('');
       }
-      var linkH='';
-      if(linkedin){linkH='<a href="#" class="link" onclick="return false">LinkedIn \\u2197</a>';}
 
-      html+='<div class="card"><div class="header">'+photoH+'<div>'
-        +'<div class="name">'+name+'</div>'
-        +'<div class="subtitle">'+(role?role+', ':'')+company+'</div>'
-        +'</div></div>'
+      html+='<div class="spk-row"><div class="spk-head">'+photoH+'<div style="min-width:0">'
+        +'<div class="name">'+nameRow+'</div>'
+        +(subtitle?'<div class="role">'+subtitle+'</div>':'')
         +(bio?'<div class="bio">'+bio+'</div>':'')
-        +topicsH+sessH+linkH+'</div>';
+        +topicsH
+        +sessH
+        +'</div></div></div>';
     });
     if(overflow>0){html+='<div class="more">+'+overflow+' more speaker'+(overflow>1?'s':'')+'</div>';}
     root.innerHTML=html;
-    var links=root.querySelectorAll('.link');
+
+    var liLinks=root.querySelectorAll('a[data-li]');
     shown.forEach(function(sp,i){
-      if(sp.linkedin_url&&links[i]){links[i].onclick=function(e){e.preventDefault();app.openLink(sp.linkedin_url);};}
+      if(sp.linkedin_url&&liLinks[i]){liLinks[i].onclick=function(e){e.preventDefault();e.stopPropagation();app&&app.openLink(sp.linkedin_url);};}
     });
     if(app)app.resize();
   }
 
   Synapse.connect({
     name:'speaker-widget',version:'1.0.0',autoResize:false,
-    on:{'tool-result':function(data){
-      var d=data.content;
-      var speakers=(d&&d.results)||[];
-      if(speakers.length)render(speakers);
-    }}
-  }).then(function(a){ app=a; });
+    on:{
+      'tool-result':function(data){
+        var d=data.content;
+        var speakers=(d&&d.results)||[];
+        if(speakers.length)render(speakers);
+      },
+      'theme-changed':function(t){applyTheme(t);}
+    }
+  }).then(function(a){ app=a; applyTheme(a.theme); });
 })();
 </script>
 </body></html>"""
@@ -264,53 +249,67 @@ def session_widget_ui() -> str:
     """Session search results widget using Synapse.connect() for MCP Apps protocol."""
     synapse_js = _SYNAPSE_JS
     return (
-        '<!DOCTYPE html><html><head><meta charset="utf-8">\n'
+        '<!DOCTYPE html><html data-theme="light"><head><meta charset="utf-8">\n'
         f"<style>{_WIDGET_CSS}</style>\n"
         "</head><body>\n"
-        '<div id="root"><p class="meta">Loading sessions...</p></div>\n'
+        '<div id="root"><p class="empty">Loading sessions&hellip;</p></div>\n'
         f"<script>{synapse_js}</script>\n"
+        f"<script>{_WIDGET_THEME_BOOT}</script>\n"
         """<script>
 (function(){
   var app;
   function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
 
+  function fmtTime(start,end){
+    if(!start) return '';
+    if(!end) return start;
+    return start+'\\u2013'+end;
+  }
+
   function render(sessions){
     var root=document.getElementById('root');
-    if(!sessions||!sessions.length){root.innerHTML='<p class="meta">No sessions found</p>';if(app)app.resize();return;}
+    if(!sessions||!sessions.length){root.innerHTML='<p class="empty">No sessions found.</p>';if(app)app.resize();return;}
     var shown=sessions.slice(0,10);
     var overflow=sessions.length-shown.length;
-    var html='<div class="meta">'+sessions.length+' sessions</div>';
+    var html='<div class="meta">'+sessions.length+' '+(sessions.length===1?'session':'sessions')+'</div>';
     shown.forEach(function(s){
       var title=esc(s.title||'');
       var stype=s.session_type||s.type||'';
       var room=esc(s.room||'');
-      var start=s.start_time||'';
-      var end=s.end_time||'';
       var day=(s.day||'').slice(-5);
+      var time=fmtTime(s.start_time||'',s.end_time||'');
       var speakers=(s.speakers||[]).map(function(sp){return esc(sp.name||'');}).join(', ');
       if(!speakers) speakers=(s.speaker_names||[]).map(function(n){return esc(n);}).join(', ');
-      var desc=esc((s.description_preview||'').slice(0,150));
-      html+='<div class="session-card">';
-      html+='<span class="badge badge-'+stype+'">'+stype+'</span> ';
-      html+='<span class="session-title">'+title+'</span>';
-      html+='<div class="session-info"><span>'+day+' '+start+'-'+end+'</span><span>'+room+'</span></div>';
-      if(speakers) html+='<div class="sess">'+speakers+'</div>';
-      if(desc) html+='<div style="font-size:11px;margin-top:4px" class="sess">'+desc+'</div>';
+      var desc=esc((s.description_preview||'').slice(0,140));
+      var isKeynote=stype==='keynote';
+
+      html+='<div class="sess-row" data-keynote="'+isKeynote+'">';
+      html+='<div class="sess-title">'+title+'</div>';
+      html+='<div class="sess-info">';
+      if(stype) html+='<span class="badge badge-'+stype+'">'+esc(stype.replace(/_/g,' '))+'</span>';
+      if(room) html+='<span class="sess-room">'+room+'</span>';
+      if(day||time) html+='<span class="sess-time-r">'+esc(day)+(day&&time?' \\u00b7 ':'')+esc(time)+'</span>';
+      html+='</div>';
+      if(speakers) html+='<div class="sess-speakers">'+speakers+'</div>';
+      if(desc) html+='<div class="sess-speakers" style="margin-top:4px">'+desc+'\\u2026</div>';
       html+='</div>';
     });
-    if(overflow>0) html+='<div class="meta">+ '+overflow+' more</div>';
+    if(overflow>0) html+='<div class="more">+ '+overflow+' more</div>';
     root.innerHTML=html;
     if(app)app.resize();
   }
 
   Synapse.connect({
     name:'session-widget',version:'1.0.0',autoResize:false,
-    on:{'tool-result':function(data){
-      var d=data.content;
-      var sessions=(d&&d.results)||[];
-      if(sessions.length)render(sessions);
-    }}
-  }).then(function(a){ app=a; });
+    on:{
+      'tool-result':function(data){
+        var d=data.content;
+        var sessions=(d&&d.results)||[];
+        if(sessions.length)render(sessions);
+      },
+      'theme-changed':function(t){applyTheme(t);}
+    }
+  }).then(function(a){ app=a; applyTheme(a.theme); });
 })();
 </script>
 </body></html>"""
@@ -335,85 +334,69 @@ def summit_ui() -> str:
 @mcp.resource("ui://mcp-dev-summit/speaker/{speaker_id}")
 def speaker_card_ui(speaker_id: str) -> str:
     """A speaker profile card — rendered inline when a speaker is looked up."""
+    import html as html_mod
+
     try:
         sp = upjack_app.get_entity("speaker", speaker_id)
     except Exception:
-        return "<html><body><p>Speaker not found</p></body></html>"
+        return _wrap_widget('<p class="empty">Speaker not found.</p>', "speaker-card")
 
-    # Get their sessions via reverse index
     try:
         sessions = upjack_app.query_by_relationship("session", "presented_by", speaker_id)
     except Exception:
         sessions = []
 
     photo = sp.get("photo_url", "")
-    name = sp.get("name", "Unknown")
-    role = sp.get("role", "")
-    company = sp.get("company", "")
-    bio = sp.get("bio", "")
+    name = html_mod.escape(sp.get("name", "Unknown"))
+    role = html_mod.escape(sp.get("role", ""))
+    company = html_mod.escape(sp.get("company", ""))
+    bio = html_mod.escape(sp.get("bio", ""))
     topics = sp.get("topics", [])
     linkedin = sp.get("linkedin_url", "")
 
-    topics_html = "".join(f'<span class="tag">{t}</span>' for t in topics)
-
-    sessions_html = "".join(
-        f'<div class="sess">'
-        f"{s.get('day', '')[-5:]} {s.get('start_time', '')} &mdash; {s.get('title', '')}</div>"
-        for s in sessions
+    avatar = (
+        f'<img class="photo" src="{html_mod.escape(photo)}" alt="{name}">'
+        if photo
+        else f'<div class="initial">{name[:1] or "?"}</div>'
     )
 
-    links_html = ""
+    subtitle = f"{role + ', ' if role else ''}{company}"
+
+    name_row = f"<span>{name}</span>"
     if linkedin:
-        links_html += (
-            f'<a href="#" onclick="window._app&&window._app.openLink(\'{linkedin}\');'
-            f'return false" class="link">LinkedIn ↗</a>'
+        name_row += (
+            f'<a href="#" class="link" onclick="window._app&&window._app.openLink(&quot;{linkedin}&quot;);'
+            f'return false">LinkedIn ↗</a>'
         )
 
-    synapse_js = _SYNAPSE_JS
+    topics_html = ""
+    if topics:
+        chips = "".join(f'<span class="tag">{html_mod.escape(t)}</span>' for t in topics)
+        topics_html = f'<div class="label">Topics</div><div class="tags">{chips}</div>'
 
-    return (
-        f"""<!DOCTYPE html>
-<html><head><meta charset="utf-8"><style>
-body {{ padding:16px; background:transparent; color:var(--color-text-primary,#e2e8f0);
-  font-family:var(--font-sans,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif); }}
-.card {{ max-width:400px; }}
-.header {{ display:flex; gap:12px; margin-bottom:12px; }}
-.photo {{ width:56px; height:56px; border-radius:50%; object-fit:cover; }}
-.initial {{ width:56px; height:56px; border-radius:50%; background:var(--color-background-tertiary,#1e293b);
-  display:flex; align-items:center; justify-content:center; font-size:20px; color:var(--color-text-accent,#818cf8); }}
-.name {{ font-size:16px; font-weight:var(--font-weight-semibold,600); color:var(--color-text-primary,#e2e8f0); }}
-.role {{ font-size:var(--font-text-xs-size,12px); color:var(--color-text-secondary,#94a3b8); }}
-.bio {{ font-size:var(--font-text-sm-size,13px); line-height:1.5; color:var(--color-text-secondary,#94a3b8); margin:12px 0; }}
-.section-label {{ font-size:11px; text-transform:uppercase; color:var(--color-text-tertiary,#64748b); margin:12px 0 4px; }}
-.topics {{ display:flex; flex-wrap:wrap; gap:4px; }}
-.tag {{ display:inline-block; padding:2px 8px; border-radius:var(--border-radius-xs,4px);
-  background:var(--color-background-tertiary,#1e293b); color:var(--color-text-accent,#818cf8); font-size:var(--font-text-xs-size,12px); }}
-.sess {{ font-size:var(--font-text-xs-size,12px); color:var(--color-text-secondary,#94a3b8); padding:4px 0; }}
-.link,.link:visited,.link:active {{ color:var(--color-text-accent,#818cf8); text-decoration:none; font-size:var(--font-text-xs-size,12px); display:inline-block; margin-top:8px; }}
-.link:hover {{ text-decoration:underline; }}
-.links {{ margin-top:12px; }}
-</style></head><body>
-<div class="card">
-  <div class="header">
-    {"<img class='photo' src='" + photo + "' alt='" + name + "'>" if photo else "<div class='initial'>" + name[0] + "</div>"}
-    <div>
-      <div class="name">{name}</div>
-      <div class="role">{(role + ", ") if role else ""}{company}</div>
-    </div>
-  </div>
-  {f'<div class="bio">{bio}</div>' if bio else ""}
-  {f'<div class="section-label">Topics</div><div class="topics">{topics_html}</div>' if topics else ""}
-  {f'<div class="section-label">Sessions</div>{sessions_html}' if sessions_html else ""}
-  {f'<div class="links">{links_html}</div>' if links_html else ""}
-</div>
-<script>"""
-        + synapse_js
-        + """</script>
-<script>
-Synapse.connect({name:'speaker-card',version:'1.0.0',autoResize:true}).then(function(a){ window._app=a; });
-</script>
-</body></html>"""
+    sessions_html = ""
+    if sessions:
+        rows = "".join(
+            f'<div class="sess"><span class="sess-time">'
+            f"{html_mod.escape(s.get('day', '')[-5:])} {html_mod.escape(s.get('start_time', ''))}"
+            f"</span><span>{html_mod.escape(s.get('title', ''))}</span></div>"
+            for s in sessions
+        )
+        sessions_html = f'<div class="label">Sessions</div>{rows}'
+
+    body = (
+        '<div class="spk-row"><div class="spk-head">'
+        f"{avatar}"
+        '<div style="min-width:0">'
+        f'<div class="name">{name_row}</div>'
+        f"{f'<div class=role>{subtitle}</div>' if subtitle else ''}"
+        f"{f'<div class=bio>{bio}</div>' if bio else ''}"
+        f"{topics_html}"
+        f"{sessions_html}"
+        "</div></div></div>"
     )
+
+    return _wrap_widget(body, "speaker-card")
 
 
 # Shared state for baked-in widget data. The tool stores its result here,
@@ -421,48 +404,126 @@ Synapse.connect({name:'speaker-card',version:'1.0.0',autoResize:true}).then(func
 _last_widget_data: dict[str, Any] = {}
 
 _WIDGET_CSS = """\
-body{padding:16px;background:transparent;color:var(--color-text-primary,#e2e8f0);
-  font-family:var(--font-sans,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif)}
-.card{max-width:420px;margin-bottom:12px}
-.header{display:flex;gap:12px;margin-bottom:10px}
-.photo{width:52px;height:52px;border-radius:50%;object-fit:cover;flex-shrink:0}
-.initial{width:52px;height:52px;border-radius:50%;
-  background:var(--color-background-tertiary,#1e293b);
-  display:flex;align-items:center;justify-content:center;font-size:18px;
-  color:var(--color-text-accent,#818cf8);flex-shrink:0}
-.name{font-size:15px;font-weight:var(--font-weight-semibold,600);color:var(--color-text-primary,#e2e8f0)}
-.role{font-size:var(--font-text-xs-size,12px);color:var(--color-text-secondary,#94a3b8);margin-top:2px}
-.bio{font-size:var(--font-text-xs-size,12px);line-height:1.5;color:var(--color-text-secondary,#94a3b8);margin:10px 0}
-.tags{display:flex;flex-wrap:wrap;gap:3px;margin:6px 0}
-.tag{display:inline-block;padding:1px 6px;border-radius:var(--border-radius-xs,4px);
-  background:var(--color-background-tertiary,#1e293b);
-  color:var(--color-text-accent,#818cf8);font-size:10px;
-  border:var(--border-width-regular,1px) solid var(--color-border-primary,#334155)}
-.label{font-size:9px;text-transform:uppercase;letter-spacing:0.5px;color:var(--color-text-tertiary,#64748b);margin:10px 0 3px}
-.sess{font-size:var(--font-text-xs-size,12px);color:var(--color-text-secondary,#94a3b8);padding:2px 0}
-.link,.link:visited,.link:active{color:var(--color-text-accent,#818cf8);text-decoration:none;font-size:var(--font-text-xs-size,12px);display:inline-block;margin-top:6px}
+:root[data-theme="light"]{
+  --w-ink:#0c111c; --w-ink-2:#4a5468; --w-ink-3:#8b95a8;
+  --w-rule:#e5e8ee; --w-rule-soft:#eef0f4;
+  --w-surface-2:#f8f9fb; --w-surface-3:#eef0f4;
+  --w-accent:var(--color-text-accent,#4f46e5);
+  --w-accent-soft:color-mix(in srgb, var(--w-accent) 10%, transparent);
+  --w-accent-line:color-mix(in srgb, var(--w-accent) 28%, transparent);
+}
+:root[data-theme="dark"]{
+  --w-ink:#e7ecf3; --w-ink-2:#98a3b8; --w-ink-3:#5e6b82;
+  --w-rule:#1e2840; --w-rule-soft:#161e2e;
+  --w-surface-2:#131a28; --w-surface-3:#1c2536;
+  --w-accent:var(--color-text-accent,#818cf8);
+  --w-accent-soft:color-mix(in srgb, var(--w-accent) 14%, transparent);
+  --w-accent-line:color-mix(in srgb, var(--w-accent) 35%, transparent);
+}
+*{box-sizing:border-box}
+body{padding:12px;background:transparent;color:var(--w-ink);
+  font-family:var(--font-sans,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif);
+  font-size:13px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.meta{font-size:11px;color:var(--w-ink-3);text-transform:uppercase;letter-spacing:0.08em;
+  font-weight:600;margin-bottom:10px;font-variant-numeric:tabular-nums}
+.empty{color:var(--w-ink-3);font-size:13px;padding:8px 0}
+.more{font-size:11px;color:var(--w-ink-3);margin-top:8px;font-style:italic}
+
+/* ---------- speaker rows ---------- */
+.spk-row{padding:10px 0;border-bottom:1px solid var(--w-rule-soft)}
+.spk-row:last-child{border-bottom:none;padding-bottom:0}
+.spk-row:first-child{padding-top:0}
+.spk-head{display:grid;grid-template-columns:40px 1fr;gap:10px;align-items:flex-start}
+.photo{width:40px;height:40px;border-radius:50%;object-fit:cover;flex-shrink:0;background:var(--w-surface-3)}
+.initial{width:40px;height:40px;border-radius:50%;flex-shrink:0;
+  background:var(--w-accent-soft);color:var(--w-accent);
+  display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600}
+.name{font-size:14px;font-weight:600;color:var(--w-ink);
+  display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;line-height:1.3}
+.role{font-size:12px;color:var(--w-ink-2);margin-top:1px;line-height:1.4}
+.bio{font-size:12.5px;line-height:1.5;color:var(--w-ink-2);margin:6px 0 0;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.tag{display:inline-block;padding:1px 7px;border-radius:3px;
+  background:var(--w-surface-2);color:var(--w-ink-3);font-size:10.5px;font-weight:500}
+.label{font-size:10px;text-transform:uppercase;letter-spacing:0.08em;
+  color:var(--w-ink-3);margin:8px 0 4px;font-weight:600}
+.sess{font-size:12px;color:var(--w-ink-2);padding:2px 0;
+  display:flex;gap:8px;align-items:baseline}
+.sess-time{font-family:ui-monospace,"SF Mono","JetBrains Mono",Menlo,monospace;
+  color:var(--w-ink-3);font-variant-numeric:tabular-nums;flex-shrink:0;font-size:11.5px}
+.link,.link:visited,.link:active{color:var(--w-accent);text-decoration:none;
+  font-size:12px;font-weight:500;display:inline-flex;align-items:center;gap:2px}
 .link:hover{text-decoration:underline}
-.session-card{border:var(--border-width-regular,1px) solid var(--color-border-primary,#334155);border-radius:var(--border-radius-md,8px);padding:12px;margin-bottom:8px}
-.session-title{font-size:14px;font-weight:var(--font-weight-semibold,600);margin-bottom:4px;color:var(--color-text-primary,#e2e8f0)}
-.session-info{font-size:var(--font-text-xs-size,12px);color:var(--color-text-secondary,#94a3b8);display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px}
-.badge{display:inline-block;padding:1px 6px;border-radius:var(--border-radius-xs,4px);font-size:9px;font-weight:var(--font-weight-semibold,600);text-transform:uppercase;white-space:nowrap;max-width:80px;overflow:hidden;text-overflow:ellipsis;vertical-align:middle}
-.badge-keynote{background:#eab30822;color:#eab308}
-.badge-talk{background:var(--color-background-tertiary,#1e293b);color:var(--color-text-accent,#818cf8)}
-.badge-workshop{background:#22c55e22;color:#22c55e}
-.badge-sponsor_activity{background:#f9731622;color:#f97316}
-.time-slot{font-size:var(--font-text-xs-size,12px);font-weight:var(--font-weight-semibold,600);color:var(--color-text-accent,#818cf8);margin:10px 0 4px;padding-bottom:4px;border-bottom:var(--border-width-regular,1px) solid var(--color-border-primary,#334155)}
-.schedule-item{font-size:var(--font-text-xs-size,12px);padding:3px 0;display:flex;gap:8px;color:var(--color-text-primary,#e2e8f0)}
-.schedule-title{flex:1}
-.schedule-room{color:var(--color-text-tertiary,#64748b);font-size:11px}
-.meta{font-size:11px;color:var(--color-text-secondary,#94a3b8);margin-bottom:8px}
+.row-link{margin-top:6px}
+
+/* ---------- session rows ---------- */
+.sess-row{padding:11px 0;border-bottom:1px solid var(--w-rule-soft);position:relative}
+.sess-row:last-child{border-bottom:none;padding-bottom:0}
+.sess-row:first-of-type{padding-top:0}
+.sess-row[data-keynote="true"]::before{content:"";position:absolute;left:-12px;top:0;bottom:0;
+  width:3px;background:var(--w-accent)}
+.sess-title{font-size:14px;font-weight:500;color:var(--w-ink);line-height:1.35;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sess-title.link{font-weight:500;font-size:14px;display:block}
+.sess-info{display:flex;flex-wrap:wrap;gap:4px 10px;margin-top:4px;
+  font-size:12px;color:var(--w-ink-2);align-items:baseline}
+.sess-time-r{font-family:ui-monospace,"SF Mono","JetBrains Mono",Menlo,monospace;
+  color:var(--w-ink-3);font-size:11.5px;font-variant-numeric:tabular-nums}
+.sess-room{color:var(--w-ink-2)}
+.sess-speakers{font-size:12px;color:var(--w-ink-3);margin-top:2px;line-height:1.4}
+
+/* ---------- badges ---------- */
+.badge{display:inline-flex;align-items:center;font-size:10px;font-weight:600;
+  text-transform:uppercase;letter-spacing:0.06em;padding:2px 6px;border-radius:4px;
+  background:var(--w-surface-3);color:var(--w-ink-2);white-space:nowrap;vertical-align:middle}
+.badge-keynote{background:var(--w-accent-soft);color:var(--w-accent)}
+.badge-workshop{background:color-mix(in srgb,#15803d 14%,transparent);color:#15803d}
+.badge-social{background:color-mix(in srgb,#ec4899 14%,transparent);color:#ec4899}
+.badge-sponsor_activity{background:color-mix(in srgb,#b45309 14%,transparent);color:#b45309}
+
+/* ---------- schedule ---------- */
+.day-head{font-size:14px;font-weight:600;color:var(--w-ink);margin-bottom:12px;
+  letter-spacing:0.01em}
+.time-slot{display:flex;align-items:baseline;gap:10px;
+  margin:14px 0 4px;padding:6px 0 6px;border-bottom:1px solid var(--w-rule)}
+.time-slot:first-of-type{margin-top:0}
+.time-slot-time{font-family:ui-monospace,"SF Mono","JetBrains Mono",Menlo,monospace;
+  font-size:11.5px;font-weight:600;letter-spacing:0.02em;color:var(--w-ink);
+  font-variant-numeric:tabular-nums}
+.schedule-item{padding:7px 0;border-bottom:1px solid var(--w-rule-soft);
+  font-size:13px;color:var(--w-ink);position:relative}
+.schedule-item:last-child{border-bottom:none}
+.schedule-item[data-keynote="true"]::before{content:"";position:absolute;left:-12px;top:0;bottom:0;
+  width:3px;background:var(--w-accent)}
+.schedule-title{display:block;font-size:13.5px;line-height:1.35;color:var(--w-ink);font-weight:500}
+.schedule-meta{display:flex;flex-wrap:wrap;gap:4px 10px;margin-top:3px;
+  font-size:11.5px;color:var(--w-ink-2);align-items:baseline}
+.schedule-room{color:var(--w-ink-3)}
+.schedule-speakers{font-size:11.5px;color:var(--w-ink-3);margin-top:2px;line-height:1.4}
+"""
+
+# Boot snippet for chat widgets: applies data-theme based on host theme so the
+# widget palette adapts when the user toggles light/dark.
+_WIDGET_THEME_BOOT = """\
+function applyTheme(t){
+  var mode=(t&&t.mode==="dark")?"dark":"light";
+  document.documentElement.setAttribute("data-theme",mode);
+}
 """
 
 
 def _wrap_widget(body_html: str, widget_name: str = "widget") -> str:
     synapse_js = _SYNAPSE_JS
-    widget_js = f"Synapse.connect({{name:'{widget_name}',version:'1.0.0',autoResize:true}});"
+    widget_js = (
+        f"{_WIDGET_THEME_BOOT}"
+        f"Synapse.connect({{name:'{widget_name}',version:'1.0.0',autoResize:true,"
+        f"on:{{'theme-changed':function(t){{applyTheme(t);}}}}"
+        f"}}).then(function(a){{ applyTheme(a.theme); window._app=a; }});"
+    )
     return (
-        "<!DOCTYPE html><html><head><meta charset='utf-8'>"
+        "<!DOCTYPE html><html data-theme='light'><head><meta charset='utf-8'>"
         "<meta name='viewport' content='width=device-width,initial-scale=1'>"
         f"<style>{_WIDGET_CSS}</style></head>"
         f"<body>{body_html}"
@@ -475,37 +536,47 @@ def _wrap_widget(body_html: str, widget_name: str = "widget") -> str:
 def _render_session_list(sessions: list[dict]) -> str:
     import html as html_mod
 
-    h = f'<div class="meta">{len(sessions)} sessions</div>'
+    h = f'<div class="meta">{len(sessions)} {"session" if len(sessions) == 1 else "sessions"}</div>'
     for s in sessions[:10]:
         title = html_mod.escape(s.get("title", ""))
         stype = s.get("session_type", "")
         room = html_mod.escape(s.get("room", ""))
-        start = s.get("start_time", "")
-        end = s.get("end_time", "")
-        day = s.get("day", "")[-5:]
+        start = html_mod.escape(s.get("start_time", ""))
+        end = html_mod.escape(s.get("end_time", ""))
+        day = html_mod.escape(s.get("day", "")[-5:])
         sched_url = s.get("sched_url", "")
         speakers = ", ".join(html_mod.escape(sp.get("name", "")) for sp in s.get("speakers", []))
         if not speakers:
             speakers = ", ".join(html_mod.escape(n) for n in s.get("speaker_names", []))
-        desc = html_mod.escape(s.get("description_preview", "")[:150])
+        desc = html_mod.escape(s.get("description_preview", "")[:140])
+        is_keynote = stype == "keynote"
+        time_str = f"{start}–{end}" if start and end else start
 
-        # Title — linked to Sched if available
         if sched_url:
             title_html = (
-                f'<a href="#" onclick="window.parent.postMessage({{jsonrpc:&quot;2.0&quot;,id:&quot;lnk&quot;,'
-                f"method:&quot;ui/open-link&quot;,params:{{url:&quot;{sched_url}&quot;}}}},&quot;*&quot;);"
-                f'return false" class="session-title link" style="font-size:14px;margin:0">{title}</a>'
+                f'<a href="#" onclick="window._app&&window._app.openLink(&quot;{sched_url}&quot;);'
+                f'return false" class="sess-title link">{title}</a>'
             )
         else:
-            title_html = f'<span class="session-title">{title}</span>'
+            title_html = f'<div class="sess-title">{title}</div>'
+
+        meta_parts = []
+        if stype:
+            meta_parts.append(
+                f'<span class="badge badge-{stype}">{html_mod.escape(stype.replace("_", " "))}</span>'
+            )
+        if room:
+            meta_parts.append(f'<span class="sess-room">{room}</span>')
+        if day or time_str:
+            sep = " · " if day and time_str else ""
+            meta_parts.append(f'<span class="sess-time-r">{day}{sep}{time_str}</span>')
 
         h += (
-            f'<div class="session-card">'
-            f'<span class="badge badge-{stype}">{stype}</span> '
+            f'<div class="sess-row" data-keynote="{str(is_keynote).lower()}">'
             f"{title_html}"
-            f'<div class="session-info"><span>{day} {start}-{end}</span><span>{room}</span></div>'
-            f"{f'<div class=sess>{speakers}</div>' if speakers else ''}"
-            f"{f'<div style=font-size:11px;margin-top:4px class=sess>{desc}</div>' if desc else ''}"
+            f'<div class="sess-info">{"".join(meta_parts)}</div>'
+            f"{f'<div class=sess-speakers>{speakers}</div>' if speakers else ''}"
+            f"{f'<div class=sess-speakers style=margin-top:4px>{desc}&hellip;</div>' if desc else ''}"
             f"</div>"
         )
     return h
@@ -516,37 +587,53 @@ def _render_schedule(data: dict) -> str:
 
     slots = data.get("time_slots", [])
     label = html_mod.escape(data.get("label", data.get("day", "Schedule")))
-    h = f'<div style="font-size:14px;font-weight:600;margin-bottom:12px">{label}</div>'
+    h = f'<div class="day-head">{label}</div>'
     for slot in slots:
-        h += f'<div class="time-slot">{slot.get("time", "")}</div>'
+        slot_time = html_mod.escape(slot.get("time", ""))
+        h += f'<div class="time-slot"><span class="time-slot-time">{slot_time}</span></div>'
         for s in slot.get("sessions", []):
             title = html_mod.escape(s.get("title", ""))
             room = html_mod.escape(s.get("room", ""))
             stype = s.get("type", "")
+            start = html_mod.escape(s.get("start_time", ""))
+            end = html_mod.escape(s.get("end_time", ""))
             sched_url = s.get("sched_url", "")
             speakers = s.get("speakers", [])
+            is_keynote = stype == "keynote"
+            time_str = f"{start}–{end}" if start and end else start
 
             # Title — linked to Sched if available
             if sched_url:
                 title_html = (
-                    f'<a href="#" onclick="window.parent.postMessage({{jsonrpc:&quot;2.0&quot;,id:&quot;lnk&quot;,'
-                    f"method:&quot;ui/open-link&quot;,params:{{url:&quot;{sched_url}&quot;}}}},&quot;*&quot;);"
-                    f'return false" class="link" style="font-size:inherit;margin:0">{title}</a>'
+                    f'<a href="#" onclick="window._app&&window._app.openLink(&quot;{sched_url}&quot;);'
+                    f'return false" class="schedule-title link">{title}</a>'
                 )
             else:
-                title_html = title
+                title_html = f'<span class="schedule-title">{title}</span>'
 
-            # Speakers line
+            # Meta line: badge + time + room
+            meta_parts = []
+            if stype:
+                meta_parts.append(
+                    f'<span class="badge badge-{stype}">{html_mod.escape(stype.replace("_", " "))}</span>'
+                )
+            if time_str:
+                meta_parts.append(f'<span class="sess-time-r">{time_str}</span>')
+            if room:
+                meta_parts.append(f'<span class="schedule-room">{room}</span>')
+            meta_html = (
+                '<div class="schedule-meta">' + "".join(meta_parts) + "</div>" if meta_parts else ""
+            )
+
+            # Speakers
             speakers_html = ""
             if speakers and stype in ("keynote", "talk", "workshop"):
                 names = ", ".join(html_mod.escape(str(n)) for n in speakers)
-                speakers_html = f'<div style="font-size:10px" class="sess">{names}</div>'
+                speakers_html = f'<div class="schedule-speakers">{names}</div>'
 
             h += (
-                f'<div class="schedule-item" style="flex-wrap:wrap">'
-                f'<span style="font-size:9px;text-transform:uppercase;width:60px" class="sess">{stype}</span>'
-                f'<span class="schedule-title">{title_html}{speakers_html}</span>'
-                f'<span class="schedule-room">{room}</span></div>'
+                f'<div class="schedule-item" data-keynote="{str(is_keynote).lower()}">'
+                f"{title_html}{meta_html}{speakers_html}</div>"
             )
     return h
 
@@ -933,6 +1020,24 @@ def find_speaker_profiles(
 def browse_sponsors(tier: str = "", query: str = "") -> dict:
     """Browse conference sponsors by tier. Returns booth activities and sponsored sessions."""
     return _browse_sponsors(upjack_app, tier=tier, query=query)
+
+
+@mcp.tool()
+def bookmark_session(
+    session_id: str,
+    priority: str = "want_to_attend",
+    notes: str = "",
+) -> dict:
+    """Bookmark a session for your personal schedule. Creates a bookmark entity linked to the session via a `bookmarks` relationship. Priority: must_attend, want_to_attend, maybe."""
+    if priority not in ("must_attend", "want_to_attend", "maybe"):
+        priority = "want_to_attend"
+    data: dict[str, Any] = {
+        "priority": priority,
+        "relationships": [{"rel": "bookmarks", "target": session_id}],
+    }
+    if notes:
+        data["notes"] = notes
+    return upjack_app.create_entity("bookmark", data)
 
 
 # =============================================================================
