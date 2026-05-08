@@ -1,7 +1,7 @@
 {
   "manifest_version": "0.4",
-  "name": "@nimblebraininc/mcp-dev-summit",
-  "version": "0.4.0",
+  "name": "@nimblebraininc/synapse-mcp-dev-summit",
+  "version": "0.5.0",
   "description": "Conference companion for MCP Dev Summit NA 2026 — search sessions, build a personal schedule, capture notes, and get AI-powered recommendations",
   "author": {
     "name": "NimbleBrain Inc",
@@ -139,20 +139,20 @@
         "run_on_install": true
       }
     },
-    "ai.nimblebrain/platform": {
-      "ui": {
-        "name": "MCP Dev Summit",
-        "icon": "calendar",
-        "placements": [
-          {
-            "slot": "sidebar.apps",
-            "resourceUri": "ui://mcp-dev-summit/main",
-            "route": "@nimblebraininc/mcp-dev-summit",
-            "label": "Dev Summit",
-            "icon": "calendar"
-          }
-        ]
-      }
+    "ai.nimblebrain/host": {
+      "host_version": "1.0",
+      "name": "MCP Dev Summit",
+      "icon": "calendar",
+      "category": "operations",
+      "placements": [
+        {
+          "slot": "sidebar.apps",
+          "resourceUri": "ui://mcp-dev-summit/main",
+          "route": "@nimblebraininc/synapse-mcp-dev-summit",
+          "label": "Dev Summit",
+          "icon": "calendar"
+        }
+      ]
     },
     "org.mpaktrust": {
       "mtf_version": "0.1",

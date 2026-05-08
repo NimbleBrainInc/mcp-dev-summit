@@ -539,7 +539,7 @@ wheels = [
 
 [[package]]
 name = "mcp-dev-summit"
-version = "0.3.3"
+version = "0.4.0"
 source = { editable = "." }
 dependencies = [
     { name = "python-dotenv" },
@@ -557,7 +557,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "python-dotenv", specifier = ">=1.0.0" },
-    { name = "upjack", extras = ["mcp"], specifier = ">=0.4.2" },
+    { name = "upjack", extras = ["mcp"], specifier = ">=0.5.0" },
 ]
 
 [package.metadata.requires-dev]
@@ -1137,7 +1137,7 @@ wheels = [
 
 [[package]]
 name = "upjack"
-version = "0.4.2"
+version = "0.5.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "jsonschema" },
@@ -1145,9 +1145,9 @@ dependencies = [
     { name = "referencing" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/9f/26/13483ecaf1422ee4cd6a87e43f02cb4cde8b61de6adaa5f95335dcf9dd76/upjack-0.4.2.tar.gz", hash = "sha256:59dd3cffe614b65d53c35ac95338b6b3e869e506101cc3a5be295b45adbac5e5", size = 117619, upload-time = "2026-03-29T01:27:13.405Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/87/3e/51589894ae74c0fb666951b03a68bef72ebabdaee8c535523d6713bae108/upjack-0.5.2.tar.gz", hash = "sha256:b990382ee4f5060f68252d9dfa1219db00f34be8f23d368f53c3f5b59c4127f5", size = 125275, upload-time = "2026-04-17T06:46:42.964Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/cf/e9/d2c476bb93f4d87cc478e0722ac3bed2bc41cd9facfc6b3484e0ae758159/upjack-0.4.2-py3-none-any.whl", hash = "sha256:f029880c27c730e57a518c25af14567b7eb2cf27107622302ff41ef568c09a00", size = 30766, upload-time = "2026-03-29T01:27:12.561Z" },
+    { url = "https://files.pythonhosted.org/packages/6a/ed/1313935080657724cbdcb308588d0f7ea03c2295f3bcf7e1fb602ca0a3fe/upjack-0.5.2-py3-none-any.whl", hash = "sha256:df08676bed65efc7e4738c5af1cae94adf6578f7df0071c1a2c1b70e6e7939d2", size = 34595, upload-time = "2026-04-17T06:46:41.76Z" },
 ]
 
 [package.optional-dependencies]
