@@ -1,12 +1,13 @@
 {
   "manifest_version": "0.4",
   "name": "@nimblebraininc/synapse-mcp-dev-summit",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Conference companion for MCP Dev Summit NA 2026 — search sessions, build a personal schedule, capture notes, and get AI-powered recommendations",
   "author": {
     "name": "NimbleBrain Inc",
     "email": "hello@nimblebrain.ai"
   },
+  "icon": "https://static.nimblebrain.ai/icons/mcp.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/NimbleBrainInc/mcp-dev-summit"
